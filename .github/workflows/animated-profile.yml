@@ -2,7 +2,7 @@ name: Generate animated profile
 
 on:
   push:
-    branches: [main]
+    branches: [main, animated-profile-readme]
     paths:
       - "README.md"
       - "animation/**"
