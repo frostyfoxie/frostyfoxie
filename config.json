@@ -4,11 +4,10 @@
     "email": "navneetkrgupta01@gmail.com"
   },
   "behind_the_code": {
-    "subheading": "FULL-STACK ENGINEER & SOFTWARE ARCHITECT",
+    "subheading": "STUDENT · WEB DEV · AI DEV · CURIOUS MIND",
     "description": [
-      "I am a passionate software engineer specializing in building high-performance, scalable web applications and intuitive digital experiences. Over the past several years, I have architected systems ranging from reactive client-side interfaces to resilient, event-driven distributed microservices.",
-      "My engineering philosophy centers on clean architectural design, strict type safety, automated testing, and relentless runtime performance tuning. Whether designing collaborative real-time canvases or optimizing complex database queries, I bridge engineering rigor with human-centered product craft.",
-      "Deeply invested in open-source tooling, I regularly share solutions with the developer community and continuously explore modern advancements in cloud infrastructure, systems design, and developer tooling."
+      "I’m a student, web developer and digital creator who enjoys turning ideas into working experiments. My interests span AI, programming, education technology, scientific exploration, creative coding, and interactive experiences. I learn by building—exploring new technologies, testing unconventional ideas, and creating tools that make complex concepts more engaging, useful, and easier to understand.",
+      "I love building things that seem unrealistic, difficult, or simply too ambitious at first. I enjoy pushing myself to make both the code and UI/UX as polished as possible. Beyond coding, I love reading, watching films, writing poems and blogs, playing chess, drawing, crafting digital art, and graphic designing. I’m also deeply curious about the rapidly evolving world of AI."
     ]
   },
   "education": [
@@ -50,7 +49,6 @@
     "sql",
     "vite",
     "discord",
-    "java",
     "html"
   ]
 }
