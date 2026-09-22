@@ -1,3 +1,5 @@
+![Animated profile](./assets/animated-profile.gif)
+
 ## Hi, I am Navneet!
 
 **Student · Software Builder · AI & Emerging Technology**
@@ -42,23 +44,23 @@ A JEE preparation and syllabus management tool designed around **structured prog
 
 ## Areas of Interest
 
-**Artificial Intelligence**
+**Artificial Intelligence**  
 AI agents · autonomous systems · conversational AI · memory · multimodal systems
 
-**Software Engineering**
+**Software Engineering**  
 Full-stack applications · backend systems · databases · APIs · developer tools
 
-**Education Technology**
+**Education Technology**  
 Adaptive learning · educational data · assessment · learning analytics
 
-**Science & Simulation**
+**Science & Simulation**  
 Physics · astronomy · cosmology · interactive visualisation
 
-**Human–Computer Interaction**
+**Human–Computer Interaction**  
 Interactive systems · visual experiences · human–AI interaction
 
 ---
-## 
+
 ## Technology
 
 `Python` · `TypeScript` · `JavaScript` · `PostgreSQL` · `Supabase` · `Vercel` · `LLMs` · `AI APIs` · `Discord`
