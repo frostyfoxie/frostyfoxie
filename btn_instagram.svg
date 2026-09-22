@@ -1,10 +1,7 @@
-<svg width="254" height="76" viewBox="0 0 254 76" xmlns="http://www.w3.org/2000/svg">
+<svg width="287" height="66" viewBox="0 0 287 66" xmlns="http://www.w3.org/2000/svg">
 <defs>
-  <filter id="ambientBlur" x="-50%" y="-50%" width="200%" height="200%">
-    <feGaussianBlur stdDeviation="30" />
-  </filter>
   <filter id="glassShadow" x="-50%" y="-50%" width="200%" height="200%">
-    <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.04" />
+    <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.04" />
   </filter>
   <filter id="buttonShadow" x="-50%" y="-50%" width="200%" height="200%">
     <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.04" />
@@ -37,23 +34,18 @@
   }
 </style>
 
-<!-- Seamless Base Canvas -->
+<!-- Canvas Base -->
 <rect width="100%" height="100%" fill="#f8fafc" />
 
-<!-- Soft Ambient Glow -->
-<g filter="url(#ambientBlur)">
-  <circle cx="127" cy="38" r="50" fill="#e0e7ff" opacity="0.6" />
-</g>
+<!-- Glass Card Container -->
+<rect x="6" y="6" width="275" height="54" rx="16" class="glass-card" />
 
-<!-- Frosted Glass Container -->
-<rect x="6" y="6" width="242" height="64" rx="18" class="glass-card" />
-
-<!-- Inner White Button Pill -->
-<rect x="14" y="16" width="226" height="44" rx="14" class="footer-btn" />
+<!-- White Pill Button -->
+<rect x="14" y="12" width="259" height="42" rx="13" class="footer-btn" />
 
 <!-- Your Uploaded Icon from icons/ -->
-<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI0U0NDA1RiIgZD0iTTEyIDIuMTYzYzMuMjA0IDAgMy41ODQuMDEyIDQuODUuMDcgMy4yNTIuMTQ4IDQuNzcxIDEuNjkxIDQuOTE5IDQuOTE5LjA1OCAxLjI2NS4wNjkgMS42NDUuMDY5IDQuODQ5IDAgMy4yMDUtLjAxMiAzLjU4NC0uMDY5IDQuODQ5LS4xNDkgMy4yMjUtMS42NjQgNC43NzEtNC45MTkgNC45MTktMS4yNjYuMDU4LTEuNjQ0LjA3LTQuODUuMDctMy4yMDQgMC0zLjU4NC0uMDEyLTQuODQ5LS4wNy0zLjI2LS4xNDktNC43NzEtMS42OTktNC45MTktNC45Mi0uMDU4LTEuMjY1LS4wNy0xLjY0NC0uMDctNC44NDkgMC0zLjIwNC4wMTMtMy41ODMuMDctNC44NDkuMTQ5LTMuMjI3IDEuNjY0LTQuNzcxIDQuOTE5LTQuOTE5IDEuMjY2LS4wNTcgMS42NDUtLjA2OSA0Ljg0OS0uMDY5em0wLTIuMTYzYy0zLjI1OSAwLTMuNjY3LjAxNC00Ljk0Ny4wNzItNC4zNTguMi02Ljc4IDIuNjE4LTYuOTggNi45OC0uMDU5IDEuMjgxLS4wNzMgMS42ODktLjA3MyA0Ljk0OCAwIDMuMjU5LjAxNCAzLjY2OC4wNzIgNC45NDguMiA0LjM1OCAyLjYxOCA2Ljc4IDYuOTggNi45OCAxLjI4MS4wNTggMS42ODkuMDcyIDQuOTQ4LjA3MiAzLjI1OSAwIDMuNjY4LS4wMTQgNC45NDgtLjA3MiA0LjM1NC0uMiA2Ljc4Mi0yLjYxOCA2Ljk3OS02Ljk4LjA1OS0xLjI4LjA3My0xLjY4OS4wNzMtNC45NDggMC0zLjI1OS0uMDE0LTMuNjY3LS4wNzItNC45NDctLjE5Ni00LjM1NC0yLjYxNy02Ljc4LTYuOTc5LTYuOTgtMS4yODEtLjA1OS0xLjY5LS4wNzMtNC45NDktLjA3M3ptMCA1LjgzOGMtMy40MDMgMC02LjE2MiAyLjc1OS02LjE2MiA2LjE2MnMyLjc1OSA2LjE2MyA2LjE2MiA2LjE2MyA2LjE2Mi0yLjc1OSA2LjE2Mi02LjE2M2MwLTMuNDAzLTIuNzU5LTYuMTYyLTYuMTYyLTYuMTYyem0wIDEwLjE2MmMtMi4yMDkgMC00LTEuNzktNC00IDAtMi4yMDkgMS43OTEtNCA0LTRzNCAxLjc5MSA0IDRjMCAyLjIxLTEuNzkxIDQtNCA0em02LjQwNi0xMS44NDVjLS43OTYgMC0xLjQ0MS42NDUtMS40NDEgMS40NHMuNjQ1IDEuNDQgMS40NDEgMS40NGMuNzk1IDAgMS40MzktLjY0NSAxLjQzOS0xLjQ0cy0uNjQ0LTEuNDQtMS40MzktMS40NHoiLz48L3N2Zz4=" x="24" y="27" width="22" height="22" preserveAspectRatio="xMidYMid meet"/>
+<image href="" x="24" y="22" width="22" height="22" preserveAspectRatio="xMidYMid meet" />
 
 <!-- Label -->
-<text x="54" y="43" class="btn-text">@oneinagoogolplex._</text>
+<text x="56" y="38" class="btn-text">@oneinagoogolplex._</text>
 </svg>
