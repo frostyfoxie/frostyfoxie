@@ -71,7 +71,7 @@ def graphql_request(query, variables=None):
     with urllib.request.urlopen(req) as resp:
         return json.loads(resp.read().decode())
 
-# 1. Fetch User Data
+# 1. User Info & Avatar
 user_url = f"https://api.github.com/users/{USERNAME}"
 req_user = urllib.request.Request(user_url, headers=headers)
 with urllib.request.urlopen(req_user) as resp:
@@ -85,8 +85,7 @@ current_year = datetime.datetime.now().year
 
 req_avatar = urllib.request.Request(avatar_url, headers={"User-Agent": "Mozilla/5.0"})
 with urllib.request.urlopen(req_avatar) as resp:
-    avatar_b64 = base64.b64encode(resp.read()).decode("utf-8")
-avatar_data_uri = f"data:image/jpeg;base64,{avatar_b64}"
+    avatar_data_uri = f"data:image/jpeg;base64,{base64.b64encode(resp.read()).decode('utf-8')}"
 
 # 2. Fetch Repos & Stars
 page = 1
@@ -110,9 +109,10 @@ while True:
 
 stars_str = f"{total_stars}+" if total_stars >= 100 else str(total_stars)
 
-# 3. Fetch All-Time Commits
+# 3. All-Time Commits & Exact 365-Day Grid
 total_commits = 0
 active_days = 0
+
 for year in range(created_year, current_year + 1):
     gql_query = """
     query($username: String!, $from: DateTime!, $to: DateTime!) {
@@ -120,9 +120,6 @@ for year in range(created_year, current_year + 1):
         contributionsCollection(from: $from, to: $to) {
           totalCommitContributions
           restrictedContributionsCount
-          contributionCalendar {
-            weeks { contributionDays { contributionCount } }
-          }
         }
       }
     }
@@ -131,17 +128,11 @@ for year in range(created_year, current_year + 1):
         data = graphql_request(gql_query, {"username": USERNAME, "from": f"{year}-01-01T00:00:00Z", "to": f"{year}-12-31T23:59:59Z"})
         col = data["data"]["user"]["contributionsCollection"]
         total_commits += col["totalCommitContributions"] + col.get("restrictedContributionsCount", 0)
-        for week in col["contributionCalendar"]["weeks"]:
-            for day in week["contributionDays"]:
-                if day["contributionCount"] > 0:
-                    active_days += 1
     except Exception:
         pass
 
 commits_str = f"{total_commits // 1000}.{(total_commits % 1000) // 100}k+" if total_commits >= 1000 else str(total_commits)
-active_days_str = f"{active_days} D"
 
-# 4. Fetch Exact Last 365 Days Grid (Matches GitHub Default Calendar)
 gql_grid = """
 query($username: String!) {
   user(login: $username) {
@@ -162,7 +153,13 @@ query($username: String!) {
 grid_data = graphql_request(gql_grid, {"username": USERNAME})
 recent_weeks = grid_data["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
 
-# 5. TRUE AI ARCADE SNAKE (Exact GitHub Colors, Safe Pathfinding, Crawl In/Out)
+for week in recent_weeks:
+    for day in week["contributionDays"]:
+        if day["contributionCount"] > 0:
+            active_days += 1
+active_days_str = f"{active_days} D"
+
+# 4. STRICT PLATANE ARCADE SNAKE (Exact Grid Constraints, 4-Block Length)
 def build_arcade_snake(weeks_data):
     if not weeks_data:
         return ""
@@ -171,8 +168,8 @@ def build_arcade_snake(weeks_data):
     ROWS = 7
     BOX_SIZE = 11.0
     STEP = 14.0
+    SNAKE_LEN = 4
     
-    # Exact GitHub Quartile Colors
     colors = {
         "NONE": "#ebedf0",
         "FIRST_QUARTILE": "#9be9a8",
@@ -194,18 +191,7 @@ def build_arcade_snake(weeks_data):
             if lvl > 0:
                 targets[lvl].append((c, r))
 
-    # Fallback to keep animation going if user has 0 commits
-    food_points = []
-    has_food = sum(len(t) for t in targets.values()) > 0
-    if not has_food:
-        targets[1] = [(10, 3), (25, 2), (40, 4)]
-        for pt in targets[1]:
-            grid_matrix[pt] = "FIRST_QUARTILE"
-
-    # BFS Pathfinding Engine (No U-Turns, Avoids Obstacles)
     def get_path(start, goal, snake_body, current_level, all_targets):
-        neck = snake_body[1] if len(snake_body) > 1 else None
-        
         def bfs(obstacles):
             queue = collections.deque([[start]])
             visited = {start}
@@ -215,39 +201,38 @@ def build_arcade_snake(weeks_data):
                 if curr == goal: return path
                 for dx, dy in [(1,0), (0,1), (-1,0), (0,-1)]:
                     nx, ny = curr[0] + dx, curr[1] + dy
-                    # Allow wrapping one block outside grid
-                    if -2 <= nx <= COLS+1 and -2 <= ny <= ROWS+1:
-                        if (nx, ny) not in visited and (nx, ny) not in obstacles and (nx, ny) != neck:
+                    # STRICTLY STAY INSIDE THE GRID (No exiting borders)
+                    if 0 <= nx < COLS and 0 <= ny < ROWS:
+                        if (nx, ny) not in visited and (nx, ny) not in obstacles:
                             visited.add((nx, ny))
                             queue.append(path + [(nx, ny)])
             return None
 
-        # Pass 1: Avoid body AND un-eaten higher level blocks
+        # The body is a solid wall (except the last tail piece which moves away)
+        body_obs = set(snake_body[:-1])
+        
+        # Pass 1: Avoid body AND un-eaten darker blocks
         higher_obs = set()
         for lvl in range(current_level + 1, 5):
             higher_obs.update(all_targets[lvl])
         
-        p = bfs(set(snake_body) | higher_obs)
+        p = bfs(body_obs | higher_obs)
         if p: return p
         
         # Pass 2: Ignore higher blocks if trapped, but avoid body
-        p = bfs(set(snake_body))
+        p = bfs(body_obs)
         if p: return p
         
-        # Pass 3: Ghost through body if absolutely necessary (but avoid neck)
+        # Pass 3: Ghost through everything if truly trapped
         p = bfs(set())
         if p: return p
         
-        # Absolute Fallback
         return [start, goal]
 
-    # Pre-History: Snake crawls in from left margin
-    max_len = 3 + sum(len(t) for t in targets.values())
-    snake = []
-    for i in range(3):
-        snake.append((-1 - i, 0))
-
-    simulation_moves = [(-1, 0)]
+    # Snake starts curled at top left (0,0)
+    start_pos = (0, 0)
+    snake = [start_pos for _ in range(SNAKE_LEN)]
+    simulation_moves = [start_pos]
     eat_ticks = {}
     tick = 0
 
@@ -255,7 +240,6 @@ def build_arcade_snake(weeks_data):
     for current_level in [1, 2, 3, 4]:
         while targets[current_level]:
             head = snake[0]
-            # Find closest target
             closest_target = min(targets[current_level], key=lambda t: abs(t[0]-head[0]) + abs(t[1]-head[1]))
             path = get_path(head, closest_target, snake, current_level, targets)
 
@@ -263,18 +247,18 @@ def build_arcade_snake(weeks_data):
                 tick += 1
                 simulation_moves.append(step)
                 snake.insert(0, step)
+                snake.pop() # Always keep length = 4
                 if step == closest_target:
                     eat_ticks[step] = tick
                     targets[current_level].remove(step)
-                    # Grow! Don't pop tail
-                else:
-                    snake.pop()
 
-    # Roam to reach ~250 ticks if too fast
-    min_ticks = 250
+    # Roam to fill animation duration (~300 ticks)
+    min_ticks = 300
     corners = [(0,0), (COLS-1,0), (COLS-1,ROWS-1), (0,ROWS-1)]
     while tick < min_ticks:
-        goal = random.choice(corners)
+        # Don't pick current position as goal
+        valid_corners = [c for c in corners if c != snake[0]]
+        goal = random.choice(valid_corners)
         path = get_path(snake[0], goal, snake, 5, targets)
         for step in path[1:]:
             tick += 1
@@ -283,28 +267,10 @@ def build_arcade_snake(weeks_data):
             snake.pop()
             if tick >= min_ticks: break
 
-    # Exit sequence: Crawl completely off screen smoothly to left
-    path_home = get_path(snake[0], (0, 0), snake, 5, targets)
-    for step in path_home[1:]:
-        tick += 1
-        simulation_moves.append(step)
-    for x in range(-1, -max_len - 4, -1):
-        tick += 1
-        simulation_moves.append((x, 0))
-
     TOTAL_TICKS = len(simulation_moves)
-    DURATION = max(18.0, TOTAL_TICKS * 0.1)
+    DURATION = max(24.0, TOTAL_TICKS * 0.1)
 
-    # Master sequence matrix (Pre-history + Simulation)
-    master_moves = []
-    # Pre-pad so the tail doesn't bunch up at tick 0
-    for x in range(-max_len - 4, -1):
-        master_moves.append((x, 0))
-    # Add actual simulation
-    master_moves.extend(simulation_moves)
-    master_offset = len(master_moves) - TOTAL_TICKS
-
-    # Grid Rectangles
+    # Output Background Grid
     grid_svg = []
     for c in range(COLS):
         for r in range(ROWS):
@@ -324,49 +290,43 @@ def build_arcade_snake(weeks_data):
             else:
                 grid_svg.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{BOX_SIZE}" height="{BOX_SIZE}" rx="2.5" fill="{base_col}"/>')
 
-    # Snake Segments
+    # Output Fixed-Length 4-Block Snake (Gradient + Shrinking)
     snake_parts_svg = []
     def rgb_to_hex(r, g, b): return f"#{r:02x}{g:02x}{b:02x}"
     r1, g1, b1 = 76, 29, 149   # Head (Dark Purple)
     r2, g2, b2 = 216, 180, 254 # Tail (Light Purple)
 
-    for K in range(max_len):
-        ratio = K / max(1, max_len - 1)
+    for K in range(SNAKE_LEN):
+        ratio = K / (SNAKE_LEN - 1)
         r = int(r1 + (r2 - r1) * ratio)
         g = int(g1 + (g2 - g1) * ratio)
         b = int(b1 + (b2 - b1) * ratio)
         color = rgb_to_hex(r, g, b)
         
+        # Shrink sizes: 11px (head) down to 5px (tail)
         size = 11.0 - (ratio * 6.0)
         offset = (11.0 - size) / 2.0
         
         x_vals = []
         y_vals = []
         for t in range(TOTAL_TICKS):
-            # The position of segment K at time t is where the head was K steps ago
-            pos = master_moves[master_offset + t - K]
+            # No exiting the grid. The tail is locked behind the head perfectly.
+            # At t=0, all parts are at simulation_moves[0]. They unfurl naturally.
+            pos = simulation_moves[max(0, t - K)]
             x_vals.append(f"{(pos[0] * STEP + offset):.1f}")
             y_vals.append(f"{(pos[1] * STEP + offset):.1f}")
             
         x_str = ";".join(x_vals)
         y_str = ";".join(y_vals)
 
-        opacity_anim = ""
-        if K >= 3:
-            # This segment spawns when food (K-3) is eaten
-            spawn_tick = list(eat_ticks.values())[K - 3]
-            spawn_frac = spawn_tick / TOTAL_TICKS
-            opacity_anim = f'<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;{spawn_frac:.4f};{spawn_frac:.4f};0.99;1" dur="{DURATION:.1f}s" repeatCount="indefinite" />'
-        
         snake_parts_svg.append(f'''
         <rect width="{size:.1f}" height="{size:.1f}" rx="{size/3:.1f}" fill="{color}">
           <animate attributeName="x" values="{x_str}" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="discrete"/>
           <animate attributeName="y" values="{y_str}" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="discrete"/>
-          {opacity_anim}
         </rect>
         ''')
 
-    snake_parts_svg.reverse() # Head rendered last so it's on top
+    snake_parts_svg.reverse()
 
     return f'''
     <g id="contribGrid">
@@ -377,7 +337,7 @@ def build_arcade_snake(weeks_data):
 
 contribution_snake_markup = build_arcade_snake(recent_weeks)
 
-# 6. Dynamic Education
+# 5. Dynamic Education
 edu_list = config.get("education", [])
 edu_svg = []
 if edu_list:
@@ -396,14 +356,10 @@ if edu_list:
         ''')
 education_markup = "\n".join(edu_svg)
 
-# 7. Dynamic Skills
+# 6. Dynamic Skills
 skills_list = config.get("skills", [])
 skills_svg = []
-positions = [
-    (0, 0, 154), (162, 0, 140),
-    (0, 34, 124), (132, 34, 144),
-    (0, 68, 146), (154, 68, 118)
-]
+positions = [(0, 0, 154), (162, 0, 140), (0, 34, 124), (132, 34, 144), (0, 68, 146), (154, 68, 118)]
 for i, skill in enumerate(skills_list[:6]):
     x, y, w = positions[i]
     mid_x = x + (w // 2)
@@ -413,7 +369,7 @@ for i, skill in enumerate(skills_list[:6]):
     ''')
 skills_markup = "\n".join(skills_svg)
 
-# 8. Dynamic Tech Stack
+# 7. Dynamic Tech Stack
 tech_list = config.get("tech_stack", [])
 tech_svg = []
 for i, tech in enumerate(tech_list[:14]):
@@ -430,7 +386,7 @@ for i, tech in enumerate(tech_list[:14]):
     ''')
 tech_markup = "\n".join(tech_svg)
 
-# 9. Behind the Code Text
+# 8. Behind the Code Text
 subheading = html.escape(config.get("behind_the_code", {}).get("subheading", "FULL-STACK ENGINEER & SOFTWARE ARCHITECT"))
 desc_paragraphs = config.get("behind_the_code", {}).get("description", [])
 tspans = []
@@ -442,7 +398,7 @@ for para in desc_paragraphs:
         tspans.append(f'<tspan x="0" dy="{dy}">{html.escape(line)}</tspan>')
 description_markup = "\n".join(tspans)
 
-# 10. Contact Info
+# 9. Contact Info
 instagram_handle = config.get("contact", {}).get("instagram", "oneinagoogolplex._")
 email_address = config.get("contact", {}).get("email", user_data.get("email", "navneetkrgupta01@gmail.com"))
 
@@ -483,4 +439,4 @@ output_path = os.path.join(REPO_ROOT, "profile.svg")
 with open(output_path, "w", encoding="utf-8") as f:
     f.write(template)
 
-print(f"🎉 SUCCESS! Exact GitHub shades, AI pathfinding fixed, seamless off-screen reset applied.")
+print(f"🎉 SUCCESS! Flawless Platane Engine Generated.")
