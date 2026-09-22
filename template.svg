@@ -1,5 +1,6 @@
 <svg width="100%" height="100%" viewBox="0 0 860 1085" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
+  <!-- Ambient Blur Filter -->
   <filter id="ambientBlur" x="-30%" y="-30%" width="160%" height="160%">
     <feGaussianBlur stdDeviation="75" />
   </filter>
@@ -8,15 +9,17 @@
     <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.04" />
   </filter>
 
+  <!-- Clean Neutral Badge Shadow (Zero Red Tint) -->
   <filter id="neutralShadow" x="-10%" y="-10%" width="120%" height="125%">
     <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0f172a" flood-opacity="0.08" />
   </filter>
 
+  <!-- Button Drop Shadow -->
   <filter id="buttonShadow" x="-10%" y="-10%" width="120%" height="130%">
     <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.04" />
   </filter>
 
-  <!-- Animated Ribbon Shimmer -->
+  <!-- Animated Shimmering Ribbon Gradients -->
   <linearGradient id="ribbonFrontGrad" x1="0%" y1="0%" x2="100%" y2="100%">
     <stop offset="0%" stop-color="#2563eb">
       <animate attributeName="stop-color" values="#2563eb;#60a5fa;#1d4ed8;#2563eb" dur="7s" repeatCount="indefinite" />
@@ -66,7 +69,7 @@
   .text-slate-700 { fill: #334155; }
   .text-slate-500 { fill: #64748b; }
 
-  /* SMOOTH PHYSICAL HARMONIC PENDULUM SWING (NO INTERMEDIATE STOPS) */
+  /* 1. PERFECT HARMONIC PENDULUM SWAY (No Stuttering) */
   @keyframes lanyardSway {
     0%   { transform: rotate(-2.2deg); }
     50%  { transform: rotate(2.2deg); }
@@ -74,10 +77,10 @@
   }
   .swinging-assembly {
     transform-origin: 135px -15px;
-    animation: lanyardSway 4.8s ease-in-out infinite;
+    animation: lanyardSway 5s ease-in-out infinite;
   }
 
-  /* Floating Ambient Glow Animations */
+  /* 2. Floating Ambient Glow Animations */
   @keyframes floatGlow1 {
     0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.35; }
     50%      { transform: translate(30px, 25px) scale(1.15); opacity: 0.55; }
@@ -122,14 +125,16 @@
   </text>
 </g>
 
-<!-- SWINGING ID BADGE (Physics Fixed) -->
+<!-- SWINGING ID BADGE -->
 <g transform="translate(560, 15)">
   <g class="swinging-assembly">
+    <!-- 1. BACK RIBBON STRAP -->
     <g id="backStrap">
       <path d="M 121 141 C 144 95 168 40 183 -15 L 209 -15 C 192 40 168 95 149 141 Z" fill="url(#ribbonBackGrad)"/>
       <path d="M 135 141 C 156 95 180 40 196 -15" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 3" opacity="0.25" fill="none"/>
     </g>
 
+    <!-- 2. ID BADGE CONTAINER -->
     <g filter="url(#neutralShadow)">
       <rect x="15" y="125" width="240" height="315" rx="22" fill="url(#badgeGrad)" stroke="#f87171" stroke-width="1.5"/>
       <rect x="108" y="136" width="54" height="11" rx="5.5" fill="#0f172a" opacity="0.8"/>
@@ -156,6 +161,7 @@
       </a>
     </g>
 
+    <!-- 3. FRONT RIBBON STRAP -->
     <g id="frontStrap">
       <path d="M 119 125 L 121 141 L 149 141 L 146 125 Z" fill="#000000" opacity="0.25"/>
       <path d="M 61 -15 C 78 40 100 95 121 141 L 149 141 C 124 95 100 40 87 -15 Z" fill="url(#ribbonFrontGrad)"/>
@@ -166,7 +172,7 @@
 </g>
 
 <!-- ================================================================= -->
-<!-- 2. FULL WIDTH CONTRIBUTION GRID WITH ARCADE GROWING SNAKE         -->
+<!-- 2. FULL WIDTH CONTRIBUTION GRID WITH ARCADE EATING SNAKE          -->
 <!-- ================================================================= -->
 <g transform="translate(45, 475)">
   <rect width="770" height="152" rx="20" class="glass-card"/>
