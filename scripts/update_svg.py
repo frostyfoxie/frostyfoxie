@@ -27,9 +27,10 @@ else:
 
 headers = {
     "Authorization": f"Bearer {TOKEN}",
-    "User-Agent": "GitHub-Actions-Animated-Profile-Updater"
+    "User-Agent": "GitHub-Actions-Profile-Updater"
 }
 
+# --- LOADS YOUR EXACT UPLOADED ICONS ---
 def load_icon_as_base64(name_or_filename):
     clean_name = os.path.splitext(name_or_filename)[0].lower().strip()
     if os.path.exists(ICONS_DIR):
@@ -43,6 +44,7 @@ def load_icon_as_base64(name_or_filename):
                 with open(file_path, "rb") as f:
                     encoded = base64.b64encode(f.read()).decode("utf-8")
                 mime = "image/svg+xml" if ext == ".svg" else f"image/{ext.replace('.', '')}"
+                print(f"✅ Loaded your icon from icons/{found_file}")
                 return f"data:{mime};base64,{encoded}"
     try:
         cdn_url = f"https://cdn.simpleicons.org/{clean_name}"
@@ -54,9 +56,6 @@ def load_icon_as_base64(name_or_filename):
                 return f"data:image/svg+xml;base64,{b64}"
     except Exception:
         pass
-    if "instagram" in clean_name:
-        fallback = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#E4405F" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>'
-        return f"data:image/svg+xml;base64,{base64.b64encode(fallback.encode()).decode()}"
     return ""
 
 def graphql_request(query, variables=None):
@@ -71,7 +70,7 @@ def graphql_request(query, variables=None):
     with urllib.request.urlopen(req) as resp:
         return json.loads(resp.read().decode())
 
-# 1. User Info & Avatar
+# 1. Fetch User Data
 user_url = f"https://api.github.com/users/{USERNAME}"
 req_user = urllib.request.Request(user_url, headers=headers)
 with urllib.request.urlopen(req_user) as resp:
@@ -85,31 +84,10 @@ current_year = datetime.datetime.now().year
 
 req_avatar = urllib.request.Request(avatar_url, headers={"User-Agent": "Mozilla/5.0"})
 with urllib.request.urlopen(req_avatar) as resp:
-    avatar_data_uri = f"data:image/jpeg;base64,{base64.b64encode(resp.read()).decode('utf-8')}"
+    avatar_b64 = base64.b64encode(resp.read()).decode("utf-8")
+avatar_data_uri = f"data:image/jpeg;base64,{avatar_b64}"
 
-# 2. Fetch Repos & Stars
-page = 1
-total_repos = 0
-total_stars = 0
-while True:
-    try:
-        repos_url = f"https://api.github.com/user/repos?affiliation=owner&visibility=all&per_page=100&page={page}"
-        req_repos = urllib.request.Request(repos_url, headers=headers)
-        with urllib.request.urlopen(req_repos) as resp:
-            repos = json.loads(resp.read().decode())
-    except Exception:
-        repos_url = f"https://api.github.com/users/{USERNAME}/repos?per_page=100&page={page}"
-        req_repos = urllib.request.Request(repos_url, headers=headers)
-        with urllib.request.urlopen(req_repos) as resp:
-            repos = json.loads(resp.read().decode())
-    if not repos: break
-    total_repos += len(repos)
-    total_stars += sum(r.get("stargazers_count", 0) for r in repos)
-    page += 1
-
-stars_str = f"{total_stars}+" if total_stars >= 100 else str(total_stars)
-
-# 3. All-Time Commits & Exact 365-Day Grid
+# 2. Fetch All-Time Commits
 total_commits = 0
 active_days = 0
 
@@ -133,6 +111,7 @@ for year in range(created_year, current_year + 1):
 
 commits_str = f"{total_commits // 1000}.{(total_commits % 1000) // 100}k+" if total_commits >= 1000 else str(total_commits)
 
+# Fetch EXACT Last 365 Days Grid (Matches GitHub Default Calendar)
 gql_grid = """
 query($username: String!) {
   user(login: $username) {
@@ -157,9 +136,32 @@ for week in recent_weeks:
     for day in week["contributionDays"]:
         if day["contributionCount"] > 0:
             active_days += 1
+
 active_days_str = f"{active_days} D"
 
-# 4. STRICT PLATANE ARCADE SNAKE (Exact Grid Constraints, 4-Block Length)
+# 3. Fetch Repos & Stars
+page = 1
+total_repos = 0
+total_stars = 0
+while True:
+    try:
+        repos_url = f"https://api.github.com/user/repos?affiliation=owner&visibility=all&per_page=100&page={page}"
+        req_repos = urllib.request.Request(repos_url, headers=headers)
+        with urllib.request.urlopen(req_repos) as resp:
+            repos = json.loads(resp.read().decode())
+    except Exception:
+        repos_url = f"https://api.github.com/users/{USERNAME}/repos?per_page=100&page={page}"
+        req_repos = urllib.request.Request(repos_url, headers=headers)
+        with urllib.request.urlopen(req_repos) as resp:
+            repos = json.loads(resp.read().decode())
+    if not repos: break
+    total_repos += len(repos)
+    total_stars += sum(r.get("stargazers_count", 0) for r in repos)
+    page += 1
+
+stars_str = f"{total_stars}+" if total_stars >= 100 else str(total_stars)
+
+# 4. PLATANE ARCADE SNAKE (Strict 4-Block Length)
 def build_arcade_snake(weeks_data):
     if not weeks_data:
         return ""
@@ -201,42 +203,31 @@ def build_arcade_snake(weeks_data):
                 if curr == goal: return path
                 for dx, dy in [(1,0), (0,1), (-1,0), (0,-1)]:
                     nx, ny = curr[0] + dx, curr[1] + dy
-                    # STRICTLY STAY INSIDE THE GRID (No exiting borders)
                     if 0 <= nx < COLS and 0 <= ny < ROWS:
                         if (nx, ny) not in visited and (nx, ny) not in obstacles:
                             visited.add((nx, ny))
                             queue.append(path + [(nx, ny)])
             return None
 
-        # The body is a solid wall (except the last tail piece which moves away)
         body_obs = set(snake_body[:-1])
-        
-        # Pass 1: Avoid body AND un-eaten darker blocks
         higher_obs = set()
         for lvl in range(current_level + 1, 5):
             higher_obs.update(all_targets[lvl])
         
         p = bfs(body_obs | higher_obs)
         if p: return p
-        
-        # Pass 2: Ignore higher blocks if trapped, but avoid body
         p = bfs(body_obs)
         if p: return p
-        
-        # Pass 3: Ghost through everything if truly trapped
         p = bfs(set())
         if p: return p
-        
         return [start, goal]
 
-    # Snake starts curled at top left (0,0)
     start_pos = (0, 0)
     snake = [start_pos for _ in range(SNAKE_LEN)]
     simulation_moves = [start_pos]
     eat_ticks = {}
     tick = 0
 
-    # Hunt Levels 1 -> 2 -> 3 -> 4
     for current_level in [1, 2, 3, 4]:
         while targets[current_level]:
             head = snake[0]
@@ -247,16 +238,14 @@ def build_arcade_snake(weeks_data):
                 tick += 1
                 simulation_moves.append(step)
                 snake.insert(0, step)
-                snake.pop() # Always keep length = 4
+                snake.pop()
                 if step == closest_target:
                     eat_ticks[step] = tick
                     targets[current_level].remove(step)
 
-    # Roam to fill animation duration (~300 ticks)
     min_ticks = 300
     corners = [(0,0), (COLS-1,0), (COLS-1,ROWS-1), (0,ROWS-1)]
     while tick < min_ticks:
-        # Don't pick current position as goal
         valid_corners = [c for c in corners if c != snake[0]]
         goal = random.choice(valid_corners)
         path = get_path(snake[0], goal, snake, 5, targets)
@@ -270,7 +259,6 @@ def build_arcade_snake(weeks_data):
     TOTAL_TICKS = len(simulation_moves)
     DURATION = max(24.0, TOTAL_TICKS * 0.1)
 
-    # Output Background Grid
     grid_svg = []
     for c in range(COLS):
         for r in range(ROWS):
@@ -290,11 +278,10 @@ def build_arcade_snake(weeks_data):
             else:
                 grid_svg.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{BOX_SIZE}" height="{BOX_SIZE}" rx="2.5" fill="{base_col}"/>')
 
-    # Output Fixed-Length 4-Block Snake (Gradient + Shrinking)
     snake_parts_svg = []
     def rgb_to_hex(r, g, b): return f"#{r:02x}{g:02x}{b:02x}"
-    r1, g1, b1 = 76, 29, 149   # Head (Dark Purple)
-    r2, g2, b2 = 216, 180, 254 # Tail (Light Purple)
+    r1, g1, b1 = 76, 29, 149
+    r2, g2, b2 = 216, 180, 254
 
     for K in range(SNAKE_LEN):
         ratio = K / (SNAKE_LEN - 1)
@@ -303,15 +290,12 @@ def build_arcade_snake(weeks_data):
         b = int(b1 + (b2 - b1) * ratio)
         color = rgb_to_hex(r, g, b)
         
-        # Shrink sizes: 11px (head) down to 5px (tail)
         size = 11.0 - (ratio * 6.0)
         offset = (11.0 - size) / 2.0
         
         x_vals = []
         y_vals = []
         for t in range(TOTAL_TICKS):
-            # No exiting the grid. The tail is locked behind the head perfectly.
-            # At t=0, all parts are at simulation_moves[0]. They unfurl naturally.
             pos = simulation_moves[max(0, t - K)]
             x_vals.append(f"{(pos[0] * STEP + offset):.1f}")
             y_vals.append(f"{(pos[1] * STEP + offset):.1f}")
@@ -402,10 +386,12 @@ description_markup = "\n".join(tspans)
 instagram_handle = config.get("contact", {}).get("instagram", "oneinagoogolplex._")
 email_address = config.get("contact", {}).get("email", user_data.get("email", "navneetkrgupta01@gmail.com"))
 
+# Load user's icons for the buttons
 icon_github = load_icon_as_base64("github")
 icon_instagram = load_icon_as_base64("instagram")
 icon_email = load_icon_as_base64("email")
 
+# 10. Generate Main profile.svg
 template_path = os.path.join(REPO_ROOT, "template.svg")
 with open(template_path, "r", encoding="utf-8") as f:
     template = f.read()
@@ -418,8 +404,6 @@ replacements = {
     "{{REPOS}}": str(total_repos),
     "{{ACTIVE_DAYS}}": active_days_str,
     "{{STARS}}": stars_str,
-    "{{INSTAGRAM_HANDLE}}": instagram_handle,
-    "{{EMAIL}}": email_address,
     "{{BEHIND_THE_CODE_SUBHEADING}}": subheading,
     "{{BEHIND_THE_CODE_DESCRIPTION}}": description_markup,
     "{{EDUCATION_ITEMS}}": education_markup,
@@ -427,9 +411,7 @@ replacements = {
     "{{TECH_STACK_ITEMS}}": tech_markup,
     "{{CONTRIBUTION_SNAKE_SECTION}}": contribution_snake_markup,
     "{{ICON_GITHUB}}": icon_github,
-    "{{ICON_GITHUB_RED}}": icon_github,
-    "{{ICON_INSTAGRAM}}": icon_instagram,
-    "{{ICON_EMAIL}}": icon_email
+    "{{ICON_GITHUB_RED}}": icon_github
 }
 
 for key, val in replacements.items():
@@ -439,18 +421,21 @@ output_path = os.path.join(REPO_ROOT, "profile.svg")
 with open(output_path, "w", encoding="utf-8") as f:
     f.write(template)
 
+print(f"Generated profile.svg (width: 860px)")
+
 # =================================================================
-# AUTOMATICALLY GENERATE THE 3 CLICKABLE BUTTON SVGs USING YOUR ICONS
+# 11. GENERATE THE 3 BUTTON SVGs (EXACT COMBINED WIDTH: 860px)
+# Uses YOUR uploaded icon files directly from icons/ folder!
 # =================================================================
 
-def generate_button_svg(filename, icon_b64, label, glow_color, font_size="11.5px", text_x="54", icon_x="24"):
-    btn_svg = f'''<svg width="254" height="76" viewBox="0 0 254 76" xmlns="http://www.w3.org/2000/svg">
+def generate_button_svg(filename, width, icon_b64, label, font_size="11.5px"):
+    card_width = width - 12
+    btn_width = card_width - 16
+    
+    btn_svg = f'''<svg width="{width}" height="66" viewBox="0 0 {width} 66" xmlns="http://www.w3.org/2000/svg">
 <defs>
-  <filter id="ambientBlur" x="-50%" y="-50%" width="200%" height="200%">
-    <feGaussianBlur stdDeviation="30" />
-  </filter>
   <filter id="glassShadow" x="-50%" y="-50%" width="200%" height="200%">
-    <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.04" />
+    <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.04" />
   </filter>
   <filter id="buttonShadow" x="-50%" y="-50%" width="200%" height="200%">
     <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.04" />
@@ -483,63 +468,50 @@ def generate_button_svg(filename, icon_b64, label, glow_color, font_size="11.5px
   }}
 </style>
 
-<!-- Seamless Base Canvas -->
+<!-- Canvas Base -->
 <rect width="100%" height="100%" fill="#f8fafc" />
 
-<!-- Soft Ambient Glow -->
-<g filter="url(#ambientBlur)">
-  <circle cx="127" cy="38" r="50" fill="{glow_color}" opacity="0.6" />
-</g>
+<!-- Glass Card Container -->
+<rect x="6" y="6" width="{card_width}" height="54" rx="16" class="glass-card" />
 
-<!-- Frosted Glass Container -->
-<rect x="6" y="6" width="242" height="64" rx="18" class="glass-card" />
-
-<!-- Inner White Button Pill -->
-<rect x="14" y="16" width="226" height="44" rx="14" class="footer-btn" />
+<!-- White Pill Button -->
+<rect x="14" y="12" width="{btn_width}" height="42" rx="13" class="footer-btn" />
 
 <!-- Your Uploaded Icon from icons/ -->
-<image href="{icon_b64}" x="{icon_x}" y="27" width="22" height="22" preserveAspectRatio="xMidYMid meet"/>
+<image href="{icon_b64}" x="24" y="22" width="22" height="22" preserveAspectRatio="xMidYMid meet" />
 
 <!-- Label -->
-<text x="{text_x}" y="43" class="btn-text">{label}</text>
+<text x="56" y="38" class="btn-text">{label}</text>
 </svg>'''
     
     file_path = os.path.join(REPO_ROOT, filename)
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(btn_svg)
-    print(f"Generated {filename} using your uploaded icon!")
+    print(f"Generated {filename} (width: {width}px) using your uploaded icon")
 
-# 1. Instagram Button
+# Button 1: Instagram (Width: 287)
 generate_button_svg(
     filename="btn_instagram.svg",
-    icon_b64=load_icon_as_base64("instagram"),
+    width=287,
+    icon_b64=icon_instagram,
     label=f"@{instagram_handle}",
-    glow_color="#e0e7ff",
-    font_size="11.5px",
-    text_x="54",
-    icon_x="24"
+    font_size="11.5px"
 )
 
-# 2. Email Button
+# Button 2: Email (Width: 286)
 generate_button_svg(
     filename="btn_email.svg",
-    icon_b64=load_icon_as_base64("email"),
+    width=286,
+    icon_b64=icon_email,
     label=email_address,
-    glow_color="#dbeafe",
-    font_size="10.5px",
-    text_x="48",
-    icon_x="20"
+    font_size="10.5px"
 )
 
-# 3. GitHub Button
+# Button 3: GitHub (Width: 287)
 generate_button_svg(
     filename="btn_github.svg",
-    icon_b64=load_icon_as_base64("github"),
+    width=287,
+    icon_b64=icon_github,
     label=f"github.com/{USERNAME}",
-    glow_color="#e0e7ff",
-    font_size="11.5px",
-    text_x="52",
-    icon_x="22"
+    font_size="11.5px"
 )
-
-print(f"🎉 SUCCESS! Flawless Engine Generated.")
