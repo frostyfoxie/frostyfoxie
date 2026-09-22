@@ -382,11 +382,10 @@ for para in desc_paragraphs:
         tspans.append(f'<tspan x="0" dy="{dy}">{html.escape(line)}</tspan>')
 description_markup = "\n".join(tspans)
 
-# 9. Contact Info
+# 9. Contact Info & User's Uploaded Icons
 instagram_handle = config.get("contact", {}).get("instagram", "oneinagoogolplex._")
 email_address = config.get("contact", {}).get("email", user_data.get("email", "navneetkrgupta01@gmail.com"))
 
-# Load user's icons for the buttons
 icon_github = load_icon_as_base64("github")
 icon_instagram = load_icon_as_base64("instagram")
 icon_email = load_icon_as_base64("email")
@@ -421,18 +420,15 @@ output_path = os.path.join(REPO_ROOT, "profile.svg")
 with open(output_path, "w", encoding="utf-8") as f:
     f.write(template)
 
-print(f"Generated profile.svg (width: 860px)")
+print(f"Generated profile.svg (height: 948px)")
 
 # =================================================================
-# 11. GENERATE THE 3 BUTTON SVGs (EXACT COMBINED WIDTH: 860px)
+# 11. GENERATE THE 3 BUTTON SVGs (SEAMLESS 286px WIDTH)
 # Uses YOUR uploaded icon files directly from icons/ folder!
 # =================================================================
 
-def generate_button_svg(filename, width, icon_b64, label, font_size="11.5px"):
-    card_width = width - 12
-    btn_width = card_width - 16
-    
-    btn_svg = f'''<svg width="{width}" height="66" viewBox="0 0 {width} 66" xmlns="http://www.w3.org/2000/svg">
+def generate_button_svg(filename, icon_b64, label, font_size="11.5px"):
+    btn_svg = f'''<svg width="286" height="64" viewBox="0 0 286 64" xmlns="http://www.w3.org/2000/svg">
 <defs>
   <filter id="glassShadow" x="-50%" y="-50%" width="200%" height="200%">
     <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.04" />
@@ -468,49 +464,46 @@ def generate_button_svg(filename, width, icon_b64, label, font_size="11.5px"):
   }}
 </style>
 
-<!-- Canvas Base -->
+<!-- Canvas Base Background -->
 <rect width="100%" height="100%" fill="#f8fafc" />
 
 <!-- Glass Card Container -->
-<rect x="6" y="6" width="{card_width}" height="54" rx="16" class="glass-card" />
+<rect x="4" y="4" width="278" height="56" rx="16" class="glass-card" />
 
-<!-- White Pill Button -->
-<rect x="14" y="12" width="{btn_width}" height="42" rx="13" class="footer-btn" />
+<!-- Inner White Button Pill -->
+<rect x="12" y="11" width="262" height="42" rx="13" class="footer-btn" />
 
 <!-- Your Uploaded Icon from icons/ -->
-<image href="{icon_b64}" x="24" y="22" width="22" height="22" preserveAspectRatio="xMidYMid meet" />
+<image href="{icon_b64}" x="22" y="21" width="22" height="22" preserveAspectRatio="xMidYMid meet" />
 
 <!-- Label -->
-<text x="56" y="38" class="btn-text">{label}</text>
+<text x="54" y="37" class="btn-text">{label}</text>
 </svg>'''
     
     file_path = os.path.join(REPO_ROOT, filename)
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(btn_svg)
-    print(f"Generated {filename} (width: {width}px) using your uploaded icon")
+    print(f"Generated {filename} using your uploaded icon from icons/")
 
-# Button 1: Instagram (Width: 287)
+# 1. Instagram
 generate_button_svg(
     filename="btn_instagram.svg",
-    width=287,
     icon_b64=icon_instagram,
     label=f"@{instagram_handle}",
     font_size="11.5px"
 )
 
-# Button 2: Email (Width: 286)
+# 2. Email
 generate_button_svg(
     filename="btn_email.svg",
-    width=286,
     icon_b64=icon_email,
     label=email_address,
     font_size="10.5px"
 )
 
-# Button 3: GitHub (Width: 287)
+# 3. GitHub
 generate_button_svg(
     filename="btn_github.svg",
-    width=287,
     icon_b64=icon_github,
     label=f"github.com/{USERNAME}",
     font_size="11.5px"
