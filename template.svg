@@ -283,7 +283,7 @@
   <!-- Email -->
   <g transform="translate(325, 19)">
     <image href="./icons/email.svg" x="0" y="0" width="24" height="24"/>
-    <text x="32" y="16" class="body-font text-slate-900" font-size="12" font-weight="800">{{EMAIL}}</text>
+    <text x="32" y="16" class="body-font text-slate-900" font-size="12" font-weight="800">navneetkrgupta01@gmail.com</text>
   </g>
 
   <!-- GitHub Profile -->
