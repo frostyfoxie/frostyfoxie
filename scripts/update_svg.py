@@ -4,6 +4,7 @@ import base64
 import datetime
 import textwrap
 import html
+import collections
 import urllib.request
 
 USERNAME = os.getenv("GH_USERNAME")
@@ -25,7 +26,7 @@ else:
 
 headers = {
     "Authorization": f"Bearer {TOKEN}",
-    "User-Agent": "GitHub-Actions-Animated-Profile-Updater"
+    "User-Agent": "GitHub-Actions-Arcade-Snake-Updater"
 }
 
 def load_icon_as_base64(name_or_filename):
@@ -153,17 +154,18 @@ for year in range(created_year, current_year + 1):
 commits_str = f"{total_commits // 1000}.{(total_commits % 1000) // 100}k+" if total_commits >= 1000 else str(total_commits)
 active_days_str = f"{active_days} D"
 
-# 4. Generate Contribution Grid (Exact 11px x 11px GitHub Size across 53 weeks)
-def build_contribution_snake(weeks_data):
+# 4. ORTHOGONAL GRID PATHFINDING (MANHATTAN) & ARCADE TAIL GROWTH
+def build_arcade_snake(weeks_data):
     if not weeks_data:
         return ""
     
-    # 53 weeks fills exactly ~739px inside the 770px container
     weeks_to_show = weeks_data[-53:] if len(weeks_data) >= 53 else weeks_data
     
-    box_size = 11.0
-    gap = 3.0
-    step = box_size + gap  # 14px step
+    BOX_SIZE = 11.0
+    GAP = 3.0
+    STEP = BOX_SIZE + GAP  # 14.0px
+    COLS = 53
+    ROWS = 7
     
     colors = {
         0: "#ebedf0",
@@ -173,16 +175,13 @@ def build_contribution_snake(weeks_data):
         4: "#216e39"
     }
 
-    grid_elements = []
-    active_points = []
+    grid_matrix = {}
+    real_commit_targets = []
     
-    for col_idx, week in enumerate(weeks_to_show):
-        x = col_idx * step
+    for c, week in enumerate(weeks_to_show):
         for day in week.get("contributionDays", []):
-            row_idx = day.get("weekday", 0)
-            y = row_idx * step
+            r = day.get("weekday", 0)
             count = day.get("contributionCount", 0)
-            
             if count == 0:
                 level = 0
             elif count <= 2:
@@ -193,48 +192,134 @@ def build_contribution_snake(weeks_data):
                 level = 3
             else:
                 level = 4
-                
-            color = colors[level]
-            grid_elements.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{box_size}" height="{box_size}" rx="2.5" fill="{color}"/>')
-            
+            grid_matrix[(c, r)] = colors[level]
             if count > 0:
-                active_points.append((x + box_size/2, y + box_size/2))
+                real_commit_targets.append((c, r))
 
-    # Snake path through active commit coordinates
-    if not active_points or len(active_points) < 5:
-        active_points = [(i * step * 3.5, 14 + (i % 5) * 16) for i in range(15)]
-        active_points.append((0, 14))
+    # Fallback to ensure food targets in edge cases (e.g. 0 commits)
+    food_points = []
+    if len(real_commit_targets) >= 4:
+        # Pick 6 spaced out commit targets from the active list
+        step_pick = max(1, len(real_commit_targets) // 6)
+        food_points = [real_commit_targets[i] for i in range(0, len(real_commit_targets), step_pick)][:6]
+    else:
+        # Guarantee food targets so snake always hunts & grows
+        food_points = [(35, 1), (40, 5), (44, 2), (48, 4), (51, 1)]
+        for pt in food_points:
+            grid_matrix[pt] = "#40c463"
 
-    path_d = f"M {active_points[0][0]:.1f} {active_points[0][1]:.1f} " + " ".join([f"L {pt[0]:.1f} {pt[1]:.1f}" for pt in active_points[1:]]) + " Z"
+    # Breadth-First-Search (BFS) for strictly orthogonal Manhattan steps (Up/Down/Left/Right)
+    def bfs_path(start, goal):
+        queue = collections.deque([[start]])
+        visited = {start}
+        while queue:
+            path = queue.popleft()
+            curr = path[-1]
+            if curr == goal:
+                return path
+            for dc, dr in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+                nc, nr = curr[0] + dc, curr[1] + dr
+                if 0 <= nc < COLS and 0 <= nr < ROWS and (nc, nr) not in visited:
+                    visited.add((nc, nr))
+                    queue.append(path + [(nc, nr)])
+        return [start, goal]
 
-    snake_markup = f'''
+    # Build continuous orthogonal circuit through food targets and loop back
+    circuit_cells = []
+    curr = (max(0, food_points[0][0] - 3), food_points[0][1])
+    
+    food_eat_steps = {}
+    for target in food_points:
+        sub_path = bfs_path(curr, target)
+        circuit_cells.extend(sub_path[:-1])
+        curr = target
+        food_eat_steps[target] = len(circuit_cells)
+    
+    # Return to starting cell to complete the loop
+    return_path = bfs_path(curr, circuit_cells[0])
+    circuit_cells.extend(return_path)
+
+    TOTAL_STEPS = len(circuit_cells)
+    DURATION = max(18.0, TOTAL_STEPS * 0.16) # Constant arcade speed per cell
+
+    # Build precise SVG path where every step is strictly a 14px horizontal or vertical line
+    path_d_segments = []
+    start_x = circuit_cells[0][0] * STEP + BOX_SIZE / 2
+    start_y = circuit_cells[0][1] * STEP + BOX_SIZE / 2
+    path_d_segments.append(f"M {start_x:.1f} {start_y:.1f}")
+
+    for cell in circuit_cells[1:]:
+        px = cell[0] * STEP + BOX_SIZE / 2
+        py = cell[1] * STEP + BOX_SIZE / 2
+        path_d_segments.append(f"L {px:.1f} {py:.1f}")
+    path_d_segments.append("Z")
+    
+    full_snake_track = " ".join(path_d_segments)
+
+    # Render Grid Cells: Commit cells turn to eaten (#ebedf0) once snake reaches them
+    grid_svg = []
+    for c in range(COLS):
+        for r in range(ROWS):
+            x = c * STEP
+            y = r * STEP
+            base_col = grid_matrix.get((c, r), "#ebedf0")
+            
+            if (c, r) in food_eat_steps and base_col != "#ebedf0":
+                eat_t = food_eat_steps[(c, r)] / TOTAL_STEPS
+                grid_svg.append(f'''
+                <rect x="{x:.1f}" y="{y:.1f}" width="{BOX_SIZE}" height="{BOX_SIZE}" rx="2.5" fill="{base_col}">
+                  <animate attributeName="fill" values="{base_col};{base_col};#ebedf0;#ebedf0;{base_col}"
+                           keyTimes="0;{eat_t:.4f};{min(0.98, eat_t + 0.01):.4f};0.98;1"
+                           dur="{DURATION:.1f}s" repeatCount="indefinite" />
+                </rect>
+                ''')
+            else:
+                grid_svg.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{BOX_SIZE}" height="{BOX_SIZE}" rx="2.5" fill="{base_col}"/>')
+
+    # TAIL GROWTH SYSTEM:
+    # Starts with 3 segments. Each eaten target spawns a new segment at the tail!
+    dt = DURATION / TOTAL_STEPS
+    snake_parts_svg = []
+
+    # Head (No eyes, clean purple arcade head)
+    snake_parts_svg.append(f'''
+    <rect x="-5.5" y="-5.5" width="11" height="11" rx="3" fill="#8a2be2">
+      <animateMotion path="{full_snake_track}" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
+    </rect>
+    ''')
+
+    # Initial Body Segments (Always visible)
+    for seg_i in [1, 2]:
+        color = "#9333ea" if seg_i == 1 else "#a855f7"
+        snake_parts_svg.append(f'''
+        <rect x="-5.0" y="-5.0" width="10" height="10" rx="2.5" fill="{color}">
+          <animateMotion path="{full_snake_track}" begin="-{(seg_i * dt):.3f}s" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
+        </rect>
+        ''')
+
+    # Growing Segments (Sprout from tail when each commit is eaten!)
+    for food_idx, target in enumerate(food_points):
+        seg_num = 3 + food_idx
+        eat_frac = food_eat_steps[target] / TOTAL_STEPS
+        grow_color = "#c084fc" if food_idx % 2 == 0 else "#d8b4fe"
+        snake_parts_svg.append(f'''
+        <g>
+          <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;{eat_frac:.4f};{eat_frac:.4f};0.98;1" dur="{DURATION:.1f}s" repeatCount="indefinite"/>
+          <rect x="-4.5" y="-4.5" width="9" height="9" rx="2.5" fill="{grow_color}">
+            <animateMotion path="{full_snake_track}" begin="-{(seg_num * dt):.3f}s" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
+          </rect>
+        </g>
+        ''')
+
+    return f'''
     <g id="contribGrid">
-      {"".join(grid_elements)}
-      
-      <!-- Snake Motion Path -->
-      <path id="snakeTrack" d="{path_d}" fill="none" stroke="transparent"/>
-
-      <!-- Animated Snake Body -->
-      <circle cx="0" cy="0" r="4.5" fill="#c084fc" opacity="0.65">
-        <animateMotion path="{path_d}" begin="-0.4s" dur="24s" repeatCount="indefinite"/>
-      </circle>
-      <rect x="-5" y="-5" width="10" height="10" rx="3" fill="#a855f7" opacity="0.85">
-        <animateMotion path="{path_d}" begin="-0.2s" dur="24s" repeatCount="indefinite"/>
-      </rect>
-      <!-- Snake Head -->
-      <g>
-        <animateMotion path="{path_d}" begin="0s" dur="24s" repeatCount="indefinite"/>
-        <rect x="-5.5" y="-5.5" width="11" height="11" rx="3.5" fill="#8a2be2"/>
-        <circle cx="-2" cy="-2" r="1.2" fill="#ffffff"/>
-        <circle cx="2" cy="-2" r="1.2" fill="#ffffff"/>
-        <circle cx="-2" cy="-2" r="0.6" fill="#0f172a"/>
-        <circle cx="2" cy="-2" r="0.6" fill="#0f172a"/>
-      </g>
+      {"".join(grid_svg)}
+      <path id="snakeTrack" d="{full_snake_track}" fill="none" stroke="transparent"/>
+      {"".join(snake_parts_svg)}
     </g>
     '''
-    return snake_markup
 
-contribution_snake_markup = build_contribution_snake(last_year_weeks)
+contribution_snake_markup = build_arcade_snake(last_year_weeks)
 
 # 5. Dynamic Education
 edu_list = config.get("education", [])
@@ -343,4 +428,4 @@ output_path = os.path.join(REPO_ROOT, "profile.svg")
 with open(output_path, "w", encoding="utf-8") as f:
     f.write(template)
 
-print(f"🎉 Generated full-width contribution snake layout at {output_path}!")
+print(f"🎉 Generated solid arcade snake animation at {output_path}!")
