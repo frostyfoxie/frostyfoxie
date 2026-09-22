@@ -210,27 +210,27 @@
     <g transform="translate(0, 28)">
       
     <rect x="0" y="0" width="154" height="26" rx="13" class="pill-bg"/>
-    <text x="77" y="17" text-anchor="middle" class="pill-text">Frontend Architecture</text>
+    <text x="77" y="17" text-anchor="middle" class="pill-text">Frontend</text>
     
 
     <rect x="162" y="0" width="140" height="26" rx="13" class="pill-bg"/>
-    <text x="232" y="17" text-anchor="middle" class="pill-text">Backend &amp; REST APIs</text>
+    <text x="232" y="17" text-anchor="middle" class="pill-text">Agentic AI</text>
     
 
     <rect x="0" y="34" width="124" height="26" rx="13" class="pill-bg"/>
-    <text x="62" y="51" text-anchor="middle" class="pill-text">Database Design</text>
+    <text x="62" y="51" text-anchor="middle" class="pill-text">RAG Based AI</text>
     
 
     <rect x="132" y="34" width="144" height="26" rx="13" class="pill-bg"/>
-    <text x="204" y="51" text-anchor="middle" class="pill-text">UI/UX Design Systems</text>
+    <text x="204" y="51" text-anchor="middle" class="pill-text">UI/UX Design</text>
     
 
     <rect x="0" y="68" width="146" height="26" rx="13" class="pill-bg"/>
-    <text x="73" y="85" text-anchor="middle" class="pill-text">Performance Tuning</text>
+    <text x="73" y="85" text-anchor="middle" class="pill-text">Web Development</text>
     
 
     <rect x="154" y="68" width="118" height="26" rx="13" class="pill-bg"/>
-    <text x="213" y="85" text-anchor="middle" class="pill-text">DevOps &amp; Docker</text>
+    <text x="213" y="85" text-anchor="middle" class="pill-text">Creative Design</text>
     
     </g>
   </g>
