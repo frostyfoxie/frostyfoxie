@@ -108,7 +108,7 @@
       <rect x="-3" y="-3" width="206" height="206" rx="19" fill="#ffffff"/>
       <g clip-path="url(#avatarClip)">
         <!-- REPLACE 'YOUR_IMAGE_PATH_HERE' WITH YOUR IMAGE PATH OR URL BELOW -->
-        <image href="YOUR_IMAGE_PATH_HERE" x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" 
+        <image href="pfp.jpg" x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" 
                onerror="this.setAttribute('href','https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=600&amp;q=80')"/>
       </g>
     </g>
@@ -402,4 +402,5 @@
       <text x="32" y="16" class="body-font text-slate-900" font-size="12" font-weight="800">github.com/alex-webdev</text>
     </g>
   </g>
-</g></svg>
+</g>
+</svg>
