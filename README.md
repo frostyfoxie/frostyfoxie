@@ -1,4 +1,5 @@
-![Profile Banner](./profile.svg)
+![Banner](./banner.png)
+![Profile](./profile.svg)
 
 ## Contribution Activity
 
