@@ -166,7 +166,7 @@
 
     <g transform="translate(0, 28)">
       <rect x="0" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
-      <text x="37" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">261</text>
+      <text x="37" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">262</text>
       <text x="37" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">COMMITS</text>
 
       <rect x="81" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
