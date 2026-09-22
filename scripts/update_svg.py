@@ -26,7 +26,7 @@ else:
 
 headers = {
     "Authorization": f"Bearer {TOKEN}",
-    "User-Agent": "GitHub-Actions-Arcade-Snake-Updater"
+    "User-Agent": "GitHub-Actions-Animated-Profile-Updater"
 }
 
 def load_icon_as_base64(name_or_filename):
@@ -154,162 +154,138 @@ for year in range(created_year, current_year + 1):
 commits_str = f"{total_commits // 1000}.{(total_commits % 1000) // 100}k+" if total_commits >= 1000 else str(total_commits)
 active_days_str = f"{active_days} D"
 
-# 4. ORTHOGONAL GRID PATHFINDING (MANHATTAN) & ARCADE TAIL GROWTH
+# 4. PERFECT SNAKE ARCADE PATHFINDING & GROWING LOGIC
 def build_arcade_snake(weeks_data):
-    if not weeks_data:
-        return ""
+    if not weeks_data: return ""
     
     weeks_to_show = weeks_data[-53:] if len(weeks_data) >= 53 else weeks_data
     
     BOX_SIZE = 11.0
-    GAP = 3.0
-    STEP = BOX_SIZE + GAP  # 14.0px
-    COLS = 53
-    ROWS = 7
+    STEP = 14.0
+    COLS, ROWS = len(weeks_to_show), 7
     
-    colors = {
-        0: "#ebedf0",
-        1: "#9be9a8",
-        2: "#40c463",
-        3: "#30a14e",
-        4: "#216e39"
-    }
-
+    colors = {0: "#ebedf0", 1: "#9be9a8", 2: "#40c463", 3: "#30a14e", 4: "#216e39"}
+    
+    # 1. Group targets exactly by their color level (Eat Level 1 -> 2 -> 3 -> 4)
+    level_targets = {1: [], 2: [], 3: [], 4: []}
     grid_matrix = {}
-    real_commit_targets = []
     
     for c, week in enumerate(weeks_to_show):
         for day in week.get("contributionDays", []):
             r = day.get("weekday", 0)
             count = day.get("contributionCount", 0)
-            if count == 0:
-                level = 0
-            elif count <= 2:
-                level = 1
-            elif count <= 5:
-                level = 2
-            elif count <= 9:
-                level = 3
-            else:
-                level = 4
+            level = 0 if count == 0 else (1 if count <= 2 else (2 if count <= 5 else (3 if count <= 9 else 4)))
             grid_matrix[(c, r)] = colors[level]
-            if count > 0:
-                real_commit_targets.append((c, r))
+            if level > 0:
+                level_targets[level].append((c, r))
 
-    # Fallback to ensure food targets in edge cases (e.g. 0 commits)
-    food_points = []
-    if len(real_commit_targets) >= 4:
-        # Pick 6 spaced out commit targets from the active list
-        step_pick = max(1, len(real_commit_targets) // 6)
-        food_points = [real_commit_targets[i] for i in range(0, len(real_commit_targets), step_pick)][:6]
-    else:
-        # Guarantee food targets so snake always hunts & grows
-        food_points = [(35, 1), (40, 5), (44, 2), (48, 4), (51, 1)]
-        for pt in food_points:
-            grid_matrix[pt] = "#40c463"
-
-    # Breadth-First-Search (BFS) for strictly orthogonal Manhattan steps (Up/Down/Left/Right)
+    # Breadth-First-Search for strictly grid-bound movement
     def bfs_path(start, goal):
         queue = collections.deque([[start]])
         visited = {start}
         while queue:
             path = queue.popleft()
             curr = path[-1]
-            if curr == goal:
-                return path
-            for dc, dr in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+            if curr == goal: return path
+            for dc, dr in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
                 nc, nr = curr[0] + dc, curr[1] + dr
                 if 0 <= nc < COLS and 0 <= nr < ROWS and (nc, nr) not in visited:
                     visited.add((nc, nr))
                     queue.append(path + [(nc, nr)])
         return [start, goal]
 
-    # Build continuous orthogonal circuit through food targets and loop back
+    # 2. Build Path eating lightest to darkest
     circuit_cells = []
-    curr = (max(0, food_points[0][0] - 3), food_points[0][1])
+    curr = (0, 0)
+    food_eat_steps = {}  # { (c, r) : step_number_when_eaten }
     
-    food_eat_steps = {}
-    for target in food_points:
-        sub_path = bfs_path(curr, target)
-        circuit_cells.extend(sub_path[:-1])
-        curr = target
-        food_eat_steps[target] = len(circuit_cells)
+    ordered_targets = []
+    for lvl in [1, 2, 3, 4]:
+        targets = level_targets[lvl]
+        while targets:
+            closest = min(targets, key=lambda t: abs(t[0]-curr[0]) + abs(t[1]-curr[1]))
+            ordered_targets.append(closest)
+            sub_path = bfs_path(curr, closest)
+            circuit_cells.extend(sub_path[:-1])
+            curr = closest
+            targets.remove(closest)
+            food_eat_steps[closest] = len(circuit_cells)
     
-    # Return to starting cell to complete the loop
-    return_path = bfs_path(curr, circuit_cells[0])
-    circuit_cells.extend(return_path)
+    # Loop back to start
+    circuit_cells.extend(bfs_path(curr, (0, 0)))
+    
+    # If 0 commits, do a patrol loop
+    if not circuit_cells:
+        for c in range(COLS): circuit_cells.append((c, 0))
+        for r in range(1, ROWS): circuit_cells.append((COLS-1, r))
+        for c in range(COLS-2, -1, -1): circuit_cells.append((c, ROWS-1))
+        for r in range(ROWS-2, -1, -1): circuit_cells.append((0, r))
 
     TOTAL_STEPS = len(circuit_cells)
-    DURATION = max(18.0, TOTAL_STEPS * 0.16) # Constant arcade speed per cell
+    DURATION = max(10.0, TOTAL_STEPS * 0.12) # Speed multiplier
 
-    # Build precise SVG path where every step is strictly a 14px horizontal or vertical line
-    path_d_segments = []
-    start_x = circuit_cells[0][0] * STEP + BOX_SIZE / 2
-    start_y = circuit_cells[0][1] * STEP + BOX_SIZE / 2
-    path_d_segments.append(f"M {start_x:.1f} {start_y:.1f}")
-
+    # Convert cells to true SVG coordinates
+    path_d_segments = [f"M {circuit_cells[0][0]*STEP + BOX_SIZE/2:.1f} {circuit_cells[0][1]*STEP + BOX_SIZE/2:.1f}"]
     for cell in circuit_cells[1:]:
-        px = cell[0] * STEP + BOX_SIZE / 2
-        py = cell[1] * STEP + BOX_SIZE / 2
-        path_d_segments.append(f"L {px:.1f} {py:.1f}")
+        path_d_segments.append(f"L {cell[0]*STEP + BOX_SIZE/2:.1f} {cell[1]*STEP + BOX_SIZE/2:.1f}")
     path_d_segments.append("Z")
-    
     full_snake_track = " ".join(path_d_segments)
 
-    # Render Grid Cells: Commit cells turn to eaten (#ebedf0) once snake reaches them
+    # 3. Draw Grid Cells (They clear to gray exactly when head reaches them)
     grid_svg = []
     for c in range(COLS):
         for r in range(ROWS):
-            x = c * STEP
-            y = r * STEP
+            x, y = c * STEP, r * STEP
             base_col = grid_matrix.get((c, r), "#ebedf0")
             
-            if (c, r) in food_eat_steps and base_col != "#ebedf0":
-                eat_t = food_eat_steps[(c, r)] / TOTAL_STEPS
+            if (c, r) in food_eat_steps:
+                eat_frac = food_eat_steps[(c, r)] / TOTAL_STEPS
+                # Values logic: Stays color -> Turns Empty at eat_frac -> Stays Empty
+                t1 = max(0.0001, eat_frac)
+                t2 = min(0.9998, eat_frac + 0.0001)
                 grid_svg.append(f'''
-                <rect x="{x:.1f}" y="{y:.1f}" width="{BOX_SIZE}" height="{BOX_SIZE}" rx="2.5" fill="{base_col}">
-                  <animate attributeName="fill" values="{base_col};{base_col};#ebedf0;#ebedf0;{base_col}"
-                           keyTimes="0;{eat_t:.4f};{min(0.98, eat_t + 0.01):.4f};0.98;1"
-                           dur="{DURATION:.1f}s" repeatCount="indefinite" />
+                <rect x="{x:.1f}" y="{y:.1f}" width="{BOX_SIZE}" height="{BOX_SIZE}" rx="2.5" fill="#ebedf0">
+                  <animate attributeName="fill" values="{base_col};{base_col};#ebedf0;#ebedf0;{base_col}" 
+                           keyTimes="0;{t1:.4f};{t2:.4f};0.9999;1" dur="{DURATION:.1f}s" repeatCount="indefinite"/>
                 </rect>
                 ''')
             else:
                 grid_svg.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{BOX_SIZE}" height="{BOX_SIZE}" rx="2.5" fill="{base_col}"/>')
 
-    # TAIL GROWTH SYSTEM:
-    # Starts with 3 segments. Each eaten target spawns a new segment at the tail!
+    # 4. Generate Snake Body (Head leads at t=0, Body tails with delays, New Tail parts spawn on eat)
     dt = DURATION / TOTAL_STEPS
     snake_parts_svg = []
 
-    # Head (No eyes, clean purple arcade head)
-    snake_parts_svg.append(f'''
-    <rect x="-5.5" y="-5.5" width="11" height="11" rx="3" fill="#8a2be2">
-      <animateMotion path="{full_snake_track}" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
-    </rect>
-    ''')
-
-    # Initial Body Segments (Always visible)
-    for seg_i in [1, 2]:
-        color = "#9333ea" if seg_i == 1 else "#a855f7"
-        snake_parts_svg.append(f'''
-        <rect x="-5.0" y="-5.0" width="10" height="10" rx="2.5" fill="{color}">
-          <animateMotion path="{full_snake_track}" begin="-{(seg_i * dt):.3f}s" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
-        </rect>
-        ''')
-
-    # Growing Segments (Sprout from tail when each commit is eaten!)
-    for food_idx, target in enumerate(food_points):
+    # New segments that spawn out of thin air when a commit is eaten
+    for food_idx, target in enumerate(ordered_targets):
         seg_num = 3 + food_idx
         eat_frac = food_eat_steps[target] / TOTAL_STEPS
-        grow_color = "#c084fc" if food_idx % 2 == 0 else "#d8b4fe"
+        t1, t2 = max(0.0001, eat_frac), min(0.9998, eat_frac + 0.0001)
+        # Alternate purple tones for a cool segmented look
+        grow_color = "#d8b4fe" if food_idx % 2 == 0 else "#c084fc"
+        
         snake_parts_svg.append(f'''
         <g>
-          <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;{eat_frac:.4f};{eat_frac:.4f};0.98;1" dur="{DURATION:.1f}s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;{t1:.4f};{t2:.4f};0.9999;1" dur="{DURATION:.1f}s" repeatCount="indefinite"/>
           <rect x="-4.5" y="-4.5" width="9" height="9" rx="2.5" fill="{grow_color}">
-            <animateMotion path="{full_snake_track}" begin="-{(seg_num * dt):.3f}s" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
+            <animateMotion path="{full_snake_track}" begin="{seg_num * 0.12}s" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
           </rect>
         </g>
         ''')
+
+    # Initial snake (Head + 2 Body parts)
+    snake_parts_svg.append(f'''
+    <rect x="-4.5" y="-4.5" width="9" height="9" rx="2.5" fill="#a855f7">
+      <animateMotion path="{full_snake_track}" begin="0.24s" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
+    </rect>
+    <rect x="-5" y="-5" width="10" height="10" rx="3" fill="#9333ea">
+      <animateMotion path="{full_snake_track}" begin="0.12s" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
+    </rect>
+    <!-- Dark Purple Forward-facing Head -->
+    <rect x="-5.5" y="-5.5" width="11" height="11" rx="3.5" fill="#6b21a8">
+      <animateMotion path="{full_snake_track}" begin="0s" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
+    </rect>
+    ''')
 
     return f'''
     <g id="contribGrid">
@@ -428,4 +404,4 @@ output_path = os.path.join(REPO_ROOT, "profile.svg")
 with open(output_path, "w", encoding="utf-8") as f:
     f.write(template)
 
-print(f"🎉 Generated solid arcade snake animation at {output_path}!")
+print(f"🎉 Generated perfect arcade eating snake animation at {output_path}!")
