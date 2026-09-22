@@ -1,0 +1,61 @@
+<svg width="254" height="76" viewBox="0 0 254 76" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <filter id="ambientBlur" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="30" />
+  </filter>
+  <filter id="glassShadow" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.04" />
+  </filter>
+  <filter id="buttonShadow" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.04" />
+  </filter>
+</defs>
+
+<style>
+  .glass-card {
+    fill: rgba(255, 255, 255, 0.75);
+    stroke: rgba(255, 255, 255, 0.9);
+    stroke-width: 1.2;
+    filter: url(#glassShadow);
+  }
+  .footer-btn {
+    fill: #ffffff;
+    stroke: #e2e8f0;
+    stroke-width: 1;
+    filter: url(#buttonShadow);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  svg:hover .footer-btn {
+    fill: #f8fafc;
+    stroke: #cbd5e1;
+  }
+  .btn-text {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    fill: #1e293b;
+  }
+</style>
+
+<!-- 1. Seamless Canvas Base Background (Matches Template) -->
+<rect width="100%" height="100%" fill="#f8fafc" />
+
+<!-- 2. Ambient Glow (Matches Template) -->
+<g filter="url(#ambientBlur)">
+  <circle cx="127" cy="38" r="50" fill="#dbeafe" opacity="0.6" />
+</g>
+
+<!-- 3. Frosted Glass Container -->
+<rect x="6" y="6" width="242" height="64" rx="18" class="glass-card" />
+
+<!-- 4. Inner White Button Pill -->
+<rect x="14" y="16" width="226" height="44" rx="14" class="footer-btn" />
+
+<!-- Email Icon -->
+<g transform="translate(24, 27)">
+  <circle cx="11" cy="11" r="11" fill="#ef4444" opacity="0.12"/>
+  <path fill="#dc2626" d="M19 6H3c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V7c0-.55-.45-1-1-1zm-1 2l-7 4.375L4 8V7l7 4.375L18 7v1z" transform="translate(0, -1) scale(1)"/>
+</g>
+<text x="50" y="42" class="btn-text">navneetkrgupta01@gmail.com</text>
+</svg>
