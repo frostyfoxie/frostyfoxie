@@ -1,363 +1,534 @@
-<svg>  .font-title { font-family: 'Fredoka', 'Quicksand', sans-serif; font-weight: 700; }
-  .font-sub { font-family: 'Quicksand', 'Nunito', sans-serif; font-weight: 700; }
-  .font-body { font-family: 'Nunito', sans-serif; font-weight: 600; }
-  .font-mono { font-family: 'Courier New', monospace; font-weight: 700; }
-
-  .text-dark { fill: #2C3A2E; }
-  .text-green { fill: #486B43; }
-  .text-muted { fill: #5E7060; }
-  .text-white { fill: #FFFFFF; }
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 2200" width="100%" height="auto" style="background-color: #0A0A0C; font-family: 'Space Grotesk', 'JetBrains Mono', -apple-system, sans-serif;">
   
-  .shadow-soft {
-    filter: drop-shadow(0px 4px 6px rgba(44, 58, 46, 0.08));
-  }
-</style>
+  <!-- STREAMING_CHUNK:Defining SVG filters, fonts, and patterns... -->
+  <defs>
+    <!-- Embedded Google Fonts for crisp Brutalist Y2K rendering -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&amp;family=JetBrains+Mono:wght@700;800&amp;family=Space+Grotesk:wght@600;700;800;900&amp;display=swap');
 
-<!-- Linear Gradients for Soft Pastel Depth -->
-<linearGradient id="leafGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-  <stop offset="0%" stop-color="#486B43"/>
-  <stop offset="100%" stop-color="#345030"/>
-</linearGradient>
+      .font-poster { font-family: 'Black Ops One', 'Impact', 'Arial Black', sans-serif; }
+      .font-mono { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+      .font-sans { font-family: 'Space Grotesk', system-ui, sans-serif; }
 
-<linearGradient id="leafGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
-  <stop offset="0%" stop-color="#7B9E6B"/>
-  <stop offset="100%" stop-color="#5B7E4C"/>
-</linearGradient>
+      .text-stroke-black {
+        stroke: #000000;
+        stroke-width: 4px;
+        paint-order: stroke fill;
+      }
 
-<linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-  <stop offset="0%" stop-color="#F7F8F0"/>
-  <stop offset="50%" stop-color="#FAFBF5"/>
-  <stop offset="100%" stop-color="#F2F5E8"/>
-</linearGradient>
+      .text-stroke-thick {
+        stroke: #000000;
+        stroke-width: 7px;
+        paint-order: stroke fill;
+      }
 
+      .sticker-hover {
+        transition: transform 0.2s ease;
+      }
+      .sticker-hover:hover {
+        transform: scale(1.03) rotate(1deg);
+      }
+    </style>
 
-<!-- Mid Layer Leaves -->
-<path d="M 420 0 Q 460 60 520 40 Q 580 100 660 70 Q 730 130 800 90 L 800 0 Z" fill="url(#leafGrad2)"/>
+    <!-- Brutalist Heavy Drop Shadow Filter -->
+    <filter id="brutal-shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="6" dy="6" stdDeviation="0" flood-color="#000000" flood-opacity="1" />
+    </filter>
 
-<!-- Individual Decorative Leaf Clusters -->
-<path d="M 480 20 C 460 50, 470 90, 500 110 C 520 80, 510 40, 480 20 Z" fill="#88AB75"/>
-<path d="M 540 10 C 530 45, 550 80, 580 90 C 600 60, 580 25, 540 10 Z" fill="#5B7E4C"/>
-<path d="M 620 30 C 600 70, 620 115, 660 125 C 680 90, 660 45, 620 30 Z" fill="#A1C28C"/>
-<path d="M 700 20 C 680 60, 710 110, 750 120 C 770 80, 750 40, 700 20 Z" fill="#486B43"/>
+    <filter id="brutal-shadow-lg" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="10" dy="10" stdDeviation="0" flood-color="#000000" flood-opacity="1" />
+    </filter>
 
-<!-- Little hanging leaves hanging into the scene -->
-<path d="M 440 35 Q 430 65 445 80 Q 460 65 440 35 Z" fill="#A1C28C"/>
-<path d="M 590 75 Q 580 110 600 130 Q 615 105 590 75 Z" fill="#7B9E6B"/>
-<path d="M 730 90 Q 720 125 740 145 Q 755 120 730 90 Z" fill="#5B7E4C"/>
+    <filter id="brutal-shadow-sm" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="4" dy="4" stdDeviation="0" flood-color="#000000" flood-opacity="1" />
+    </filter>
 
+    <!-- Poster Grid Pattern -->
+    <pattern id="poster-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#FF0B23" stroke-width="1" stroke-opacity="0.12" />
+    </pattern>
 
-<!-- Main Title: "¿BUILDER OR CREATOR?" / "FROSTYFOXIE" -->
-<text x="0" y="52" class="font-title text-green" font-size="28" letter-spacing="1">
-  ABOUT &amp; SYSTEMS INFOGRAPHIC
-</text>
+    <!-- Halftone Dot Pattern -->
+    <pattern id="dots-pattern" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="8" r="2.5" fill="#FFFFFF" fill-opacity="0.18" />
+    </pattern>
 
-<text x="0" y="115" class="font-title text-dark" font-size="62" letter-spacing="-1">
-  FROSTYFOXIE<tspan fill="#E88262">?</tspan>
-</text>
+    <pattern id="dots-red-pattern" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="8" r="3" fill="#FF0B23" fill-opacity="0.25" />
+    </pattern>
+  </defs>
 
-<!-- Subtitle pill banner -->
-<g transform="translate(0, 130)">
-  <rect x="0" y="0" width="360" height="32" rx="16" fill="#486B43"/>
-  <text x="180" y="21" class="font-sub text-white" font-size="14" text-anchor="middle">
-    How to turn ideas into working interactive systems
-  </text>
-</g>
+  <!-- STREAMING_CHUNK:Rendering canvas background and grid pattern... -->
+  <!-- Main Background Container -->
+  <rect width="800" height="2200" fill="#0A0A0C" />
+  <rect width="800" height="2200" fill="url(#poster-grid)" />
 
-<text x="0" y="182" class="font-body text-muted" font-size="12">
-  An 18-year-old software builder exploring Multi-Agent AI, EdTech, &amp; Science.
-</text>
+  <!-- STREAMING_CHUNK:Creating top main poster banner... -->
+  <!-- HERO POSTER SECTION (Top Red Banner mirroring PORTFOLIO 2026) -->
+  <g transform="translate(25, 25)">
+    <!-- Main Red Poster Box -->
+    <rect x="0" y="0" width="750" height="420" rx="24" fill="#FF0B23" stroke="#000000" stroke-width="5" filter="url(#brutal-shadow-lg)" />
+    <!-- Dot Overlay -->
+    <rect x="0" y="0" width="750" height="420" rx="24" fill="url(#dots-pattern)" />
 
+    <!-- Y2K Corner Deco Crosses -->
+    <path d="M 20 20 L 35 35 M 35 20 L 20 35" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" />
+    <path d="M 715 20 L 730 35 M 730 20 L 715 35" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" />
 
-<!-- Body & Clothes -->
-<!-- Legs/Pants -->
-<path d="M 65 200 L 72 268 Q 82 272 90 268 L 86 200 Z" fill="#3B5254"/>
-<path d="M 94 200 L 98 268 Q 110 272 118 268 L 112 200 Z" fill="#2E4244"/>
-<!-- Shoes -->
-<ellipse cx="80" cy="268" rx="14" ry="7" fill="#222D23"/>
-<ellipse cx="110" cy="268" rx="14" ry="7" fill="#222D23"/>
+    <!-- Header Badges -->
+    <g transform="translate(24, 24)">
+      <!-- System Badge -->
+      <rect x="0" y="0" width="220" height="32" rx="10" fill="#000000" stroke="#000000" stroke-width="2" filter="url(#brutal-shadow-sm)" />
+      <circle cx="18" cy="16" r="5" fill="#FF0B23" />
+      <text x="32" y="21" class="font-mono" font-size="11" fill="#FFE500">BUILDER &amp; SYSTEMS CREATOR</text>
 
-<!-- Torso / Shirt (Grey/Slate Cozy Sweater) -->
-<path d="M 58 140 C 58 130, 122 130, 122 140 L 125 205 C 125 210, 55 210, 55 205 Z" fill="#60767D"/>
-<!-- Collar -->
-<path d="M 78 135 C 85 145, 95 145, 102 135 Z" fill="#4A5C62"/>
+      <!-- Repos Badge -->
+      <rect x="420" y="0" width="280" height="32" rx="10" fill="#FFFFFF" stroke="#000000" stroke-width="2" filter="url(#brutal-shadow-sm)" />
+      <text x="432" y="21" class="font-mono" font-size="11" fill="#000000">⚡ 25 REPOS • 9 PUBLIC / 16 PRIVATE</text>
+    </g>
 
-<!-- Left Arm (Thinking pose - hand on chin) -->
-<path d="M 58 142 C 42 165, 52 190, 75 180 Q 82 170, 78 160 Z" fill="#60767D"/>
-<!-- Right Arm (Relaxed at side) -->
-<path d="M 120 142 C 135 165, 130 185, 122 195 Z" fill="#4E6268"/>
+    <!-- Giant Brutalist Title: PORTFOLIO 2026 / FROSTYFOXIE -->
+    <g transform="translate(24, 80)">
+      <text x="0" y="80" class="font-poster text-stroke-thick" font-size="95" fill="#FFFFFF">PORT</text>
+      <text x="0" y="165" class="font-poster text-stroke-thick" font-size="95" fill="#FFE500">FOLIO</text>
+      
+      <!-- 2026 Y2K Badge Circle -->
+      <g transform="translate(270, 20)">
+        <circle cx="55" cy="55" r="55" fill="#000000" stroke="#FFFFFF" stroke-width="4" filter="url(#brutal-shadow)" />
+        <text x="55" y="50" class="font-poster" font-size="36" fill="#FFFFFF" text-anchor="middle">20</text>
+        <text x="55" y="86" class="font-poster" font-size="36" fill="#FF0B23" text-anchor="middle">26</text>
+      </g>
 
-<!-- Head & Skin -->
-<ellipse cx="90" cy="100" rx="42" ry="38" fill="#FCE3CE"/>
-<!-- Neck -->
-<rect x="83" y="130" width="14" height="12" fill="#F2CBB0" rx="4"/>
+      <!-- Main Name Ribbon Banner -->
+      <g transform="translate(0, 195) rotate(-1)">
+        <rect x="0" y="0" width="410" height="52" rx="14" fill="#FFFFFF" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <text x="20" y="36" class="font-sans" font-weight="900" font-size="24" fill="#000000">NAVNEET // @FROSTYFOXIE</text>
+      </g>
+    </g>
 
-<!-- Cute Chibi Face Details -->
-<!-- Blush -->
-<ellipse cx="62" cy="108" rx="8" ry="4" fill="#F4A28C" opacity="0.6"/>
-<ellipse cx="118" cy="108" rx="8" ry="4" fill="#F4A28C" opacity="0.6"/>
-<!-- Eyes (Pondering look like reference) -->
-<rect x="68" y="96" width="12" height="14" rx="6" fill="#2C3A2E"/>
-<rect x="100" y="96" width="12" height="14" rx="6" fill="#2C3A2E"/>
-<!-- Eye Highlights -->
-<circle cx="71" cy="99" r="2.5" fill="#FFFFFF"/>
-<circle cx="103" cy="99" r="2.5" fill="#FFFFFF"/>
-<!-- Mouth / Expression -->
-<path d="M 86 114 Q 90 117 94 114" stroke="#2C3A2E" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-<!-- Hand on chin -->
-<circle cx="78" cy="120" r="7" fill="#FCE3CE"/>
+    <!-- Right Side Speech Bubble & Age Badge (Mirrors Emasign "hola! hello" & "25 YEARS") -->
+    <g transform="translate(450, 140)">
+      <!-- Speech Bubble -->
+      <g transform="rotate(2)">
+        <rect x="0" y="0" width="260" height="110" rx="18" fill="#FFFFFF" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <!-- Pointer tail -->
+        <polygon points="30,110 45,128 60,110" fill="#FFFFFF" stroke="#000000" stroke-width="4" />
+        <rect x="29" y="105" width="33" height="10" fill="#FFFFFF" />
+        
+        <text x="16" y="28" class="font-mono" font-size="11" fill="#FF0B23">✦ WELCOME / NAMASTE 🇮🇳</text>
+        <text x="16" y="54" class="font-sans" font-weight="800" font-size="15" fill="#000000">"I turn ideas into working</text>
+        <text x="16" y="76" class="font-sans" font-weight="800" font-size="15" fill="#000000">interactive systems."</text>
+      </g>
 
-<!-- Dark Messy Anime/Chibi Hair with Green Leaf Tint Highlights -->
-<path d="M 48 95 C 42 60, 70 42, 92 42 C 120 42, 138 65, 132 98 C 138 90, 138 110, 132 118 C 126 90, 122 70, 90 68 C 65 68, 55 90, 48 95 Z" fill="#2C3A2E"/>
-<!-- Bangs -->
-<path d="M 52 82 Q 72 90, 76 102 Q 82 85, 92 88 Q 102 85, 110 100 Q 116 82, 128 88 C 120 62, 100 52, 90 52 C 72 52, 58 65, 52 82 Z" fill="#3B4D3F"/>
-<!-- Leaf Hair Clip Accessory (Like in reference) -->
-<path d="M 112 60 Q 125 52, 128 66 Q 115 72, 112 60 Z" fill="#A1C28C"/>
-<path d="M 120 56 Q 132 45, 136 58 Q 124 65, 120 56 Z" fill="#7B9E6B"/>
+      <!-- Age Identity Sticker Badge -->
+      <g transform="translate(10, 140) rotate(-2)">
+        <rect x="0" y="0" width="240" height="90" rx="18" fill="#FFE500" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <text x="120" y="24" class="font-mono" font-size="10" fill="#000000" text-anchor="middle">DEVELOPER &amp; MAKER</text>
+        <text x="120" y="60" class="font-poster text-stroke-black" font-size="38" fill="#FF0B23" text-anchor="middle">18 Y/O</text>
+        <rect x="40" y="66" width="160" height="18" rx="6" fill="#000000" />
+        <text x="120" y="79" class="font-mono" font-size="9" fill="#FFFFFF" text-anchor="middle">BASED IN INDIA 🇮🇳</text>
+      </g>
+    </g>
 
+    <!-- Bottom Tech Pill Strip -->
+    <g transform="translate(24, 365)">
+      <line x1="0" y1="0" x2="702" y2="0" stroke="#000000" stroke-width="4" />
+      
+      <g transform="translate(0, 12)">
+        <rect x="0" y="0" width="160" height="26" rx="8" fill="#000000" stroke="#FFFFFF" stroke-width="1.5" />
+        <text x="80" y="17" class="font-mono" font-size="10" fill="#FFE500" text-anchor="middle">🧠 MULTI-AGENT AI</text>
+      </g>
 
-<!-- Content Card -->
-<g transform="translate(0, 58)">
-  <!-- Left Speech Bubbles Graphic (Reference Style) -->
-  <g transform="translate(10, 10)">
-    <rect x="0" y="0" width="85" height="42" rx="14" fill="#FFFFFF" stroke="#88AB75" stroke-width="2"/>
-    <path d="M 20 42 L 15 52 L 30 42 Z" fill="#FFFFFF" stroke="#88AB75" stroke-width="2"/>
-    <rect x="19" y="41" width="12" height="3" fill="#FFFFFF"/>
-    <text x="42" y="25" class="font-sub text-green" font-size="11" text-anchor="middle">Agentic AI</text>
+      <g transform="translate(175, 12)">
+        <rect x="0" y="0" width="170" height="26" rx="8" fill="#000000" stroke="#FFFFFF" stroke-width="1.5" />
+        <text x="85" y="17" class="font-mono" font-size="10" fill="#FFFFFF" text-anchor="middle">🎓 EDTECH &amp; JEE TOOLS</text>
+      </g>
 
-    <rect x="70" y="25" width="95" height="42" rx="14" fill="#FFFFFF" stroke="#E88262" stroke-width="2"/>
-    <text x="117" y="50" class="font-sub" fill="#E88262" font-size="11" text-anchor="middle">EdTech Infra</text>
-  </g>
+      <g transform="translate(360, 12)">
+        <rect x="0" y="0" width="165" height="26" rx="8" fill="#000000" stroke="#FFFFFF" stroke-width="1.5" />
+        <text x="82" y="17" class="font-mono" font-size="10" fill="#FFE500" text-anchor="middle">🌌 COSMOS &amp; PHYSICS</text>
+      </g>
 
-  <!-- Cute Chibi Lounging / Coding Character -->
-  <g transform="translate(180, -10)">
-    <!-- Pillow / Blanket -->
-    <rect x="0" y="50" width="90" height="35" rx="12" fill="#E2ECCD"/>
-    <!-- Chibi lying down -->
-    <ellipse cx="25" cy="42" rx="20" ry="18" fill="#FCE3CE"/>
-    <path d="M 10 38 Q 25 22, 40 38 Z" fill="#2C3A2E"/>
-    <ellipse cx="18" cy="44" rx="4" ry="2" fill="#F4A28C"/>
-    <!-- Closed happy eyes ^_^ -->
-    <path d="M 22 42 Q 26 38, 30 42" stroke="#2C3A2E" stroke-width="2" fill="none"/>
-    <!-- Body sleeping/lounging -->
-    <rect x="38" y="42" width="42" height="24" rx="10" fill="#E88262"/>
-    <!-- Laptop -->
-    <rect x="68" y="38" width="22" height="16" rx="3" fill="#4A5C62"/>
-    <path d="M 64 54 L 92 54 L 88 58 L 60 58 Z" fill="#3B4D3F"/>
-  </g>
-
-  <!-- Description Box on the Right -->
-  <g transform="translate(300, 0)">
-    <rect x="0" y="0" width="410" height="95" rx="18" fill="#FFFFFF" stroke="#D4E2C4" stroke-width="2" class="shadow-soft"/>
-    <text x="20" y="30" class="font-body text-dark" font-size="13">
-      <tspan font-weight="800" fill="#486B43">Navneet</tspan> is an 18yo developer from India building autonomous
-    </text>
-    <text x="20" y="50" class="font-body text-dark" font-size="13">
-      multi-agent workbenches, AI Discord tutors, &amp; physics sims.
-    </text>
-    <text x="20" y="74" class="font-mono text-green" font-size="11">
-      ⚡ 25 Repositories Total (9 Public / 16 Private)
-    </text>
-  </g>
-</g>
-
-
-<!-- Item 1: THETA (Top Left) -->
-<g transform="translate(0, 0)">
-  <!-- Icon/Illustration -->
-  <g transform="translate(15, 10)">
-    <!-- Roadblock / Construction Icon (Reference style) -->
-    <path d="M 10 35 L 25 10 L 40 35 Z" fill="#F29C7A" stroke="#2C3A2E" stroke-width="2"/>
-    <rect x="0" y="35" width="50" height="8" rx="2" fill="#E88262"/>
-    <text x="25" y="28" class="font-title text-white" font-size="12" text-anchor="middle">Θ</text>
-  </g>
-  <g transform="translate(75, 0)">
-    <text x="0" y="18" class="font-title text-dark" font-size="16">Theta Multi-Agent IDE</text>
-    <text x="0" y="36" class="font-body text-muted" font-size="12">Autonomous workbench with orchestrator</text>
-    <text x="0" y="52" class="font-body text-muted" font-size="12">routing, Vercel sandboxes &amp; Supabase state.</text>
-  </g>
-</g>
-
-<!-- Item 2: NEWTON (Top Right) -->
-<g transform="translate(380, 0)">
-  <!-- Sparkle / Star Icon -->
-  <g transform="translate(15, 5)">
-    <path d="M 20 0 L 25 15 L 40 20 L 25 25 L 20 40 L 15 25 L 0 20 L 15 15 Z" fill="#E5A93C"/>
-    <path d="M 38 25 L 41 33 L 49 36 L 41 39 L 38 47 L 35 39 L 27 36 L 35 33 Z" fill="#F29C7A"/>
-  </g>
-  <g transform="translate(75, 0)">
-    <text x="0" y="18" class="font-title text-dark" font-size="16">Newton EdTech Platform</text>
-    <text x="0" y="36" class="font-body text-muted" font-size="12">Discord AI tutor for JEE students with</text>
-    <text x="0" y="52" class="font-body text-muted" font-size="12">adaptive doubt solving &amp; voice lessons.</text>
-  </g>
-</g>
-
-<!-- Item 3: COSMOS & PIXELVERSE (Bottom Left) -->
-<g transform="translate(0, 95)">
-  <!-- Cute Chibi Character Crawling/Reading (Reference style) -->
-  <g transform="translate(0, 0)">
-    <ellipse cx="30" cy="35" rx="16" ry="14" fill="#FCE3CE"/>
-    <path d="M 15 30 Q 30 18, 45 30 Z" fill="#3B5254"/>
-    <rect x="18" y="20" width="24" height="6" rx="3" fill="#E5A93C"/>
-    <!-- Crawling body -->
-    <path d="M 38 32 C 45 30, 60 40, 55 50 C 45 52, 35 48, 38 32 Z" fill="#4A6C6F"/>
-    <ellipse cx="24" cy="38" rx="3" ry="1.5" fill="#F4A28C"/>
-  </g>
-  <g transform="translate(75, 0)">
-    <text x="0" y="18" class="font-title text-dark" font-size="16">Cosmos &amp; Pixelverse</text>
-    <text x="0" y="36" class="font-body text-muted" font-size="12">Interactive astrophysics simulations,</text>
-    <text x="0" y="52" class="font-body text-muted" font-size="12">optics, &amp; space storytelling experiences.</text>
-  </g>
-</g>
-
-<!-- Item 4: SYL-TRACK & CREATIVE CODE (Bottom Right) -->
-<g transform="translate(380, 95)">
-  <!-- Chibi with Phone / Controller (Reference style) -->
-  <g transform="translate(10, 0)">
-    <ellipse cx="25" cy="22" rx="16" ry="14" fill="#FCE3CE"/>
-    <path d="M 12 18 Q 25 8, 38 18 Z" fill="#8C533E"/>
-    <rect x="25" y="28" width="18" height="22" rx="6" fill="#E88262"/>
-    <!-- Holding phone -->
-    <rect x="12" y="30" width="12" height="18" rx="2" fill="#3B5254"/>
-  </g>
-  <g transform="translate(75, 0)">
-    <text x="0" y="18" class="font-title text-dark" font-size="16">Syl-Track &amp; Creative Web</text>
-    <text x="0" y="36" class="font-body text-muted" font-size="12">Syllabus confidence analytics, study history,</text>
-    <text x="0" y="52" class="font-body text-muted" font-size="12">and experimental visual web essays.</text>
-  </g>
-</g>
-
-
-<g transform="translate(0, 40)">
-  <!-- Left Pill Box -->
-  <rect x="0" y="0" width="220" height="130" rx="20" fill="#A3C082" opacity="0.3"/>
-  <rect x="0" y="0" width="220" height="130" rx="20" fill="none" stroke="#7B9E6B" stroke-width="2"/>
-  <g transform="translate(18, 22)">
-    <text x="0" y="14" class="font-title text-dark" font-size="13">Languages &amp; Core</text>
-    <text x="0" y="36" class="font-body text-dark" font-size="12">• Python &amp; FastAPI</text>
-    <text x="0" y="56" class="font-body text-dark" font-size="12">• TypeScript &amp; React</text>
-    <text x="0" y="76" class="font-body text-dark" font-size="12">• Tailwind CSS &amp; Canvas</text>
-    <text x="0" y="96" class="font-mono text-green" font-size="10">v3.2.0 production build</text>
-  </g>
-
-  <!-- Center Chibi Character (Crossed Arms / Proud pose like reference) -->
-  <g transform="translate(240, 10)">
-    <ellipse cx="35" cy="95" rx="30" ry="8" fill="#2C3A2E" opacity="0.12"/>
-    <!-- Body -->
-    <rect x="18" y="45" width="34" height="42" rx="12" fill="#E88262"/>
-    <!-- Crossed arms -->
-    <rect x="14" y="55" width="42" height="14" rx="7" fill="#D66F50"/>
-    <!-- Head -->
-    <ellipse cx="35" cy="30" rx="22" ry="20" fill="#FCE3CE"/>
-    <path d="M 15 25 Q 35 8, 55 25 Z" fill="#2C3A2E"/>
-    <circle cx="27" cy="30" r="2.5" fill="#2C3A2E"/>
-    <circle cx="43" cy="30" r="2.5" fill="#2C3A2E"/>
-    <!-- Cute smirk -->
-    <path d="M 32 38 Q 37 42, 40 37" stroke="#2C3A2E" stroke-width="2" fill="none"/>
-  </g>
-
-  <!-- Right Speech/Info Bubble -->
-  <g transform="translate(320, 0)">
-    <rect x="0" y="0" width="390" height="130" rx="20" fill="#FFFFFF" stroke="#D4E2C4" stroke-width="2" class="shadow-soft"/>
-    <g transform="translate(20, 24)">
-      <text x="0" y="14" class="font-title text-green" font-size="14">AI Orchestration &amp; Infrastructure</text>
-      <text x="0" y="38" class="font-body text-dark" font-size="12">ReAct execution loops, multi-agent state management,</text>
-      <text x="0" y="58" class="font-body text-dark" font-size="12">Supabase relational vector search, Vercel sandboxes,</text>
-      <text x="0" y="78" class="font-body text-dark" font-size="12">&amp; Discord bot event streams.</text>
+      <g transform="translate(540, 12)">
+        <rect x="0" y="0" width="160" height="26" rx="8" fill="#000000" stroke="#FFFFFF" stroke-width="1.5" />
+        <text x="80" y="17" class="font-mono" font-size="10" fill="#FFFFFF" text-anchor="middle">✨ CREATIVE TECH</text>
+      </g>
     </g>
   </g>
-</g>
 
-<!-- Two Cute Chibi Friends Talking (Reference Bottom Right Characters) -->
-<g transform="translate(480, 185)">
-  <!-- Character 1 (Orange hair) -->
-  <g transform="translate(0, 0)">
-    <ellipse cx="25" cy="25" rx="18" ry="16" fill="#FCE3CE"/>
-    <path d="M 8 20 Q 25 5, 42 20 Z" fill="#E5A93C"/>
-    <rect x="12" y="38" width="26" height="22" rx="8" fill="#F29C7A"/>
-    <circle cx="20" cy="26" r="2" fill="#2C3A2E"/>
-    <circle cx="30" cy="26" r="2" fill="#2C3A2E"/>
-  </g>
-  <!-- Character 2 (Dark hair) -->
-  <g transform="translate(550, 0)">
-    <ellipse cx="-490" cy="25" rx="18" ry="16" fill="#FCE3CE"/>
-    <path d="M -507 20 Q -490 5, -473 20 Z" fill="#2C3A2E"/>
-    <rect x="-503" y="38" width="26" height="22" rx="8" fill="#4A6C6F"/>
-    <!-- Happy eyes ^_^ -->
-    <path d="M -498 25 Q -494 21, -490 25" stroke="#2C3A2E" stroke-width="2" fill="none"/>
-    <path d="M -486 25 Q -482 21, -478 25" stroke="#2C3A2E" stroke-width="2" fill="none"/>
-  </g>
-</g>
-
-
-<!-- Comic Panel Container Box -->
-<g transform="translate(0, 30)">
-  <rect x="0" y="0" width="710" height="140" rx="20" fill="#FFFFFF" stroke="#CEDCAE" stroke-width="2" class="shadow-soft"/>
-
-  <!-- Panel Dividers -->
-  <line x1="142" y1="15" x2="142" y2="125" stroke="#E2ECCD" stroke-width="2"/>
-  <line x1="284" y1="15" x2="284" y2="125" stroke="#E2ECCD" stroke-width="2"/>
-  <line x1="426" y1="15" x2="426" y2="125" stroke="#E2ECCD" stroke-width="2"/>
-  <line x1="568" y1="15" x2="568" y2="125" stroke="#E2ECCD" stroke-width="2"/>
-
-  <!-- Panel 1: "Idea" -->
-  <g transform="translate(12, 15)">
-    <!-- Speech Bubble -->
-    <rect x="15" y="8" width="90" height="30" rx="10" fill="#F7F8F0" stroke="#7B9E6B" stroke-width="1.5"/>
-    <text x="60" y="27" class="font-sub text-dark" font-size="10" text-anchor="middle">"What if I build</text>
-    <text x="60" y="36" class="font-sub text-dark" font-size="9" text-anchor="middle">a new agent?"</text>
-    <!-- Cute Slime Character -->
-    <ellipse cx="60" cy="85" rx="22" ry="18" fill="#A3C082"/>
-    <circle cx="53" cy="82" r="2.5" fill="#2C3A2E"/>
-    <circle cx="67" cy="82" r="2.5" fill="#2C3A2E"/>
-    <path d="M 58 88 Q 60 92, 62 88" stroke="#2C3A2E" stroke-width="1.5" fill="none"/>
+  <!-- STREAMING_CHUNK:Creating yellow ticker marquee strip... -->
+  <!-- MARQUEE TICKER TAPE SECTION -->
+  <g transform="translate(0, 480)">
+    <rect x="0" y="0" width="800" height="42" fill="#FFE500" stroke="#000000" stroke-width="4" />
+    <text x="400" y="27" class="font-sans" font-weight="900" font-size="14" fill="#000000" text-anchor="middle" letter-spacing="2">
+      ⚡ NAVNEET // FROSTYFOXIE  ✖  BUILDER &amp; AI SYSTEMS  ✖  THETA IDE  ✖  NEWTON AI TUTOR  ✖  COSMOS &amp; PIXELVERSE  ✖  SYL-TRACK ⚡
+    </text>
   </g>
 
-  <!-- Panel 2: "Plan" -->
-  <g transform="translate(154, 15)">
-    <rect x="10" y="8" width="100" height="30" rx="10" fill="#F7F8F0" stroke="#7B9E6B" stroke-width="1.5"/>
-    <text x="60" y="27" class="font-sub text-dark" font-size="10" text-anchor="middle">"Designed tools</text>
-    <text x="60" y="36" class="font-sub text-dark" font-size="9" text-anchor="middle">&amp; state loop!"</text>
-    <!-- Slime with glasses -->
-    <ellipse cx="60" cy="85" rx="22" ry="18" fill="#7B9E6B"/>
-    <rect x="48" y="78" width="10" height="8" rx="2" fill="none" stroke="#2C3A2E" stroke-width="1.5"/>
-    <rect x="62" y="78" width="10" height="8" rx="2" fill="none" stroke="#2C3A2E" stroke-width="1.5"/>
-    <line x1="58" y1="82" x2="62" y2="82" stroke="#2C3A2E" stroke-width="1.5"/>
+  <!-- STREAMING_CHUNK:Building About Me & Badge Wall section... -->
+  <!-- SECTION 1: ABOUT ME & IDENTITY WALL -->
+  <g transform="translate(25, 550)">
+    
+    <!-- Left: Core Bio Card -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="480" height="340" rx="24" fill="#151518" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+      <rect x="0" y="0" width="480" height="340" rx="24" fill="url(#dots-pattern)" />
+
+      <!-- Section Title Header -->
+      <g transform="translate(20, 20)">
+        <rect x="0" y="0" width="40" height="32" rx="10" fill="#FF0B23" stroke="#000000" stroke-width="2" />
+        <text x="20" y="22" class="font-poster" font-size="18" fill="#FFFFFF" text-anchor="middle">01</text>
+        
+        <text x="52" y="24" class="font-sans" font-weight="900" font-size="24" fill="#FFFFFF">ABOUT ME</text>
+        
+        <rect x="330" y="2" width="110" height="26" rx="8" fill="#FFE500" stroke="#000000" stroke-width="2" />
+        <text x="385" y="18" class="font-mono" font-size="10" fill="#000000" text-anchor="middle">MANIFESTO</text>
+        
+        <line x1="0" y1="44" x2="440" y2="44" stroke="#2A2A30" stroke-width="2" />
+      </g>
+
+      <!-- Manifesto Body Text Box -->
+      <g transform="translate(20, 80)">
+        <rect x="0" y="0" width="440" height="110" rx="14" fill="#0A0A0C" stroke="#2A2A30" stroke-width="2" />
+        <text x="16" y="28" class="font-sans" font-weight="600" font-size="13" fill="#E2E8F0">
+          I'm <tspan font-weight="900" fill="#FFE500">Navneet (`frostyfoxie`)</tspan>, an 18-year-old software builder
+        </text>
+        <text x="16" y="48" class="font-sans" font-weight="600" font-size="13" fill="#E2E8F0">
+          from India. I engineer <tspan fill="#FF0B23" font-weight="800">complete, autonomous, and interactive</tspan>
+        </text>
+        <text x="16" y="68" class="font-sans" font-weight="600" font-size="13" fill="#E2E8F0">
+          <tspan fill="#FF0B23" font-weight="800">products</tspan> designed around real human needs.
+        </text>
+        <text x="16" y="92" class="font-mono" font-size="11" fill="#94A3B8">
+          > 25 REPOSITORIES EXPLORING AI, EDTECH &amp; SCIENCE
+        </text>
+      </g>
+
+      <!-- Highlight Grid Cards -->
+      <g transform="translate(20, 205)">
+        <!-- Box A: Agentic AI -->
+        <rect x="0" y="0" width="210" height="110" rx="12" fill="#0A0A0C" stroke="#FF0B23" stroke-width="2" />
+        <text x="14" y="24" class="font-mono" font-size="11" fill="#FF0B23">🤖 AI &amp; AGENT SYSTEMS</text>
+        <text x="14" y="46" class="font-sans" font-size="11" fill="#94A3B8">ReAct loops, sub-agents,</text>
+        <text x="14" y="62" class="font-sans" font-size="11" fill="#94A3B8">Vercel sandboxes, and</text>
+        <text x="14" y="78" class="font-sans" font-size="11" fill="#94A3B8">persistent agent state.</text>
+
+        <!-- Box B: EdTech -->
+        <rect x="230" y="0" width="210" height="110" rx="12" fill="#0A0A0C" stroke="#FFE500" stroke-width="2" />
+        <text x="244" y="24" class="font-mono" font-size="11" fill="#FFE500">🎓 EDTECH INFRA</text>
+        <text x="244" y="46" class="font-sans" font-size="11" fill="#94A3B8">Adaptive doubt solving,</text>
+        <text x="244" y="62" class="font-sans" font-size="11" fill="#94A3B8">PYQ analytics &amp; Discord</text>
+        <text x="244" y="78" class="font-sans" font-size="11" fill="#94A3B8">AI learning tutors.</text>
+      </g>
+    </g>
+
+    <!-- Right: Y2K Badge Wall (Emasign Sticker Graphics) -->
+    <g transform="translate(500, 0)">
+      <rect x="0" y="0" width="250" height="340" rx="24" fill="#FF0B23" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+      <rect x="0" y="0" width="250" height="340" rx="24" fill="url(#dots-pattern)" opacity="0.3" />
+
+      <text x="20" y="36" class="font-poster" font-size="20" fill="#000000">BADGE WALL</text>
+      <line x1="20" y1="46" x2="230" y2="46" stroke="#000000" stroke-width="3" />
+
+      <!-- Sticker 1 -->
+      <g transform="translate(15, 60) rotate(1)">
+        <rect x="0" y="0" width="220" height="50" rx="14" fill="#FFFFFF" stroke="#000000" stroke-width="3" filter="url(#brutal-shadow-sm)" />
+        <text x="15" y="30" class="font-sans" font-weight="900" font-size="13" fill="#000000">🤖 AGENTIC AI</text>
+        <rect x="145" y="12" width="60" height="24" rx="6" fill="#000000" />
+        <text x="175" y="28" class="font-mono" font-size="9" fill="#FFFFFF" text-anchor="middle">BUILDER</text>
+      </g>
+
+      <!-- Sticker 2 -->
+      <g transform="translate(15, 125) rotate(-2)">
+        <rect x="0" y="0" width="220" height="50" rx="14" fill="#FFE500" stroke="#000000" stroke-width="3" filter="url(#brutal-shadow-sm)" />
+        <text x="15" y="30" class="font-sans" font-weight="900" font-size="13" fill="#000000">📚 JEE &amp; EDTECH</text>
+        <rect x="150" y="12" width="55" height="24" rx="6" fill="#000000" />
+        <text x="177" y="28" class="font-mono" font-size="9" fill="#FFE500" text-anchor="middle">TOOLS</text>
+      </g>
+
+      <!-- Sticker 3 -->
+      <g transform="translate(15, 190) rotate(2)">
+        <rect x="0" y="0" width="220" height="50" rx="14" fill="#000000" stroke="#000000" stroke-width="3" filter="url(#brutal-shadow-sm)" />
+        <text x="15" y="30" class="font-sans" font-weight="900" font-size="13" fill="#FFFFFF">🌌 COSMOS &amp; SIMS</text>
+        <rect x="155" y="12" width="50" height="24" rx="6" fill="#FF0B23" />
+        <text x="180" y="28" class="font-mono" font-size="9" fill="#FFFFFF" text-anchor="middle">PHYSICS</text>
+      </g>
+
+      <!-- Sticker 4 -->
+      <g transform="translate(15, 255) rotate(-1)">
+        <rect x="0" y="0" width="220" height="50" rx="14" fill="#FFFFFF" stroke="#000000" stroke-width="3" filter="url(#brutal-shadow-sm)" />
+        <text x="15" y="30" class="font-sans" font-weight="900" font-size="13" fill="#000000">🎨 CREATIVE TECH</text>
+        <rect x="155" y="12" width="50" height="24" rx="6" fill="#0055FF" />
+        <text x="180" y="28" class="font-mono" font-size="9" fill="#FFFFFF" text-anchor="middle">VISUAL</text>
+      </g>
+    </g>
+
   </g>
 
-  <!-- Panel 3: "Debug" -->
-  <g transform="translate(296, 15)">
-    <rect x="15" y="8" width="90" height="30" rx="10" fill="#F7F8F0" stroke="#E88262" stroke-width="1.5"/>
-    <text x="60" y="27" class="font-sub" fill="#E88262" font-size="11" text-anchor="middle">"Fixing edge</text>
-    <text x="60" y="36" class="font-sub" fill="#E88262" font-size="9" text-anchor="middle">cases..."</text>
-    <!-- Tired Slime -->
-    <ellipse cx="60" cy="85" rx="22" ry="18" fill="#F29C7A"/>
-    <!-- x_x eyes -->
-    <text x="50" y="86" class="font-title text-dark" font-size="10">x</text>
-    <text x="64" y="86" class="font-title text-dark" font-size="10">x</text>
+  <!-- STREAMING_CHUNK:Building Skills and Tech Stack section... -->
+  <!-- SECTION 2: TECHNICAL SKILLS & ARCHITECTURE -->
+  <g transform="translate(25, 930)">
+    <rect x="0" y="0" width="750" height="260" rx="24" fill="#151518" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+    
+    <!-- Title Bar -->
+    <g transform="translate(24, 20)">
+      <rect x="0" y="0" width="160" height="28" rx="8" fill="#FFE500" stroke="#000000" stroke-width="2" />
+      <text x="80" y="18" class="font-mono" font-size="11" fill="#000000" text-anchor="middle">STACK &amp; ARCHITECTURE</text>
+      
+      <text x="0" y="58" class="font-poster" font-size="32" fill="#FFFFFF">TECHNICAL SKILLS</text>
+      <text x="500" y="54" class="font-mono" font-size="12" fill="#94A3B8">// FULL-STACK + AI SYSTEMS</text>
+      <line x1="0" y1="70" x2="702" y2="70" stroke="#000000" stroke-width="3" />
+    </g>
+
+    <!-- 3 Category Column Cards -->
+    <g transform="translate(24, 105)">
+      <!-- Col 1: AI & Agentic -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="220" height="130" rx="14" fill="#0A0A0C" stroke="#FF0B23" stroke-width="2" />
+        <text x="14" y="26" class="font-sans" font-weight="900" font-size="14" fill="#FF0B23">🧠 AI &amp; AGENTIC</text>
+        <text x="14" y="52" class="font-mono" font-size="10" fill="#E2E8F0">• Multi-Agent Orchestration</text>
+        <text x="14" y="70" class="font-mono" font-size="10" fill="#E2E8F0">• ReAct Execution Loops</text>
+        <text x="14" y="88" class="font-mono" font-size="10" fill="#E2E8F0">• LLM Fallbacks &amp; Memory</text>
+        <text x="14" y="106" class="font-mono" font-size="10" fill="#E2E8F0">• Voice &amp; TTS Synthesis</text>
+      </g>
+
+      <!-- Col 2: Languages & Web -->
+      <g transform="translate(241, 0)">
+        <rect x="0" y="0" width="220" height="130" rx="14" fill="#0A0A0C" stroke="#FFE500" stroke-width="2" />
+        <text x="14" y="26" class="font-sans" font-weight="900" font-size="14" fill="#FFE500">💻 LANGUAGES &amp; WEB</text>
+        <text x="14" y="52" class="font-mono" font-size="10" fill="#E2E8F0">• Python (FastAPI, Datasets)</text>
+        <text x="14" y="70" class="font-mono" font-size="10" fill="#E2E8F0">• JavaScript / TypeScript</text>
+        <text x="14" y="88" class="font-mono" font-size="10" fill="#E2E8F0">• React &amp; Tailwind CSS</text>
+        <text x="14" y="106" class="font-mono" font-size="10" fill="#E2E8F0">• Discord API &amp; Bot Infra</text>
+      </g>
+
+      <!-- Col 3: Data & Infra -->
+      <g transform="translate(482, 0)">
+        <rect x="0" y="0" width="220" height="130" rx="14" fill="#0A0A0C" stroke="#0055FF" stroke-width="2" />
+        <text x="14" y="26" class="font-sans" font-weight="900" font-size="14" fill="#0055FF">🗄️ DATA &amp; INFRA</text>
+        <text x="14" y="52" class="font-mono" font-size="10" fill="#E2E8F0">• Supabase &amp; Relational DBs</text>
+        <text x="14" y="70" class="font-mono" font-size="10" fill="#E2E8F0">• Vector Embeddings / Search</text>
+        <text x="14" y="88" class="font-mono" font-size="10" fill="#E2E8F0">• Vercel Sandbox Isolation</text>
+        <text x="14" y="106" class="font-mono" font-size="10" fill="#E2E8F0">• OCR &amp; Document Parsing</text>
+      </g>
+    </g>
   </g>
 
-  <!-- Panel 4: "Build" -->
-  <g transform="translate(438, 15)">
-    <rect x="15" y="8" width="90" height="30" rx="10" fill="#F7F8F0" stroke="#7B9E6B" stroke-width="1.5"/>
-    <text x="60" y="27" class="font-sub text-dark" font-size="10" text-anchor="middle">"Tests passing!</text>
-    <text x="60" y="36" class="font-sub text-dark" font-size="9" text-anchor="middle">All green!"</text>
-    <!-- Happy Slime -->
-    <ellipse cx="60" cy="85" rx="22" ry="18" fill="#E5A93C"/>
-    <path d="M 50 82 Q 54 78, 58 82" stroke="#2C3A2E" stroke-width="1.5" fill="none"/>
-    <path d="M 62 82 Q 66 78, 70 82" stroke="#2C3A2E" stroke-width="1.5" fill="none"/>
+  <!-- STREAMING_CHUNK:Building Featured Projects Folio grid section... -->
+  <!-- SECTION 3: PROJECT FOLIO (Emasign LOGOFOLIO Style) -->
+  <g transform="translate(25, 1230)">
+    
+    <!-- Red Section Banner Header -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="750" height="90" rx="20" fill="#FF0B23" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+      <rect x="0" y="0" width="750" height="90" rx="20" fill="url(#dots-pattern)" opacity="0.2" />
+
+      <text x="24" y="32" class="font-mono" font-size="11" fill="#FFE500">FEATURED SYSTEMS &amp; PRODUCTS</text>
+      <text x="24" y="72" class="font-poster text-stroke-black" font-size="42" fill="#FFFFFF">PROJECT FOLIO</text>
+      
+      <rect x="520" y="25" width="200" height="38" rx="12" fill="#000000" stroke="#000000" stroke-width="2" />
+      <text x="620" y="49" class="font-mono" font-size="12" fill="#FFFFFF" text-anchor="middle">25 REPOSITORIES</text>
+    </g>
+
+    <!-- PROJECTS GRID CARDS (2 Columns) -->
+    <g transform="translate(0, 115)">
+      
+      <!-- CARD 1: THETA -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="360" height="210" rx="20" fill="#151518" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <rect x="250" y="0" width="110" height="28" rx="8" fill="#FF0B23" stroke="#000000" stroke-width="2" />
+        <text x="305" y="18" class="font-mono" font-size="9" fill="#FFFFFF" text-anchor="middle">AI SYSTEM</text>
+
+        <!-- Icon Badge -->
+        <rect x="20" y="20" width="44" height="44" rx="12" fill="#FF0B23" stroke="#000000" stroke-width="2" />
+        <text x="42" y="52" class="font-poster" font-size="28" fill="#FFFFFF" text-anchor="middle">Θ</text>
+
+        <text x="76" y="40" class="font-sans" font-weight="900" font-size="22" fill="#FFFFFF">THETA</text>
+        <text x="76" y="56" class="font-mono" font-size="10" fill="#FF0B23">// Multi-Agent AI Workbench</text>
+
+        <text x="20" y="92" class="font-sans" font-size="11" fill="#CBD5E1">Autonomous multi-agent IDE featuring orchestrator</text>
+        <text x="20" y="108" class="font-sans" font-size="11" fill="#CBD5E1">routing, sub-agents, Vercel Sandbox execution,</text>
+        <text x="20" y="124" class="font-sans" font-size="11" fill="#CBD5E1">Supabase state, and semantic search.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(20, 158)">
+          <rect x="0" y="0" width="85" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="42" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">ReAct Loop</text>
+
+          <rect x="93" y="0" width="80" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="133" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Python/TS</text>
+
+          <rect x="180" y="0" width="80" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="220" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Supabase</text>
+        </g>
+      </g>
+
+      <!-- CARD 2: NEWTON -->
+      <g transform="translate(390, 0)">
+        <rect x="0" y="0" width="360" height="210" rx="20" fill="#151518" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <rect x="230" y="0" width="130" height="28" rx="8" fill="#FFE500" stroke="#000000" stroke-width="2" />
+        <text x="295" y="18" class="font-mono" font-size="9" fill="#000000" text-anchor="middle">EDTECH + DISCORD</text>
+
+        <!-- Icon Badge -->
+        <rect x="20" y="20" width="44" height="44" rx="12" fill="#FFE500" stroke="#000000" stroke-width="2" />
+        <text x="42" y="50" class="font-poster" font-size="22" fill="#000000" text-anchor="middle">🍎</text>
+
+        <text x="76" y="40" class="font-sans" font-weight="900" font-size="22" fill="#FFFFFF">NEWTON</text>
+        <text x="76" y="56" class="font-mono" font-size="10" fill="#FFE500">// Educational AI Platform</text>
+
+        <text x="20" y="92" class="font-sans" font-size="11" fill="#CBD5E1">Interactive AI tutor inside Discord built for JEE &amp;</text>
+        <text x="20" y="108" class="font-sans" font-size="11" fill="#CBD5E1">competitive students. Supports adaptive doubt solving,</text>
+        <text x="20" y="124" class="font-sans" font-size="11" fill="#CBD5E1">voice lessons, and PYQ analytics.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(20, 158)">
+          <rect x="0" y="0" width="95" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="47" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Discord API</text>
+
+          <rect x="103" y="0" width="95" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="150" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Voice Synthesis</text>
+
+          <rect x="206" y="0" width="110" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="261" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Adaptive Memory</text>
+        </g>
+      </g>
+
+      <!-- CARD 3: COSMOS & PIXELVERSE -->
+      <g transform="translate(0, 235)">
+        <rect x="0" y="0" width="360" height="210" rx="20" fill="#151518" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <rect x="250" y="0" width="110" height="28" rx="8" fill="#0055FF" stroke="#000000" stroke-width="2" />
+        <text x="305" y="18" class="font-mono" font-size="9" fill="#FFFFFF" text-anchor="middle">SIMULATION</text>
+
+        <!-- Icon Badge -->
+        <rect x="20" y="20" width="44" height="44" rx="12" fill="#0055FF" stroke="#000000" stroke-width="2" />
+        <text x="42" y="50" class="font-poster" font-size="22" fill="#FFFFFF" text-anchor="middle">🌌</text>
+
+        <text x="76" y="40" class="font-sans" font-weight="900" font-size="20" fill="#FFFFFF">COSMOS // PIXELVERSE</text>
+        <text x="76" y="56" class="font-mono" font-size="10" fill="#0055FF">// Astrophysics Experience</text>
+
+        <text x="20" y="92" class="font-sans" font-size="11" fill="#CBD5E1">Interactive physics and cosmology platform. Combines</text>
+        <text x="20" y="108" class="font-sans" font-size="11" fill="#CBD5E1">gravitational simulations, optical phenomena, space</text>
+        <text x="20" y="124" class="font-sans" font-size="11" fill="#CBD5E1">storytelling, and philosophical writing.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(20, 158)">
+          <rect x="0" y="0" width="90" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="45" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Canvas 2D/3D</text>
+
+          <rect x="98" y="0" width="105" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="150" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Physics Engines</text>
+
+          <rect x="211" y="0" width="100" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="261" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Interactive Art</text>
+        </g>
+      </g>
+
+      <!-- CARD 4: HUMAN LIKE AI -->
+      <g transform="translate(390, 235)">
+        <rect x="0" y="0" width="360" height="210" rx="20" fill="#151518" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <rect x="240" y="0" width="120" height="28" rx="8" fill="#FFFFFF" stroke="#000000" stroke-width="2" />
+        <text x="300" y="18" class="font-mono" font-size="9" fill="#000000" text-anchor="middle">AI BEHAVIOR</text>
+
+        <!-- Icon Badge -->
+        <rect x="20" y="20" width="44" height="44" rx="12" fill="#FFFFFF" stroke="#000000" stroke-width="2" />
+        <text x="42" y="50" class="font-poster" font-size="22" fill="#000000" text-anchor="middle">🤖</text>
+
+        <text x="76" y="40" class="font-sans" font-weight="900" font-size="20" fill="#FFFFFF">HUMAN LIKE AI</text>
+        <text x="76" y="56" class="font-mono" font-size="10" fill="#FFFFFF">// Timing &amp; Chat Simulation</text>
+
+        <text x="20" y="92" class="font-sans" font-size="11" fill="#CBD5E1">Discord bot framework engineered to model natural</text>
+        <text x="20" y="108" class="font-sans" font-size="11" fill="#CBD5E1">human messaging behavior, response delay, contextual</text>
+        <text x="20" y="124" class="font-sans" font-size="11" fill="#CBD5E1">memory, and human typing cadences.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(20, 158)">
+          <rect x="0" y="0" width="145" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="72" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Conversational Memory</text>
+
+          <rect x="153" y="0" width="70" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="188" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Python</text>
+        </g>
+      </g>
+
+      <!-- CARD 5: SYL-TRACK -->
+      <g transform="translate(0, 470)">
+        <rect x="0" y="0" width="360" height="210" rx="20" fill="#151518" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <rect x="240" y="0" width="120" height="28" rx="8" fill="#FFE500" stroke="#000000" stroke-width="2" />
+        <text x="300" y="18" class="font-mono" font-size="9" fill="#000000" text-anchor="middle">STUDENT TOOL</text>
+
+        <!-- Icon Badge -->
+        <rect x="20" y="20" width="44" height="44" rx="12" fill="#FFE500" stroke="#000000" stroke-width="2" />
+        <text x="42" y="50" class="font-poster" font-size="22" fill="#000000" text-anchor="middle">📊</text>
+
+        <text x="76" y="40" class="font-sans" font-weight="900" font-size="22" fill="#FFFFFF">SYL-TRACK</text>
+        <text x="76" y="56" class="font-mono" font-size="10" fill="#FFE500">// Syllabus &amp; Study Analytics</text>
+
+        <text x="20" y="92" class="font-sans" font-size="11" fill="#CBD5E1">Student-first study tracking system for competitive</text>
+        <text x="20" y="108" class="font-sans" font-size="11" fill="#CBD5E1">exams. Analytics for topic confidence, weak area</text>
+        <text x="20" y="124" class="font-sans" font-size="11" fill="#CBD5E1">identification, and study schedules.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(20, 158)">
+          <rect x="0" y="0" width="110" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="55" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">JEE Syllabus</text>
+
+          <rect x="118" y="0" width="90" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="163" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Analytics</text>
+        </g>
+      </g>
+
+      <!-- CARD 6: I AM NOT SORRY -->
+      <g transform="translate(390, 470)">
+        <rect x="0" y="0" width="360" height="210" rx="20" fill="#151518" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <rect x="230" y="0" width="130" height="28" rx="8" fill="#FF0B23" stroke="#000000" stroke-width="2" />
+        <text x="295" y="18" class="font-mono" font-size="9" fill="#FFFFFF" text-anchor="middle">CREATIVE TECH</text>
+
+        <!-- Icon Badge -->
+        <rect x="20" y="20" width="44" height="44" rx="12" fill="#FF0B23" stroke="#000000" stroke-width="2" />
+        <text x="42" y="52" class="font-poster" font-size="28" fill="#FFFFFF" text-anchor="middle">✦</text>
+
+        <text x="76" y="40" class="font-sans" font-weight="900" font-size="20" fill="#FFFFFF">I AM NOT SORRY</text>
+        <text x="76" y="56" class="font-mono" font-size="10" fill="#FF0B23">// Visual Storytelling Web</text>
+
+        <text x="20" y="92" class="font-sans" font-size="11" fill="#CBD5E1">Experimental interactive website combining social</text>
+        <text x="20" y="108" class="font-sans" font-size="11" fill="#CBD5E1">commentary, physics-inspired UI animations,</text>
+        <text x="20" y="124" class="font-sans" font-size="11" fill="#CBD5E1">typography experiments, and storytelling.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(20, 158)">
+          <rect x="0" y="0" width="105" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="52" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Visual Design</text>
+
+          <rect x="113" y="0" width="80" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="153" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">CSS Art</text>
+        </g>
+      </g>
+
+    </g>
   </g>
 
-  <!-- Panel 5: "Ship" -->
-  <g transform="translate(580, 15)">
-    <rect x="10" y="8" width="100" height="30" rx="10" fill="#486B43"/>
-    <text x="60" y="27" class="font-sub text-white" font-size="10" text-anchor="middle">"Deployed to</text>
-    <text x="60" y="36" class="font-sub text-white" font-size="9" text-anchor="middle">Production! 🚀"</text>
-    <!-- Celebrating Slime with crown -->
-    <ellipse cx="60" cy="88" rx="22" ry="18" fill="#486B43"/>
-    <path d="M 52 70 L 56 60 L 60 66 L 64 60 L 68 70 Z" fill="#FFE500"/>
-    <circle cx="53" cy="85" r="2" fill="#FFFFFF"/>
-    <circle cx="67" cy="85" r="2" fill="#FFFFFF"/>
+  <!-- STREAMING_CHUNK:Designing footer connecting banner... -->
+  <!-- FOOTER CONNECT BANNER -->
+  <g transform="translate(25, 2030)">
+    <rect x="0" y="0" width="750" height="140" rx="24" fill="#FF0B23" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow-lg)" />
+    <rect x="0" y="0" width="750" height="140" rx="24" fill="url(#dots-pattern)" opacity="0.25" />
+
+    <g transform="translate(24, 24)">
+      <rect x="0" y="0" width="180" height="24" rx="8" fill="#000000" />
+      <text x="90" y="16" class="font-mono" font-size="10" fill="#FFE500" text-anchor="middle">LET'S CONNECT &amp; BUILD</text>
+
+      <text x="0" y="58" class="font-poster text-stroke-black" font-size="34" fill="#FFFFFF">NAVNEET // @FROSTYFOXIE</text>
+      <text x="0" y="80" class="font-sans" font-weight="700" font-size="13" fill="#FFFFFF">Open to collaborating on Multi-Agent AI, EdTech infra, or creative web systems.</text>
+
+      <g transform="translate(490, 12)">
+        <rect x="0" y="0" width="210" height="40" rx="12" fill="#FFFFFF" stroke="#000000" stroke-width="3" filter="url(#brutal-shadow-sm)" />
+        <text x="105" y="25" class="font-sans" font-weight="900" font-size="13" fill="#000000" text-anchor="middle">GITHUB / FROSTYFOXIE</text>
+      </g>
+    </g>
+
+    <line x1="24" y1="108" x2="726" y2="108" stroke="#000000" stroke-width="2" />
+    <text x="35" y="125" class="font-mono" font-size="9" fill="#FFFFFF">© 2026 NAVNEET (FROSTYFOXIE) • ALL RIGHTS RESERVED</text>
+    <text x="715" y="125" class="font-mono" font-size="9" fill="#FFE500" text-anchor="end">INDIA 🇮🇳</text>
   </g>
 
-</g>
 </svg>
