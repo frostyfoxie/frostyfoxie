@@ -1,7 +1,4 @@
-<p align="center">
-  <img src="./profile.svg" alt="Profile Banner" width="100%" />
-</p>
-
-<p align="center">
-  <a href="https://instagram.com/oneinagoogolplex._" target="_blank"><img src="./btn_instagram.svg" alt="Instagram" /></a><a href="mailto:navneetkrgupta01@gmail.com"><img src="./btn_email.svg" alt="Email" /></a><a href="https://github.com/Navneet-2008" target="_blank"><img src="./btn_github.svg" alt="GitHub" /></a>
-</p>
+<div align="center" style="line-height: 0;">
+  <img src="./profile.svg" width="860" /><br/>
+  <a href="https://instagram.com/oneinagoogolplex._" target="_blank"><img src="./btn_instagram.svg" width="287" /></a><a href="mailto:navneetkrgupta01@gmail.com"><img src="./btn_email.svg" width="286" /></a><a href="https://github.com/Navneet-2008" target="_blank"><img src="./btn_github.svg" width="287" /></a>
+</div>
