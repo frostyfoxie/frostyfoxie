@@ -54,6 +54,14 @@ def cursor(d,x,y,kind="arrow"):
         for k in (-8,-2,4,10): d.line((x+k,y+2,x+k,y-15),fill=INK,width=4)
     else:
         d.polygon([(x,y),(x+31,y-18),(x+39,y-10),(x+8,y+9)],fill=INK); d.polygon([(x,y),(x+8,y+9),(x-9,y+15)],fill=INK)
+def saw(d,x,y,phase=0):
+    # Cartoon prop: wooden handle + toothed blade, purely slapstick.
+    d.line((x,y,x+58,y-22),fill=INK,width=7)
+    d.line((x+38,y-15,x+73,y-28),fill=INK,width=5)
+    for k in range(6):
+        q=x+42+k*6
+        d.line((q,y-17-(k%2)*3,q+5,y-25-(k%2)*3),fill=INK,width=3)
+
 def render(t,rows):
     im=Image.new("RGB",(W,H),BG); d=ImageDraw.Draw(im)
     total=sum(len(x) for x in rows); end=min(18,3+total/55)
