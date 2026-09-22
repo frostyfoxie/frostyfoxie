@@ -1,26 +1,20 @@
-<svg width="100%" height="100%" viewBox="0 0 860 1085" overflow="visible" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="100%" height="100%" viewBox="0 0 860 955" overflow="visible" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
-  <!-- Ambient Blur Filter (Expanded bounds to prevent any clipping) -->
-  <filter id="ambientBlur" x="-200%" y="-200%" width="500%" height="500%">
+  <!-- Ambient Blur Filter -->
+  <filter id="ambientBlur" x="-50%" y="-50%" width="200%" height="200%">
     <feGaussianBlur stdDeviation="75" />
   </filter>
 
-  <!-- Expanded Shadow Filters to permanently fix sharp cutoff lines -->
-  <filter id="glassShadow" x="-200%" y="-200%" width="500%" height="500%">
+  <!-- Expanded Shadow Filters (Zero Clipping) -->
+  <filter id="glassShadow" x="-50%" y="-50%" width="200%" height="200%">
     <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.04" />
   </filter>
 
-  <!-- Clean Neutral Badge Shadow (Infinitely wide bounds) -->
-  <filter id="neutralShadow" x="-200%" y="-200%" width="500%" height="500%">
-    <feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#0f172a" flood-opacity="0.1" />
+  <filter id="neutralShadow" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#0f172a" flood-opacity="0.1" />
   </filter>
 
-  <!-- Button Drop Shadow -->
-  <filter id="buttonShadow" x="-200%" y="-200%" width="500%" height="500%">
-    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.04" />
-  </filter>
-
-  <!-- Animated Shimmering Ribbon Gradients -->
+  <!-- Animated Ribbon Gradients -->
   <linearGradient id="ribbonFrontGrad" x1="0%" y1="0%" x2="100%" y2="100%">
     <stop offset="0%" stop-color="#2563eb">
       <animate attributeName="stop-color" values="#2563eb;#60a5fa;#1d4ed8;#2563eb" dur="7s" repeatCount="indefinite" />
@@ -81,7 +75,7 @@
     animation: lanyardSway 4.8s ease-in-out infinite;
   }
 
-  /* Floating Ambient Glow Animations */
+  /* Ambient Glow Animations */
   @keyframes floatGlow1 {
     0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.45; }
     50%      { transform: translate(30px, 25px) scale(1.15); opacity: 0.65; }
@@ -92,22 +86,12 @@
   }
   .glow-orb-1 { animation: floatGlow1 11s ease-in-out infinite; }
   .glow-orb-2 { animation: floatGlow2 13s ease-in-out infinite; }
-
-  .footer-btn {
-    fill: #ffffff;
-    stroke: #e2e8f0;
-    stroke-width: 1;
-    filter: url(#buttonShadow);
-    cursor: pointer;
-  }
-  .btn-link { text-decoration: none; }
-  .btn-link:hover .footer-btn { fill: #f8fafc; stroke: #cbd5e1; }
 </style>
 
 <!-- Base Background -->
 <rect width="100%" height="100%" fill="#f8fafc" />
 
-<!-- Soft Ambient Glow Orbs (Replaced red orb with clean indigo/blue) -->
+<!-- Soft Ambient Glow Orbs -->
 <g filter="url(#ambientBlur)">
   <circle cx="680" cy="200" r="140" fill="#e0e7ff" class="glow-orb-1" />
   <circle cx="160" cy="560" r="160" fill="#dbeafe" class="glow-orb-2" />
@@ -176,7 +160,7 @@
   <rect width="770" height="152" rx="20" class="glass-card"/>
   
   <g transform="translate(15.5, 18)">
-    <text x="0" y="10" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.5">CONTRIBUTION GRAPH &amp; COMMIT ACTIVITY</text>
+    <text x="0" y="10" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.5">CONTRIBUTION GRAPH &amp; COMMIT ACTIVITY (LAST 365 DAYS)</text>
     <g transform="translate(0, 22)">
       {{CONTRIBUTION_SNAKE_SECTION}}
     </g>
@@ -236,36 +220,4 @@
     </g>
   </g>
 </g>
-
-<!-- ================================================================= -->
-<!-- 4. BOTTOM: LET'S CONNECT BUTTON PILLS                             -->
-<!-- ================================================================= -->
-<g transform="translate(45, 965)">
-  <rect width="770" height="68" rx="20" class="glass-card"/>
-
-  <a href="https://instagram.com/{{INSTAGRAM_HANDLE}}" target="_blank" class="btn-link">
-    <g transform="translate(18, 12)">
-      <rect width="232" height="44" rx="14" class="footer-btn"/>
-      <image href="{{ICON_INSTAGRAM}}" x="14" y="11" width="22" height="22"/>
-      <text x="44" y="27" class="body-font text-slate-800" font-size="12" font-weight="700">@{{INSTAGRAM_HANDLE}}</text>
-    </g>
-  </a>
-
-  <a href="mailto:{{EMAIL}}" target="_blank" class="btn-link">
-    <g transform="translate(268, 12)">
-      <rect width="232" height="44" rx="14" class="footer-btn"/>
-      <image href="{{ICON_EMAIL}}" x="14" y="11" width="22" height="22"/>
-      <text x="44" y="27" class="body-font text-slate-800" font-size="12" font-weight="700">{{EMAIL}}</text>
-    </g>
-  </a>
-
-  <a href="https://github.com/{{USERNAME}}" target="_blank" class="btn-link">
-    <g transform="translate(518, 12)">
-      <rect width="234" height="44" rx="14" class="footer-btn"/>
-      <image href="{{ICON_GITHUB}}" x="14" y="11" width="22" height="22"/>
-      <text x="44" y="27" class="body-font text-slate-800" font-size="12" font-weight="700">github.com/{{USERNAME}}</text>
-    </g>
-  </a>
-</g>
-
 </svg>
