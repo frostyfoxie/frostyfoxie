@@ -1,6 +1,5 @@
-<svg width="100%" height="100%" viewBox="0 0 860 950" overflow="visible" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="100%" height="100%" viewBox="0 0 860 948" overflow="visible" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
-  <!-- Ambient Blur Filter -->
   <filter id="ambientBlur" x="-50%" y="-50%" width="200%" height="200%">
     <feGaussianBlur stdDeviation="75" />
   </filter>
@@ -9,12 +8,10 @@
     <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.04" />
   </filter>
 
-  <!-- Clean Neutral Badge Shadow (No Cutoff Line) -->
   <filter id="neutralShadow" x="-50%" y="-50%" width="200%" height="200%">
     <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#0f172a" flood-opacity="0.1" />
   </filter>
 
-  <!-- Animated Ribbon Gradients -->
   <linearGradient id="ribbonFrontGrad" x1="0%" y1="0%" x2="100%" y2="100%">
     <stop offset="0%" stop-color="#2563eb">
       <animate attributeName="stop-color" values="#2563eb;#60a5fa;#1d4ed8;#2563eb" dur="7s" repeatCount="indefinite" />
@@ -64,7 +61,6 @@
   .text-slate-700 { fill: #334155; }
   .text-slate-500 { fill: #64748b; }
 
-  /* Smooth Harmonic Pendulum Sway */
   @keyframes lanyardSway {
     0%   { transform: rotate(-2.2deg); }
     50%  { transform: rotate(2.2deg); }
@@ -75,7 +71,6 @@
     animation: lanyardSway 4.8s ease-in-out infinite;
   }
 
-  /* Floating Ambient Glows */
   @keyframes floatGlow1 {
     0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.35; }
     50%      { transform: translate(30px, 25px) scale(1.15); opacity: 0.55; }
@@ -88,21 +83,18 @@
   .glow-orb-2 { animation: floatGlow2 13s ease-in-out infinite; }
 </style>
 
-<!-- Base Background -->
 <rect width="100%" height="100%" fill="#f8fafc" />
 
-<!-- Soft Ambient Glow Orbs -->
 <g filter="url(#ambientBlur)">
   <circle cx="680" cy="200" r="140" fill="#e0e7ff" class="glow-orb-1" />
   <circle cx="160" cy="560" r="160" fill="#dbeafe" class="glow-orb-2" />
   <circle cx="700" cy="850" r="150" fill="#e0e7ff" class="glow-orb-1" />
 </g>
 
-<!-- 1. TOP ROW: BEHIND THE CODE (LEFT) + SWINGING ID BADGE (RIGHT) -->
+<!-- TOP ROW: BEHIND THE CODE & ID BADGE -->
 <g transform="translate(45, 50)">
   <text x="0" y="24" class="heading-font text-slate-900" font-size="28" font-weight="900" letter-spacing="-0.5">Behind the Code</text>
   <text x="0" y="48" class="body-font text-slate-500" font-size="11.5" font-weight="700" letter-spacing="0.5">STUDENT · WEB DEV · AI DEV · CURIOUS MIND</text>
-  
   <text x="0" y="86" class="body-font text-slate-700" font-size="13" font-weight="500">
     <tspan x="0" dy="0">Hi, I am Navneet</tspan>
 <tspan x="0" dy="30">I’m a student, web developer and digital creator who enjoys turning ideas into</tspan>
@@ -119,7 +111,6 @@
   </text>
 </g>
 
-<!-- SWINGING ID BADGE -->
 <g transform="translate(560, 15)">
   <g class="swinging-assembly">
     <g id="backStrap">
@@ -162,10 +153,9 @@
   </g>
 </g>
 
-<!-- 2. FULL WIDTH CONTRIBUTION GRID WITH ARCADE SNAKE (Exact 11px Grid) -->
+<!-- CONTRIBUTION GRID WITH ARCADE SNAKE -->
 <g transform="translate(45, 475)">
   <rect width="770" height="152" rx="20" class="glass-card"/>
-  
   <g transform="translate(15.5, 18)">
     <text x="0" y="10" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.5">CONTRIBUTION GRAPH &amp; COMMIT ACTIVITY (LAST 365 DAYS)</text>
     <g transform="translate(0, 22)">
@@ -484,11 +474,9 @@
   </g>
 </g>
 
-<!-- 3. EDUCATION & STATS + SKILLS & TECH KEYCAPS -->
+<!-- EDUCATION & STATS + SKILLS & TECH KEYCAPS -->
 <g transform="translate(45, 650)">
   <rect width="365" height="292" rx="20" class="glass-card"/>
-
-  <!-- Education -->
   <g transform="translate(24, 20)">
     <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Education</text>
     <line x1="6" y1="30" x2="6" y2="102" stroke="#cbd5e1" stroke-width="1.5"/>
@@ -512,11 +500,9 @@
         
   </g>
 
-  <!-- GitHub Overview Stats -->
   <g transform="translate(24, 160)">
     <image href="data:image/svg+xml;base64,PHN2ZyBmaWxsPSJjdXJyZW50Q29sb3IiIGZpbGwtcnVsZT0iZXZlbm9kZCIgaGVpZ2h0PSIxZW0iIHN0eWxlPSJmbGV4Om5vbmU7bGluZS1oZWlnaHQ6MSIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMWVtIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0aXRsZT5HaXRodWI8L3RpdGxlPjxwYXRoIGQ9Ik0xMiAwYzYuNjMgMCAxMiA1LjI3NiAxMiAxMS43OS0uMDAxIDUuMDY3LTMuMjkgOS41NjctOC4xNzUgMTEuMTg3LS42LjExOC0uODI1LS4yNS0uODI1LS41NiAwLS4zOTguMDE1LTEuNjY1LjAxNS0zLjI0MiAwLTEuMTA1LS4zNzUtMS44MTMtLjgxLTIuMTgxIDIuNjctLjI5NSA1LjQ3NS0xLjI5NyA1LjQ3NS01LjgyMiAwLTEuMjk3LS40NjUtMi4zNDQtMS4yMy0zLjE2OS4xMi0uMjk1LjU0LTEuNTAzLS4xMi0zLjEyNSAwIDAtMS4wMDUtLjMyNC0zLjMgMS4yMDlhMTEuMzIgMTEuMzIgMCAwMC0zLS4zOThjLTEuMDIgMC0yLjA0LjEzMy0zIC4zOTgtMi4yOTUtMS41MTgtMy4zLTEuMjA5LTMuMy0xLjIwOS0uNjYgMS42MjItLjI0IDIuODMtLjEyIDMuMTI1LS43NjUuODI1LTEuMjMgMS44ODctMS4yMyAzLjE2OSAwIDQuNTEgMi43OSA1LjUyNyA1LjQ2IDUuODIyLS4zNDUuMjk0LS42Ni44MS0uNzY1IDEuNTc3LS42OS4zMS0yLjQxNS44MS0zLjQ5NS0uOTczLS4yMjUtLjM1NC0uOS0xLjIyMy0xLjg0NS0xLjIwOS0xLjAwNS4wMTUtLjQwNS41Ni4wMTUuNzgxLjUxLjI4IDEuMDk1IDEuMzI3IDEuMjMgMS42NjYuMjQuNjYzIDEuMDIgMS45MyA0LjAzNSAxLjM4NSAwIC45ODguMDE1IDEuOTE2LjAxNSAyLjE5NiAwIC4zMS0uMjI1LjY2NC0uODI1LjU2QzMuMzAzIDIxLjM3NC0uMDAzIDE2Ljg2NyAwIDExLjc5MSAwIDUuMjc2IDUuMzcgMCAxMiAweiI+PC9wYXRoPjwvc3ZnPg==" x="0" y="0" width="16" height="16"/>
     <text x="24" y="13" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.4">GITHUB LIVE OVERVIEW (ALL-TIME)</text>
-
     <g transform="translate(0, 26)">
       <rect x="0" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
       <text x="37" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">2.0k+</text>
@@ -537,10 +523,8 @@
   </g>
 </g>
 
-<!-- RIGHT GLASS CONTAINER: SKILLS & KEYCAPS -->
 <g transform="translate(430, 650)">
   <rect width="385" height="292" rx="20" class="glass-card"/>
-
   <g transform="translate(24, 20)">
     <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Skills</text>
     <g transform="translate(0, 28)">
