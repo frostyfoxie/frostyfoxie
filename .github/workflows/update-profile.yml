@@ -8,6 +8,7 @@ on:
       - main
     paths:
       - 'template.svg'
+      - 'config.json'
       - 'icons/**'
       - 'scripts/**'
   workflow_dispatch: # Allows manual run button in Actions tab
