@@ -12,12 +12,10 @@ TOKEN = os.getenv("GITHUB_TOKEN")
 if not USERNAME or not TOKEN:
     raise ValueError("Missing GH_USERNAME or GITHUB_TOKEN environment variables.")
 
-# Absolute paths
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
 ICONS_DIR = os.path.join(REPO_ROOT, "icons")
 
-# 1. Load config.json
 config_file = os.path.join(REPO_ROOT, "config.json")
 if os.path.exists(config_file):
     with open(config_file, "r", encoding="utf-8") as f:
@@ -27,18 +25,14 @@ else:
 
 headers = {
     "Authorization": f"Bearer {TOKEN}",
-    "User-Agent": "GitHub-Actions-Profile-Updater"
+    "User-Agent": "GitHub-Actions-Animated-Profile-Updater"
 }
 
-# --- SMART ICON LOADER (Local icons/ first -> CDN Fallback second) ---
 def load_icon_as_base64(name_or_filename):
     clean_name = os.path.splitext(name_or_filename)[0].lower().strip()
-    
-    # 1. Check local icons/ folder
     if os.path.exists(ICONS_DIR):
         actual_files = os.listdir(ICONS_DIR)
         file_map = {f.lower(): f for f in actual_files}
-
         for ext in [".svg", ".png", ".webp", ".jpg", ".jpeg"]:
             candidate = f"{clean_name}{ext}"
             if candidate in file_map:
@@ -47,10 +41,8 @@ def load_icon_as_base64(name_or_filename):
                 with open(file_path, "rb") as f:
                     encoded = base64.b64encode(f.read()).decode("utf-8")
                 mime = "image/svg+xml" if ext == ".svg" else f"image/{ext.replace('.', '')}"
-                print(f"✅ [LOCAL ICON] '{clean_name}' matched 'icons/{found_file}'")
                 return f"data:{mime};base64,{encoded}"
 
-    # 2. Online Fallback (Auto-fetch official SVG if you haven't uploaded one!)
     try:
         cdn_url = f"https://cdn.simpleicons.org/{clean_name}"
         req = urllib.request.Request(cdn_url, headers={"User-Agent": "Mozilla/5.0"})
@@ -58,17 +50,13 @@ def load_icon_as_base64(name_or_filename):
             if resp.status == 200:
                 svg_data = resp.read()
                 b64 = base64.b64encode(svg_data).decode("utf-8")
-                print(f"🌐 [AUTO-FETCHED ICON] '{clean_name}' downloaded from SimpleIcons")
                 return f"data:image/svg+xml;base64,{b64}"
     except Exception:
         pass
 
-    # 3. Instagram Default Fallback
     if "instagram" in clean_name:
         fallback = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#E4405F" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>'
         return f"data:image/svg+xml;base64,{base64.b64encode(fallback.encode()).decode()}"
-
-    print(f"❌ [NOT FOUND] Could not find or download icon for '{name_or_filename}'")
     return ""
 
 def graphql_request(query, variables=None):
@@ -83,7 +71,7 @@ def graphql_request(query, variables=None):
     with urllib.request.urlopen(req) as resp:
         return json.loads(resp.read().decode())
 
-# 2. User Info & Avatar
+# 1. Fetch User Data
 user_url = f"https://api.github.com/users/{USERNAME}"
 req_user = urllib.request.Request(user_url, headers=headers)
 with urllib.request.urlopen(req_user) as resp:
@@ -100,7 +88,7 @@ with urllib.request.urlopen(req_avatar) as resp:
     avatar_b64 = base64.b64encode(resp.read()).decode("utf-8")
 avatar_data_uri = f"data:image/jpeg;base64,{avatar_b64}"
 
-# 3. All Repos & Stars
+# 2. Fetch Repos & Stars
 page = 1
 total_repos = 0
 total_stars = 0
@@ -124,9 +112,11 @@ while True:
 
 stars_str = f"{total_stars}+" if total_stars >= 100 else str(total_stars)
 
-# 4. All-Time Commits & Active Days
+# 3. Fetch All-Time Commits & Contribution Calendar
 total_commits = 0
 active_days = 0
+last_year_weeks = []
+
 for year in range(created_year, current_year + 1):
     gql_query = """
     query($username: String!, $from: DateTime!, $to: DateTime!) {
@@ -138,6 +128,7 @@ for year in range(created_year, current_year + 1):
             weeks {
               contributionDays {
                 contributionCount
+                weekday
               }
             }
           }
@@ -149,15 +140,101 @@ for year in range(created_year, current_year + 1):
         data = graphql_request(gql_query, {"username": USERNAME, "from": f"{year}-01-01T00:00:00Z", "to": f"{year}-12-31T23:59:59Z"})
         col = data["data"]["user"]["contributionsCollection"]
         total_commits += col["totalCommitContributions"] + col.get("restrictedContributionsCount", 0)
-        for week in col["contributionCalendar"]["weeks"]:
+        weeks = col["contributionCalendar"]["weeks"]
+        for week in weeks:
             for day in week["contributionDays"]:
                 if day["contributionCount"] > 0:
                     active_days += 1
+        if year == current_year:
+            last_year_weeks = weeks
     except Exception:
         pass
 
 commits_str = f"{total_commits // 1000}.{(total_commits % 1000) // 100}k+" if total_commits >= 1000 else str(total_commits)
 active_days_str = f"{active_days} D"
+
+# 4. Generate Contribution Grid (Exact 11px x 11px GitHub Size across 53 weeks)
+def build_contribution_snake(weeks_data):
+    if not weeks_data:
+        return ""
+    
+    # 53 weeks fills exactly ~739px inside the 770px container
+    weeks_to_show = weeks_data[-53:] if len(weeks_data) >= 53 else weeks_data
+    
+    box_size = 11.0
+    gap = 3.0
+    step = box_size + gap  # 14px step
+    
+    colors = {
+        0: "#ebedf0",
+        1: "#9be9a8",
+        2: "#40c463",
+        3: "#30a14e",
+        4: "#216e39"
+    }
+
+    grid_elements = []
+    active_points = []
+    
+    for col_idx, week in enumerate(weeks_to_show):
+        x = col_idx * step
+        for day in week.get("contributionDays", []):
+            row_idx = day.get("weekday", 0)
+            y = row_idx * step
+            count = day.get("contributionCount", 0)
+            
+            if count == 0:
+                level = 0
+            elif count <= 2:
+                level = 1
+            elif count <= 5:
+                level = 2
+            elif count <= 9:
+                level = 3
+            else:
+                level = 4
+                
+            color = colors[level]
+            grid_elements.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{box_size}" height="{box_size}" rx="2.5" fill="{color}"/>')
+            
+            if count > 0:
+                active_points.append((x + box_size/2, y + box_size/2))
+
+    # Snake path through active commit coordinates
+    if not active_points or len(active_points) < 5:
+        active_points = [(i * step * 3.5, 14 + (i % 5) * 16) for i in range(15)]
+        active_points.append((0, 14))
+
+    path_d = f"M {active_points[0][0]:.1f} {active_points[0][1]:.1f} " + " ".join([f"L {pt[0]:.1f} {pt[1]:.1f}" for pt in active_points[1:]]) + " Z"
+
+    snake_markup = f'''
+    <g id="contribGrid">
+      {"".join(grid_elements)}
+      
+      <!-- Snake Motion Path -->
+      <path id="snakeTrack" d="{path_d}" fill="none" stroke="transparent"/>
+
+      <!-- Animated Snake Body -->
+      <circle cx="0" cy="0" r="4.5" fill="#c084fc" opacity="0.65">
+        <animateMotion path="{path_d}" begin="-0.4s" dur="24s" repeatCount="indefinite"/>
+      </circle>
+      <rect x="-5" y="-5" width="10" height="10" rx="3" fill="#a855f7" opacity="0.85">
+        <animateMotion path="{path_d}" begin="-0.2s" dur="24s" repeatCount="indefinite"/>
+      </rect>
+      <!-- Snake Head -->
+      <g>
+        <animateMotion path="{path_d}" begin="0s" dur="24s" repeatCount="indefinite"/>
+        <rect x="-5.5" y="-5.5" width="11" height="11" rx="3.5" fill="#8a2be2"/>
+        <circle cx="-2" cy="-2" r="1.2" fill="#ffffff"/>
+        <circle cx="2" cy="-2" r="1.2" fill="#ffffff"/>
+        <circle cx="-2" cy="-2" r="0.6" fill="#0f172a"/>
+        <circle cx="2" cy="-2" r="0.6" fill="#0f172a"/>
+      </g>
+    </g>
+    '''
+    return snake_markup
+
+contribution_snake_markup = build_contribution_snake(last_year_weeks)
 
 # 5. Dynamic Education
 edu_list = config.get("education", [])
@@ -195,11 +272,10 @@ for i, skill in enumerate(skills_list[:6]):
     ''')
 skills_markup = "\n".join(skills_svg)
 
-# 7. Dynamic Tech Stack (Supports up to 14 icons, 7 per row)
+# 7. Dynamic Tech Stack
 tech_list = config.get("tech_stack", [])
 tech_svg = []
-print("\n--- Processing Tech Stack ---")
-for i, tech in enumerate(tech_list[:14]):  # Now supports up to 14 icons!
+for i, tech in enumerate(tech_list[:14]):
     row = i // 7
     col = i % 7
     x = col * 48
@@ -229,7 +305,6 @@ description_markup = "\n".join(tspans)
 instagram_handle = config.get("contact", {}).get("instagram", "oneinagoogolplex._")
 email_address = config.get("contact", {}).get("email", user_data.get("email", "navneetkrgupta01@gmail.com"))
 
-print("\n--- Processing Footer ---")
 icon_github = load_icon_as_base64("github")
 icon_instagram = load_icon_as_base64("instagram")
 icon_email = load_icon_as_base64("email")
@@ -254,6 +329,7 @@ replacements = {
     "{{EDUCATION_ITEMS}}": education_markup,
     "{{SKILLS_ITEMS}}": skills_markup,
     "{{TECH_STACK_ITEMS}}": tech_markup,
+    "{{CONTRIBUTION_SNAKE_SECTION}}": contribution_snake_markup,
     "{{ICON_GITHUB}}": icon_github,
     "{{ICON_GITHUB_RED}}": icon_github,
     "{{ICON_INSTAGRAM}}": icon_instagram,
@@ -267,4 +343,4 @@ output_path = os.path.join(REPO_ROOT, "profile.svg")
 with open(output_path, "w", encoding="utf-8") as f:
     f.write(template)
 
-print(f"\n🎉 Successfully generated profile.svg at {output_path}!")
+print(f"🎉 Generated full-width contribution snake layout at {output_path}!")
