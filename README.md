@@ -1,3 +1,6 @@
-<p align="center">
-  <img src="./profile.svg" width="860" style="display: block; margin: 0 auto;" /><a href="https://instagram.com._" target="_blank"><img src="./btn_instagram.svg" width="287" /></a><a href="mailto:navneetkrgupta01@gmail.com"><img src="./btn_email.svg" width="286" /></a><a href="https://github.com" target="_blank"><img src="./btn_github.svg" width="287" /></a>
-</p>
+<div align="center">
+  <img src="./profile.svg" width="100%" />
+</div>
+<div align="center">
+  <a href="https://instagram.com/oneinagoogolplex._" target="_blank"><img src="./btn_instagram.svg" width="33.1%" /></a><a href="mailto:navneetkrgupta01@gmail.com"><img src="./btn_email.svg" width="33.1%" /></a><a href="https://github.com/Navneet-2008" target="_blank"><img src="./btn_github.svg" width="33.1%" /></a>
+</div>
