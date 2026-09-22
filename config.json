@@ -1,0 +1,50 @@
+{
+  "contact": {
+    "instagram": "oneinagoogolplex._",
+    "email": "navneetkrgupta01@gmail.com"
+  },
+  "behind_the_code": {
+    "subheading": "FULL-STACK ENGINEER & SOFTWARE ARCHITECT",
+    "description": [
+      "I am a passionate software engineer specializing in building high-performance, scalable web applications and intuitive digital experiences. Over the past several years, I have architected systems ranging from reactive client-side interfaces to resilient, event-driven distributed microservices.",
+      "My engineering philosophy centers on clean architectural design, strict type safety, automated testing, and relentless runtime performance tuning. Whether designing collaborative real-time canvases or optimizing complex database queries, I bridge engineering rigor with human-centered product craft.",
+      "Deeply invested in open-source tooling, I regularly share solutions with the developer community and continuously explore modern advancements in cloud infrastructure, systems design, and developer tooling."
+    ]
+  },
+  "education": [
+    {
+      "year": "2022",
+      "title": "Primary School",
+      "institution": "St. Mary's Convent School"
+    },
+    {
+      "year": "2024",
+      "title": "Middle School",
+      "institution": "Sant Atulanand Convent School"
+    },
+    {
+      "year": "2026",
+      "title": "High School",
+      "institution": "Central Hindu Boys School, BHU"
+    }
+  ],
+  "skills": [
+    "Frontend Architecture",
+    "Backend & REST APIs",
+    "Database Design",
+    "UI/UX Design Systems",
+    "Performance Tuning",
+    "DevOps & Docker"
+  ],
+  "tech_stack": [
+    "vercel",
+    "supabase",
+    "huggingface",
+    "github",
+    "claude",
+    "gemini",
+    "python",
+    "typescript",
+    "firebase"
+  ]
+}
