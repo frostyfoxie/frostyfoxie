@@ -300,7 +300,7 @@
     <g transform="translate(18, 12)">
       <rect width="232" height="44" rx="14" class="footer-btn"/>
       <image href="{{ICON_INSTAGRAM}}" x="14" y="11" width="22" height="22"/>
-      <text x="44" y="27" class="body-font text-slate-800" font-size="12" font-weight="700">@{{INSTAGRAM_HANDLE}}</text>
+      <text x="44" y="27" class="body-font text-slate-800" font-size="12" font-weight="700">@oneinagoogolplex._</text>
     </g>
   </a>
 
@@ -309,7 +309,7 @@
     <g transform="translate(268, 12)">
       <rect width="232" height="44" rx="14" class="footer-btn"/>
       <image href="{{ICON_EMAIL}}" x="14" y="11" width="22" height="22"/>
-      <text x="44" y="27" class="body-font text-slate-800" font-size="12" font-weight="700">{{EMAIL}}</text>
+      <text x="44" y="27" class="body-font text-slate-800" font-size="12" font-weight="700">navneetkrgupta01@gmail.com</text>
     </g>
   </a>
 
