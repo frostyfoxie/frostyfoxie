@@ -41,5 +41,5 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add profile.svg
+          git add profile.svg btn_instagram.svg btn_email.svg btn_github.svg
           git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update all-time profile stats" && git push)
