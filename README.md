@@ -1,6 +1,6 @@
 
 ![Profile](./profile.svg)
-![Banner](./banner.png)
+
 
 ## Connect
 
