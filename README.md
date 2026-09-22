@@ -1,14 +1,12 @@
 ![Animated profile](./assets/animated-profile.gif)
 
-## Hi, I am Navneet!
+# Aryan
 
 **Student · Software Builder · AI & Emerging Technology**
 
-I build software at the intersection of **artificial intelligence, education, science, and interactive technology**. My work ranges from AI systems and developer tools to educational platforms and interactive scientific experiences.
+I build software at the intersection of **artificial intelligence, education, science, and interactive technology**.
 
-I am particularly interested in ambitious technical problems, human–AI interaction, and turning complex ideas into usable systems.
-
----
+My work spans AI systems, developer tools, educational platforms, scientific visualisation, and experimental human–computer interaction.
 
 ## Selected Work
 
@@ -18,7 +16,7 @@ An experimental AI coding environment focused on **agent orchestration, tool exe
 
 ### [Newton](https://github.com/frostyfoxie/Newton)
 
-An AI-powered learning platform for competitive-exam students, combining **adaptive learning, practice, multimodal doubt solving, persistent student state, analytics, and voice interaction**.
+An AI-powered learning platform combining **adaptive learning, practice, multimodal doubt solving, persistent student state, analytics, and voice interaction**.
 
 ### [Human-Like AI](https://github.com/frostyfoxie/human-like-ai)
 
@@ -40,8 +38,6 @@ A data-driven educational tool for **JEE/JoSAA college exploration**, incorporat
 
 A JEE preparation and syllabus management tool designed around **structured progress tracking and study planning**.
 
----
-
 ## Areas of Interest
 
 **Artificial Intelligence**  
@@ -59,13 +55,9 @@ Physics · astronomy · cosmology · interactive visualisation
 **Human–Computer Interaction**  
 Interactive systems · visual experiences · human–AI interaction
 
----
-
 ## Technology
 
-`Python` · `TypeScript` · `JavaScript` · `PostgreSQL` · `Supabase` · `Vercel` · `LLMs` · `AI APIs` · `Discord`
-
----
+`Python` · `TypeScript` · `JavaScript` · `PostgreSQL` · `Supabase` · `Vercel` · `LLMs` · `AI APIs`
 
 ## Connect
 
