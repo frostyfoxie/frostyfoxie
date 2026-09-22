@@ -277,7 +277,7 @@
   <!-- Location -->
   <g transform="translate(28, 19)">
     <image href="./icons/location.svg" x="0" y="0" width="24" height="24"/>
-    <text x="32" y="16" class="body-font text-slate-700" font-size="12" font-weight="700">San Francisco, CA</text>
+    <text x="32" y="16" class="body-font text-slate-700" font-size="12" font-weight="700">India</text>
   </g>
 
   <!-- Email -->
