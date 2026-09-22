@@ -6,6 +6,7 @@ import textwrap
 import html
 import collections
 import urllib.request
+import random
 
 USERNAME = os.getenv("GH_USERNAME")
 TOKEN = os.getenv("GITHUB_TOKEN")
@@ -104,7 +105,6 @@ while True:
         req_repos = urllib.request.Request(repos_url, headers=headers)
         with urllib.request.urlopen(req_repos) as resp:
             repos = json.loads(resp.read().decode())
-
     if not repos:
         break
     total_repos += len(repos)
@@ -113,10 +113,10 @@ while True:
 
 stars_str = f"{total_stars}+" if total_stars >= 100 else str(total_stars)
 
-# 3. Fetch All-Time Commits & Contribution Calendar
+# 3. Fetch All-Time Commits & ONLY Current Year Calendar
 total_commits = 0
 active_days = 0
-last_year_weeks = []
+current_year_weeks = []
 
 for year in range(created_year, current_year + 1):
     gql_query = """
@@ -147,155 +147,220 @@ for year in range(created_year, current_year + 1):
                 if day["contributionCount"] > 0:
                     active_days += 1
         if year == current_year:
-            last_year_weeks = weeks
+            current_year_weeks = weeks
     except Exception:
         pass
 
 commits_str = f"{total_commits // 1000}.{(total_commits % 1000) // 100}k+" if total_commits >= 1000 else str(total_commits)
 active_days_str = f"{active_days} D"
 
-# 4. PERFECT SNAKE ARCADE PATHFINDING & GROWING LOGIC
+# 4. TRUE AI ARCADE SNAKE SIMULATOR
 def build_arcade_snake(weeks_data):
-    if not weeks_data: return ""
+    if not weeks_data:
+        return ""
     
-    weeks_to_show = weeks_data[-53:] if len(weeks_data) >= 53 else weeks_data
-    
+    COLS = 53
+    ROWS = 7
     BOX_SIZE = 11.0
     STEP = 14.0
-    COLS, ROWS = len(weeks_to_show), 7
     
     colors = {0: "#ebedf0", 1: "#9be9a8", 2: "#40c463", 3: "#30a14e", 4: "#216e39"}
-    
-    # 1. Group targets exactly by their color level (Eat Level 1 -> 2 -> 3 -> 4)
-    level_targets = {1: [], 2: [], 3: [], 4: []}
     grid_matrix = {}
+    targets = {1: [], 2: [], 3: [], 4: []}
     
-    for c, week in enumerate(weeks_to_show):
+    for c, week in enumerate(weeks_data[-COLS:]):
         for day in week.get("contributionDays", []):
             r = day.get("weekday", 0)
             count = day.get("contributionCount", 0)
-            level = 0 if count == 0 else (1 if count <= 2 else (2 if count <= 5 else (3 if count <= 9 else 4)))
-            grid_matrix[(c, r)] = colors[level]
+            if count == 0: level = 0
+            elif count <= 2: level = 1
+            elif count <= 5: level = 2
+            elif count <= 9: level = 3
+            else: level = 4
+            grid_matrix[(c, r)] = level
             if level > 0:
-                level_targets[level].append((c, r))
+                targets[level].append((c, r))
 
-    # Breadth-First-Search for strictly grid-bound movement
-    def bfs_path(start, goal):
+    # BFS Pathfinding Engine
+    def get_path(start, goal, snake_body, current_level, remaining_targets):
+        obstacles = set(snake_body[:-1]) # Tail moves, not an obstacle
+        
+        # Un-eaten darker blocks are obstacles
+        for lvl, tgts in remaining_targets.items():
+            if lvl > current_level:
+                obstacles.update(tgts)
+
         queue = collections.deque([[start]])
-        visited = {start}
+        visited = set([start])
+        directions = [(1,0), (0,1), (-1,0), (0,-1)]
+
+        # Pass 1: Strict constraints (Respect body and darker blocks)
         while queue:
             path = queue.popleft()
             curr = path[-1]
             if curr == goal: return path
-            for dc, dr in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
-                nc, nr = curr[0] + dc, curr[1] + dr
-                if 0 <= nc < COLS and 0 <= nr < ROWS and (nc, nr) not in visited:
-                    visited.add((nc, nr))
-                    queue.append(path + [(nc, nr)])
-        return [start, goal]
+            for dx, dy in directions:
+                nx, ny = curr[0] + dx, curr[1] + dy
+                # Allow strictly ONE block outside grid
+                if -1 <= nx <= COLS and -1 <= ny <= ROWS:
+                    if (nx, ny) not in visited and (nx, ny) not in obstacles:
+                        visited.add((nx, ny))
+                        queue.append(path + [(nx, ny)])
 
-    # 2. Build Path eating lightest to darkest
-    circuit_cells = []
-    curr = (0, 0)
-    food_eat_steps = {}  # { (c, r) : step_number_when_eaten }
+        # Pass 2 Fallback: If trapped by darker blocks, ignore them
+        queue = collections.deque([[start]])
+        visited = set([start])
+        obstacles = set(snake_body[:-1])
+        while queue:
+            path = queue.popleft()
+            curr = path[-1]
+            if curr == goal: return path
+            for dx, dy in directions:
+                nx, ny = curr[0] + dx, curr[1] + dy
+                if -1 <= nx <= COLS and -1 <= ny <= ROWS:
+                    if (nx, ny) not in visited and (nx, ny) not in obstacles:
+                        visited.add((nx, ny))
+                        queue.append(path + [(nx, ny)])
+
+        # Pass 3 Fallback: Ghost mode directly to target (should rarely hit)
+        path = [start]
+        curr = start
+        while curr != goal:
+            dx = 1 if goal[0] > curr[0] else (-1 if goal[0] < curr[0] else 0)
+            dy = 1 if goal[1] > curr[1] else (-1 if goal[1] < curr[1] else 0)
+            if dx != 0: curr = (curr[0] + dx, curr[1])
+            else: curr = (curr[0], curr[1] + dy)
+            path.append(curr)
+        return path
+
+    snake = [(-1, 0), (-1, 0), (-1, 0)] # Initial length 3
+    moves = [(-1, 0)]
+    eat_ticks = {}
+    tick = 0
+
+    # Hunt loop: Level 1 -> 2 -> 3 -> 4
+    for current_level in [1, 2, 3, 4]:
+        while targets[current_level]:
+            head = snake[0]
+            closest_target = min(targets[current_level], key=lambda t: abs(t[0]-head[0]) + abs(t[1]-head[1]))
+            path = get_path(head, closest_target, snake, current_level, targets)
+
+            for step in path[1:]:
+                tick += 1
+                moves.append(step)
+                snake.insert(0, step)
+                if step == closest_target:
+                    eat_ticks[step] = tick
+                    targets[current_level].remove(step)
+                    # Don't pop tail = Grow!
+                else:
+                    snake.pop()
+
+    # Roam around if idle or no commits to eat (to reach ~25 seconds of animation)
+    min_ticks = 250
+    corners = [(0,0), (COLS-1,0), (COLS-1,ROWS-1), (0,ROWS-1)]
+    while tick < min_ticks:
+        goal = random.choice(corners)
+        path = get_path(snake[0], goal, snake, 5, {})
+        for step in path[1:]:
+            tick += 1
+            moves.append(step)
+            snake.insert(0, step)
+            snake.pop()
+            if tick >= min_ticks: break
+
+    # Loop back safely to (-1, 0)
+    path = get_path(snake[0], (-1, 0), snake, 5, {})
+    for step in path[1:]:
+        tick += 1
+        moves.append(step)
+        snake.insert(0, step)
+        snake.pop()
     
-    ordered_targets = []
-    for lvl in [1, 2, 3, 4]:
-        targets = level_targets[lvl]
-        while targets:
-            closest = min(targets, key=lambda t: abs(t[0]-curr[0]) + abs(t[1]-curr[1]))
-            ordered_targets.append(closest)
-            sub_path = bfs_path(curr, closest)
-            circuit_cells.extend(sub_path[:-1])
-            curr = closest
-            targets.remove(closest)
-            food_eat_steps[closest] = len(circuit_cells)
-    
-    # Loop back to start
-    circuit_cells.extend(bfs_path(curr, (0, 0)))
-    
-    # If 0 commits, do a patrol loop
-    if not circuit_cells:
-        for c in range(COLS): circuit_cells.append((c, 0))
-        for r in range(1, ROWS): circuit_cells.append((COLS-1, r))
-        for c in range(COLS-2, -1, -1): circuit_cells.append((c, ROWS-1))
-        for r in range(ROWS-2, -1, -1): circuit_cells.append((0, r))
+    # Flush tail
+    for _ in range(len(snake)):
+        tick += 1
+        moves.append((-1, 0))
 
-    TOTAL_STEPS = len(circuit_cells)
-    DURATION = max(10.0, TOTAL_STEPS * 0.12) # Speed multiplier
+    TOTAL_TICKS = len(moves)
+    DURATION = TOTAL_TICKS * 0.1 # Constant speed
 
-    # Convert cells to true SVG coordinates
-    path_d_segments = [f"M {circuit_cells[0][0]*STEP + BOX_SIZE/2:.1f} {circuit_cells[0][1]*STEP + BOX_SIZE/2:.1f}"]
-    for cell in circuit_cells[1:]:
-        path_d_segments.append(f"L {cell[0]*STEP + BOX_SIZE/2:.1f} {cell[1]*STEP + BOX_SIZE/2:.1f}")
-    path_d_segments.append("Z")
-    full_snake_track = " ".join(path_d_segments)
-
-    # 3. Draw Grid Cells (They clear to gray exactly when head reaches them)
+    # Generate Grid Fade Outputs
     grid_svg = []
     for c in range(COLS):
         for r in range(ROWS):
-            x, y = c * STEP, r * STEP
-            base_col = grid_matrix.get((c, r), "#ebedf0")
+            x = c * STEP
+            y = r * STEP
+            base_col = colors[grid_matrix.get((c, r), 0)]
             
-            if (c, r) in food_eat_steps:
-                eat_frac = food_eat_steps[(c, r)] / TOTAL_STEPS
-                # Values logic: Stays color -> Turns Empty at eat_frac -> Stays Empty
-                t1 = max(0.0001, eat_frac)
-                t2 = min(0.9998, eat_frac + 0.0001)
+            if (c, r) in eat_ticks:
+                eat_frac = eat_ticks[(c, r)] / TOTAL_TICKS
                 grid_svg.append(f'''
-                <rect x="{x:.1f}" y="{y:.1f}" width="{BOX_SIZE}" height="{BOX_SIZE}" rx="2.5" fill="#ebedf0">
-                  <animate attributeName="fill" values="{base_col};{base_col};#ebedf0;#ebedf0;{base_col}" 
-                           keyTimes="0;{t1:.4f};{t2:.4f};0.9999;1" dur="{DURATION:.1f}s" repeatCount="indefinite"/>
+                <rect x="{x:.1f}" y="{y:.1f}" width="{BOX_SIZE}" height="{BOX_SIZE}" rx="2.5" fill="{base_col}">
+                  <animate attributeName="fill" values="{base_col};{base_col};#ebedf0;#ebedf0;{base_col}"
+                           keyTimes="0;{eat_frac:.4f};{eat_frac + 0.001:.4f};0.99;1" dur="{DURATION:.1f}s" repeatCount="indefinite" />
                 </rect>
                 ''')
             else:
                 grid_svg.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{BOX_SIZE}" height="{BOX_SIZE}" rx="2.5" fill="{base_col}"/>')
 
-    # 4. Generate Snake Body (Head leads at t=0, Body tails with delays, New Tail parts spawn on eat)
-    dt = DURATION / TOTAL_STEPS
+    # Generate Snake Body (Frame-by-Frame Array)
     snake_parts_svg = []
+    max_len = 3 + len(eat_ticks)
+    
+    def rgb_to_hex(r, g, b): return f"#{r:02x}{g:02x}{b:02x}"
+    # Dark Purple (#4c1d95) to Light Purple (#d8b4fe)
+    r1, g1, b1 = 76, 29, 149
+    r2, g2, b2 = 216, 180, 254
 
-    # New segments that spawn out of thin air when a commit is eaten
-    for food_idx, target in enumerate(ordered_targets):
-        seg_num = 3 + food_idx
-        eat_frac = food_eat_steps[target] / TOTAL_STEPS
-        t1, t2 = max(0.0001, eat_frac), min(0.9998, eat_frac + 0.0001)
-        # Alternate purple tones for a cool segmented look
-        grow_color = "#d8b4fe" if food_idx % 2 == 0 else "#c084fc"
+    for K in range(max_len):
+        ratio = K / max(1, max_len - 1)
+        r = int(r1 + (r2 - r1) * ratio)
+        g = int(g1 + (g2 - g1) * ratio)
+        b = int(b1 + (b2 - b1) * ratio)
+        color = rgb_to_hex(r, g, b)
         
+        # Size shrinks from 11 down to 5
+        size = 11.0 - (ratio * 6.0)
+        offset = (11.0 - size) / 2.0
+        
+        x_vals = []
+        y_vals = []
+        for t in range(TOTAL_TICKS):
+            pos = moves[max(0, t - K)]
+            x_vals.append(f"{(pos[0] * STEP + offset):.1f}")
+            y_vals.append(f"{(pos[1] * STEP + offset):.1f}")
+            
+        x_str = ";".join(x_vals)
+        y_str = ";".join(y_vals)
+
+        # Initial body (K < 3) is always visible. Grown tail parts spawn when food is eaten.
+        opacity_anim = ""
+        if K >= 3:
+            spawn_tick = list(eat_ticks.values())[K - 3]
+            spawn_frac = spawn_tick / TOTAL_TICKS
+            opacity_anim = f'<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;{spawn_frac:.4f};{spawn_frac:.4f};0.99;1" dur="{DURATION:.1f}s" repeatCount="indefinite" />'
+        
+        # Add head eye-less rounded rect
         snake_parts_svg.append(f'''
-        <g>
-          <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;{t1:.4f};{t2:.4f};0.9999;1" dur="{DURATION:.1f}s" repeatCount="indefinite"/>
-          <rect x="-4.5" y="-4.5" width="9" height="9" rx="2.5" fill="{grow_color}">
-            <animateMotion path="{full_snake_track}" begin="{seg_num * 0.12}s" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
-          </rect>
-        </g>
+        <rect width="{size:.1f}" height="{size:.1f}" rx="{size/3:.1f}" fill="{color}">
+          <animate attributeName="x" values="{x_str}" dur="{DURATION:.1f}s" repeatCount="indefinite" />
+          <animate attributeName="y" values="{y_str}" dur="{DURATION:.1f}s" repeatCount="indefinite" />
+          {opacity_anim}
+        </rect>
         ''')
 
-    # Initial snake (Head + 2 Body parts)
-    snake_parts_svg.append(f'''
-    <rect x="-4.5" y="-4.5" width="9" height="9" rx="2.5" fill="#a855f7">
-      <animateMotion path="{full_snake_track}" begin="0.24s" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
-    </rect>
-    <rect x="-5" y="-5" width="10" height="10" rx="3" fill="#9333ea">
-      <animateMotion path="{full_snake_track}" begin="0.12s" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
-    </rect>
-    <!-- Dark Purple Forward-facing Head -->
-    <rect x="-5.5" y="-5.5" width="11" height="11" rx="3.5" fill="#6b21a8">
-      <animateMotion path="{full_snake_track}" begin="0s" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
-    </rect>
-    ''')
+    # Reverse parts so head (K=0) is drawn on top
+    snake_parts_svg.reverse()
 
     return f'''
     <g id="contribGrid">
       {"".join(grid_svg)}
-      <path id="snakeTrack" d="{full_snake_track}" fill="none" stroke="transparent"/>
       {"".join(snake_parts_svg)}
     </g>
     '''
 
-contribution_snake_markup = build_arcade_snake(last_year_weeks)
+contribution_snake_markup = build_arcade_snake(current_year_weeks)
 
 # 5. Dynamic Education
 edu_list = config.get("education", [])
@@ -383,6 +448,7 @@ replacements = {
     "{{REPOS}}": str(total_repos),
     "{{ACTIVE_DAYS}}": active_days_str,
     "{{STARS}}": stars_str,
+    "{{CURRENT_YEAR}}": str(current_year),
     "{{INSTAGRAM_HANDLE}}": instagram_handle,
     "{{EMAIL}}": email_address,
     "{{BEHIND_THE_CODE_SUBHEADING}}": subheading,
@@ -404,4 +470,4 @@ output_path = os.path.join(REPO_ROOT, "profile.svg")
 with open(output_path, "w", encoding="utf-8") as f:
     f.write(template)
 
-print(f"🎉 Generated perfect arcade eating snake animation at {output_path}!")
+print(f"🎉 SUCCESS! Generated perfectly smooth pendulum & strict grid arcade snake.")
