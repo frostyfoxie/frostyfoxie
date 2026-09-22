@@ -140,7 +140,7 @@
     <a href="https://github.com/frostyfoxie" target="_blank">
       <g transform="translate(202, 380)">
         <rect width="32" height="32" rx="8" fill="#ffffff" stroke="#fecaca" stroke-width="0.8"/>
-        <image href="{{ICON_GITHUB_RED}}" x="4" y="4" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+        <image href="" x="4" y="4" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
       </g>
     </a>
   </g>
@@ -180,28 +180,28 @@
 
   <!-- GitHub Live Overview (Public + Private All-Time Stats) -->
   <g transform="translate(24, 150)">
-    <image href="{{ICON_GITHUB}}" x="0" y="0" width="16" height="16"/>
+    <image href="" x="0" y="0" width="16" height="16"/>
     <text x="24" y="13" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.4">GITHUB LIVE OVERVIEW (ALL-TIME)</text>
 
     <g transform="translate(0, 28)">
       <!-- All Commits (Till Date) -->
       <rect x="0" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
-      <text x="37" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">263</text>
+      <text x="37" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">2.0k+</text>
       <text x="37" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">COMMITS</text>
 
       <!-- Total Repos (Public + Private) -->
       <rect x="81" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
-      <text x="118" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">9</text>
+      <text x="118" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">25</text>
       <text x="118" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">REPOS</text>
 
       <!-- All-time Active Days -->
       <rect x="162" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
-      <text x="199" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="13" font-weight="900">56 D</text>
+      <text x="199" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="13" font-weight="900">73 D</text>
       <text x="199" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">ACTIVE D</text>
 
       <!-- All Stars (Public + Private) -->
       <rect x="243" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
-      <text x="280" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">0</text>
+      <text x="280" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">3</text>
       <text x="280" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">STARS</text>
     </g>
   </g>
@@ -243,47 +243,47 @@
       <!-- Vercel -->
       <g transform="translate(0, 0)">
         <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="{{ICON_VERCEL}}" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+        <image href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9IjAgLTE3IDI1NiAyNTYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPgogICAgPGc+CiAgICAgICAgPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgcG9pbnRzPSIxMjggMCAyNTYgMjIxLjcwNTAwNyAwIDIyMS43MDUwMDciPgoKPC9wb2x5Z29uPgogICAgPC9nPgo8L3N2Zz4K" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
       </g>
       <!-- Supabase -->
       <g transform="translate(48, 0)">
         <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="{{ICON_SUPABASE}}" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+        <image href="" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
       </g>
       <!-- Hugging Face -->
       <g transform="translate(96, 0)">
         <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="{{ICON_HUGGINGFACE}}" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+        <image href="" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
       </g>
       <!-- GitHub -->
       <g transform="translate(144, 0)">
         <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="{{ICON_GITHUB}}" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+        <image href="" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
       </g>
       <!-- Claude -->
       <g transform="translate(192, 0)">
         <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="{{ICON_CLAUDE}}" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+        <image href="" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
       </g>
       <!-- Gemini -->
       <g transform="translate(240, 0)">
         <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="{{ICON_GEMINI}}" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+        <image href="" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
       </g>
       <!-- Python -->
       <g transform="translate(288, 0)">
         <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="{{ICON_PYTHON}}" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+        <image href="" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
       </g>
       <!-- TypeScript -->
       <g transform="translate(0, 48)">
         <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="{{ICON_TYPESCRIPT}}" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+        <image href="" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
       </g>
       <!-- Firebase -->
       <g transform="translate(48, 48)">
         <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="{{ICON_FIREBASE}}" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+        <image href="" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
       </g>
     </g>
   </g>
@@ -296,11 +296,11 @@
   <rect width="770" height="68" rx="20" class="glass-card"/>
 
   <!-- 1. Instagram Button -->
-  <a href="https://instagram.com/{{INSTAGRAM_HANDLE}}" target="_blank" class="btn-link">
+  <a href="https://instagram.com/your_instagram" target="_blank" class="btn-link">
     <g transform="translate(18, 12)">
       <rect width="232" height="44" rx="14" class="footer-btn"/>
-      <image href="{{ICON_INSTAGRAM}}" x="14" y="11" width="22" height="22"/>
-      <text x="44" y="27" class="body-font text-slate-800" font-size="12" font-weight="700">@{{INSTAGRAM_HANDLE}}</text>
+      <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI0U0NDA1RiIgZD0iTTEyIDIuMTYzYzMuMjA0IDAgMy41ODQuMDEyIDQuODUuMDcgMy4yNTIuMTQ4IDQuNzcxIDEuNjkxIDQuOTE5IDQuOTE5LjA1OCAxLjI2NS4wNjkgMS42NDUuMDY5IDQuODQ5IDAgMy4yMDUtLjAxMiAzLjU4NC0uMDY5IDQuODQ5LS4xNDkgMy4yMjUtMS42NjQgNC43NzEtNC45MTkgNC45MTktMS4yNjYuMDU4LTEuNjQ0LjA3LTQuODUuMDctMy4yMDQgMC0zLjU4NC0uMDEyLTQuODQ5LS4wNy0zLjI2LS4xNDktNC43NzEtMS42OTktNC45MTktNC45Mi0uMDU4LTEuMjY1LS4wNy0xLjY0NC0uMDctNC44NDkgMC0zLjIwNC4wMTMtMy41ODMuMDctNC44NDkuMTQ5LTMuMjI3IDEuNjY0LTQuNzcxIDQuOTE5LTQuOTE5IDEuMjY2LS4wNTcgMS42NDUtLjA2OSA0Ljg0OS0uMDY5em0wLTIuMTYzYy0zLjI1OSAwLTMuNjY3LjAxNC00Ljk0Ny4wNzItNC4zNTguMi02Ljc4IDIuNjE4LTYuOTggNi45OC0uMDU5IDEuMjgxLS4wNzMgMS42ODktLjA3MyA0Ljk0OCAwIDMuMjU5LjAxNCAzLjY2OC4wNzIgNC45NDguMiA0LjM1OCAyLjYxOCA2Ljc4IDYuOTggNi45OCAxLjI4MS4wNTggMS42ODkuMDcyIDQuOTQ4LjA3MiAzLjI1OSAwIDMuNjY4LS4wMTQgNC45NDgtLjA3MiA0LjM1NC0uMiA2Ljc4Mi0yLjYxOCA2Ljk3OS02Ljk4LjA1OS0xLjI4LjA3My0xLjY4OS4wNzMtNC45NDggMC0zLjI1OS0uMDE0LTMuNjY3LS4wNzItNC45NDctLjE5Ni00LjM1NC0yLjYxNy02Ljc4LTYuOTc5LTYuOTgtMS4yODEtLjA1OS0xLjY5LS4wNzMtNC45NDktLjA3M3ptMCA1LjgzOGMtMy40MDMgMC02LjE2MiAyLjc1OS02LjE2MiA2LjE2MnMyLjc1OSA2LjE2MyA2LjE2MiA2LjE2MyA2LjE2Mi0yLjc1OSA2LjE2Mi02LjE2M2MwLTMuNDAzLTIuNzU5LTYuMTYyLTYuMTYyLTYuMTYyem0wIDEwLjE2MmMtMi4yMDkgMC00LTEuNzktNC00IDAtMi4yMDkgMS43OTEtNCA0LTRzNCAxLjc5MSA0IDRjMCAyLjIxLTEuNzkxIDQtNCA0em02LjQwNi0xMS44NDVjLS43OTYgMC0xLjQ0MS42NDUtMS40NDEgMS40NHMuNjQ1IDEuNDQgMS40NDEgMS40NGMuNzk1IDAgMS40MzktLjY0NSAxLjQzOS0xLjQ0cy0uNjQ0LTEuNDQtMS40MzktMS40NHoiLz48L3N2Zz4=" x="14" y="11" width="22" height="22"/>
+      <text x="44" y="27" class="body-font text-slate-800" font-size="12" font-weight="700">@your_instagram</text>
     </g>
   </a>
 
@@ -308,7 +308,7 @@
   <a href="mailto:frostyfoxie@users.noreply.github.com" target="_blank" class="btn-link">
     <g transform="translate(268, 12)">
       <rect width="232" height="44" rx="14" class="footer-btn"/>
-      <image href="{{ICON_EMAIL}}" x="14" y="11" width="22" height="22"/>
+      <image href="" x="14" y="11" width="22" height="22"/>
       <text x="44" y="27" class="body-font text-slate-800" font-size="12" font-weight="700">frostyfoxie@users.noreply.github.com</text>
     </g>
   </a>
@@ -317,7 +317,7 @@
   <a href="https://github.com/frostyfoxie" target="_blank" class="btn-link">
     <g transform="translate(518, 12)">
       <rect width="234" height="44" rx="14" class="footer-btn"/>
-      <image href="{{ICON_GITHUB}}" x="14" y="11" width="22" height="22"/>
+      <image href="" x="14" y="11" width="22" height="22"/>
       <text x="44" y="27" class="body-font text-slate-800" font-size="12" font-weight="700">github.com/frostyfoxie</text>
     </g>
   </a>
