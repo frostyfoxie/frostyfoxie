@@ -6,6 +6,26 @@ I build software at the intersection of **artificial intelligence, education, sc
 
 I am particularly interested in ambitious technical problems, human–AI interaction, and turning complex ideas into usable systems.
 
+
+---
+
+## Contribution Activity
+
+<picture>
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="https://raw.githubusercontent.com/frostyfoxie/frostyfoxie/output/github-snake-dark.svg"
+  />
+  <source
+    media="(prefers-color-scheme: light)"
+    srcset="https://raw.githubusercontent.com/frostyfoxie/frostyfoxie/output/github-snake.svg"
+  />
+  <img
+    alt="GitHub contribution snake animation"
+    src="https://raw.githubusercontent.com/frostyfoxie/frostyfoxie/output/github-snake.svg"
+  />
+</picture>
+
 ---
 
 ## Selected Work
