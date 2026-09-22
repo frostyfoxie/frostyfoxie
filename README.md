@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./readme.svg" alt="Navneet // frostyfoxie Portfolio Banner" width="100%">
+</p>
+
 **Hi, I am Navneet !**
 
 
