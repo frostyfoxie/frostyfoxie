@@ -27,7 +27,7 @@ else:
 
 headers = {
     "Authorization": f"Bearer {TOKEN}",
-    "User-Agent": "GitHub-Actions-Profile-Updater"
+    "User-Agent": "GitHub-Actions-Animated-Profile-Updater"
 }
 
 # --- LOADS YOUR EXACT UPLOADED ICONS ---
@@ -70,7 +70,7 @@ def graphql_request(query, variables=None):
     with urllib.request.urlopen(req) as resp:
         return json.loads(resp.read().decode())
 
-# 1. Fetch User Data
+# 1. User Info & Avatar
 user_url = f"https://api.github.com/users/{USERNAME}"
 req_user = urllib.request.Request(user_url, headers=headers)
 with urllib.request.urlopen(req_user) as resp:
@@ -84,8 +84,7 @@ current_year = datetime.datetime.now().year
 
 req_avatar = urllib.request.Request(avatar_url, headers={"User-Agent": "Mozilla/5.0"})
 with urllib.request.urlopen(req_avatar) as resp:
-    avatar_b64 = base64.b64encode(resp.read()).decode("utf-8")
-avatar_data_uri = f"data:image/jpeg;base64,{avatar_b64}"
+    avatar_data_uri = f"data:image/jpeg;base64,{base64.b64encode(resp.read()).decode('utf-8')}"
 
 # 2. Fetch All-Time Commits
 total_commits = 0
@@ -111,7 +110,7 @@ for year in range(created_year, current_year + 1):
 
 commits_str = f"{total_commits // 1000}.{(total_commits % 1000) // 100}k+" if total_commits >= 1000 else str(total_commits)
 
-# Fetch EXACT Last 365 Days Grid (Matches GitHub Default Calendar)
+# 3. Fetch EXACT Last 365 Days Grid (Matches GitHub Default Calendar)
 gql_grid = """
 query($username: String!) {
   user(login: $username) {
@@ -139,7 +138,7 @@ for week in recent_weeks:
 
 active_days_str = f"{active_days} D"
 
-# 3. Fetch Repos & Stars
+# 4. Fetch Repos & Stars
 page = 1
 total_repos = 0
 total_stars = 0
@@ -161,7 +160,9 @@ while True:
 
 stars_str = f"{total_stars}+" if total_stars >= 100 else str(total_stars)
 
-# 4. PLATANE ARCADE SNAKE (Strict 4-Block Length)
+# =================================================================
+# 5. SMOOTH LINEAR ARCADE SNAKE (Solid Color, 7x7px Tail, Smooth Glide)
+# =================================================================
 def build_arcade_snake(weeks_data):
     if not weeks_data:
         return ""
@@ -171,6 +172,7 @@ def build_arcade_snake(weeks_data):
     BOX_SIZE = 11.0
     STEP = 14.0
     SNAKE_LEN = 4
+    SOLID_SNAKE_COLOR = "#8a2be2"  # Clean solid arcade purple (No gradient)
     
     colors = {
         "NONE": "#ebedf0",
@@ -228,6 +230,7 @@ def build_arcade_snake(weeks_data):
     eat_ticks = {}
     tick = 0
 
+    # Hunt Levels 1 -> 2 -> 3 -> 4
     for current_level in [1, 2, 3, 4]:
         while targets[current_level]:
             head = snake[0]
@@ -243,6 +246,7 @@ def build_arcade_snake(weeks_data):
                     eat_ticks[step] = tick
                     targets[current_level].remove(step)
 
+    # Roam around if idle to fill up ~300 ticks
     min_ticks = 300
     corners = [(0,0), (COLS-1,0), (COLS-1,ROWS-1), (0,ROWS-1)]
     while tick < min_ticks:
@@ -257,7 +261,7 @@ def build_arcade_snake(weeks_data):
             if tick >= min_ticks: break
 
     TOTAL_TICKS = len(simulation_moves)
-    DURATION = max(24.0, TOTAL_TICKS * 0.1)
+    DURATION = max(24.0, TOTAL_TICKS * 0.11)  # Smooth, natural gliding tempo
 
     grid_svg = []
     for c in range(COLS):
@@ -278,21 +282,15 @@ def build_arcade_snake(weeks_data):
             else:
                 grid_svg.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{BOX_SIZE}" height="{BOX_SIZE}" rx="2.5" fill="{base_col}"/>')
 
+    # Fixed 4-Block Snake: Head (11x11px) -> Tail (strictly 7x7px)
     snake_parts_svg = []
-    def rgb_to_hex(r, g, b): return f"#{r:02x}{g:02x}{b:02x}"
-    r1, g1, b1 = 76, 29, 149
-    r2, g2, b2 = 216, 180, 254
 
     for K in range(SNAKE_LEN):
-        ratio = K / (SNAKE_LEN - 1)
-        r = int(r1 + (r2 - r1) * ratio)
-        g = int(g1 + (g2 - g1) * ratio)
-        b = int(b1 + (b2 - b1) * ratio)
-        color = rgb_to_hex(r, g, b)
-        
-        size = 11.0 - (ratio * 6.0)
+        # Smoothly tapers: K=0 -> 11px, K=3 -> exactly 7.0px!
+        size = 11.0 - (K * (4.0 / (SNAKE_LEN - 1)))
         offset = (11.0 - size) / 2.0
-        
+        rx = round(size * 0.25, 1)
+
         x_vals = []
         y_vals = []
         for t in range(TOTAL_TICKS):
@@ -303,14 +301,15 @@ def build_arcade_snake(weeks_data):
         x_str = ";".join(x_vals)
         y_str = ";".join(y_vals)
 
+        # calcMode="linear" creates smooth gliding without choppy steps
         snake_parts_svg.append(f'''
-        <rect width="{size:.1f}" height="{size:.1f}" rx="{size/3:.1f}" fill="{color}">
-          <animate attributeName="x" values="{x_str}" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="discrete"/>
-          <animate attributeName="y" values="{y_str}" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="discrete"/>
+        <rect width="{size:.1f}" height="{size:.1f}" rx="{rx}" fill="{SOLID_SNAKE_COLOR}">
+          <animate attributeName="x" values="{x_str}" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
+          <animate attributeName="y" values="{y_str}" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
         </rect>
         ''')
 
-    snake_parts_svg.reverse()
+    snake_parts_svg.reverse()  # Head renders on top
 
     return f'''
     <g id="contribGrid">
@@ -321,7 +320,7 @@ def build_arcade_snake(weeks_data):
 
 contribution_snake_markup = build_arcade_snake(recent_weeks)
 
-# 5. Dynamic Education
+# 6. Dynamic Education
 edu_list = config.get("education", [])
 edu_svg = []
 if edu_list:
@@ -340,7 +339,7 @@ if edu_list:
         ''')
 education_markup = "\n".join(edu_svg)
 
-# 6. Dynamic Skills
+# 7. Dynamic Skills
 skills_list = config.get("skills", [])
 skills_svg = []
 positions = [(0, 0, 154), (162, 0, 140), (0, 34, 124), (132, 34, 144), (0, 68, 146), (154, 68, 118)]
@@ -353,7 +352,7 @@ for i, skill in enumerate(skills_list[:6]):
     ''')
 skills_markup = "\n".join(skills_svg)
 
-# 7. Dynamic Tech Stack
+# 8. Dynamic Tech Stack
 tech_list = config.get("tech_stack", [])
 tech_svg = []
 for i, tech in enumerate(tech_list[:14]):
@@ -370,7 +369,7 @@ for i, tech in enumerate(tech_list[:14]):
     ''')
 tech_markup = "\n".join(tech_svg)
 
-# 8. Behind the Code Text
+# 9. Behind the Code Text
 subheading = html.escape(config.get("behind_the_code", {}).get("subheading", "FULL-STACK ENGINEER & SOFTWARE ARCHITECT"))
 desc_paragraphs = config.get("behind_the_code", {}).get("description", [])
 tspans = []
@@ -382,7 +381,7 @@ for para in desc_paragraphs:
         tspans.append(f'<tspan x="0" dy="{dy}">{html.escape(line)}</tspan>')
 description_markup = "\n".join(tspans)
 
-# 9. Contact Info & User's Uploaded Icons
+# 10. Contact Info & User's Uploaded Icons
 instagram_handle = config.get("contact", {}).get("instagram", "oneinagoogolplex._")
 email_address = config.get("contact", {}).get("email", user_data.get("email", "navneetkrgupta01@gmail.com"))
 
@@ -390,7 +389,7 @@ icon_github = load_icon_as_base64("github")
 icon_instagram = load_icon_as_base64("instagram")
 icon_email = load_icon_as_base64("email")
 
-# 10. Generate Main profile.svg
+# 11. Generate Main profile.svg
 template_path = os.path.join(REPO_ROOT, "template.svg")
 with open(template_path, "r", encoding="utf-8") as f:
     template = f.read()
@@ -423,7 +422,7 @@ with open(output_path, "w", encoding="utf-8") as f:
 print(f"Generated profile.svg (height: 948px)")
 
 # =================================================================
-# 11. GENERATE THE 3 BUTTON SVGs (SEAMLESS 286px WIDTH)
+# 12. GENERATE THE 3 BUTTON SVGs (SEAMLESS 286px WIDTH)
 # Uses YOUR uploaded icon files directly from icons/ folder!
 # =================================================================
 
