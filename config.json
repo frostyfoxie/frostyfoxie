@@ -28,12 +28,14 @@
     }
   ],
   "skills": [
-    "Frontend Architecture",
-    "Backend & REST APIs",
-    "Database Design",
-    "UI/UX Design Systems",
-    "Performance Tuning",
-    "DevOps & Docker"
+    "Frontend",
+    "Agentic AI",
+    "RAG Based AI",
+    "UI/UX Design",
+    "Web Development",
+    "Creative Design",
+    "Graphics Designing",
+    "Creative Writting"
   ],
   "tech_stack": [
     "vercel",
