@@ -1,15 +1,15 @@
-<svg width="100%" height="100%" viewBox="0 0 860 955" overflow="visible" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="100%" height="100%" viewBox="0 0 860 950" overflow="visible" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
   <!-- Ambient Blur Filter -->
   <filter id="ambientBlur" x="-50%" y="-50%" width="200%" height="200%">
     <feGaussianBlur stdDeviation="75" />
   </filter>
 
-  <!-- Expanded Shadow Filters (Zero Clipping) -->
   <filter id="glassShadow" x="-50%" y="-50%" width="200%" height="200%">
     <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.04" />
   </filter>
 
+  <!-- Clean Neutral Badge Shadow (No Cutoff Line) -->
   <filter id="neutralShadow" x="-50%" y="-50%" width="200%" height="200%">
     <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#0f172a" flood-opacity="0.1" />
   </filter>
@@ -75,14 +75,14 @@
     animation: lanyardSway 4.8s ease-in-out infinite;
   }
 
-  /* Ambient Glow Animations */
+  /* Floating Ambient Glows */
   @keyframes floatGlow1 {
-    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.45; }
-    50%      { transform: translate(30px, 25px) scale(1.15); opacity: 0.65; }
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.35; }
+    50%      { transform: translate(30px, 25px) scale(1.15); opacity: 0.55; }
   }
   @keyframes floatGlow2 {
-    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
-    50%      { transform: translate(-30px, -20px) scale(1.1); opacity: 0.75; }
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.45; }
+    50%      { transform: translate(-30px, -20px) scale(1.1); opacity: 0.65; }
   }
   .glow-orb-1 { animation: floatGlow1 11s ease-in-out infinite; }
   .glow-orb-2 { animation: floatGlow2 13s ease-in-out infinite; }
@@ -98,9 +98,7 @@
   <circle cx="700" cy="850" r="150" fill="#e0e7ff" class="glow-orb-1" />
 </g>
 
-<!-- ================================================================= -->
-<!-- 1. TOP ROW: BEHIND THE CODE (LEFT) + SWINGING ID BADGE (RIGHT)    -->
-<!-- ================================================================= -->
+<!-- 1. TOP ROW: BEHIND THE CODE (LEFT) + SWINGING ID BADGE (RIGHT) -->
 <g transform="translate(45, 50)">
   <text x="0" y="24" class="heading-font text-slate-900" font-size="28" font-weight="900" letter-spacing="-0.5">Behind the Code</text>
   <text x="0" y="48" class="body-font text-slate-500" font-size="11.5" font-weight="700" letter-spacing="0.5">{{BEHIND_THE_CODE_SUBHEADING}}</text>
@@ -153,9 +151,7 @@
   </g>
 </g>
 
-<!-- ================================================================= -->
-<!-- 2. FULL WIDTH CONTRIBUTION GRID WITH ARCADE SNAKE                 -->
-<!-- ================================================================= -->
+<!-- 2. FULL WIDTH CONTRIBUTION GRID WITH ARCADE SNAKE (Exact 11px Grid) -->
 <g transform="translate(45, 475)">
   <rect width="770" height="152" rx="20" class="glass-card"/>
   
@@ -167,17 +163,17 @@
   </g>
 </g>
 
-<!-- ================================================================= -->
-<!-- 3. EDUCATION & STATS + SKILLS & TECH KEYCAPS                      -->
-<!-- ================================================================= -->
+<!-- 3. EDUCATION & STATS + SKILLS & TECH KEYCAPS -->
 <g transform="translate(45, 650)">
   <rect width="365" height="292" rx="20" class="glass-card"/>
 
+  <!-- Education -->
   <g transform="translate(24, 20)">
     <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Education</text>
     {{EDUCATION_ITEMS}}
   </g>
 
+  <!-- GitHub Overview Stats -->
   <g transform="translate(24, 160)">
     <image href="{{ICON_GITHUB}}" x="0" y="0" width="16" height="16"/>
     <text x="24" y="13" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.4">GITHUB LIVE OVERVIEW (ALL-TIME)</text>
