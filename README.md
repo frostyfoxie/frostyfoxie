@@ -1,4 +1,4 @@
-![Profile Banner](./profile.svg)
+![Profile Banner](profile.svg)
 
 **Hi, I am Navneet !**
 
