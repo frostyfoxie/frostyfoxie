@@ -1,0 +1,296 @@
+<svg width="100%" height="100%" viewBox="0 0 860 930" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <filter id="ambientBlur" x="-20%" y="-20%" width="140%" height="140%">
+    <feGaussianBlur stdDeviation="70" />
+  </filter>
+
+  <filter id="glassShadow" x="-10%" y="-10%" width="120%" height="125%">
+    <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.04" />
+  </filter>
+
+  <filter id="badgeShadow" x="-20%" y="-10%" width="140%" height="130%">
+    <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#dc2626" flood-opacity="0.22" />
+  </filter>
+
+  <linearGradient id="ribbonFrontGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#3b82f6" />
+    <stop offset="40%" stop-color="#2563eb" />
+    <stop offset="80%" stop-color="#1d4ed8" />
+    <stop offset="100%" stop-color="#1e40af" />
+  </linearGradient>
+
+  <linearGradient id="ribbonBackGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#1e40af" />
+    <stop offset="50%" stop-color="#1d4ed8" />
+    <stop offset="100%" stop-color="#172554" />
+  </linearGradient>
+
+  <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#ef4444" />
+    <stop offset="100%" stop-color="#dc2626" />
+  </linearGradient>
+
+  <clipPath id="avatarClip">
+    <rect x="0" y="0" width="170" height="170" rx="14" />
+  </clipPath>
+</defs>
+
+<style>
+  .heading-font { font-family: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif; }
+  .body-font { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+  .mono-font { font-family: 'JetBrains Mono', monospace; }
+
+  .glass-card {
+    fill: rgba(255, 255, 255, 0.72);
+    stroke: rgba(255, 255, 255, 0.9);
+    stroke-width: 1.2;
+    filter: url(#glassShadow);
+  }
+
+  .pill-bg { fill: rgba(255, 255, 255, 0.9); stroke: #e2e8f0; stroke-width: 1; }
+  .pill-text { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 11px; fill: #1e293b; }
+  .keycap-bg { rx: 10px; ry: 10px; filter: drop-shadow(0px 3px 4px rgba(0,0,0,0.06)); }
+  
+  .text-slate-900 { fill: #0f172a; }
+  .text-slate-700 { fill: #334155; }
+  .text-slate-500 { fill: #64748b; }
+</style>
+
+<!-- Canvas Base Background -->
+<rect width="100%" height="100%" fill="#f8fafc" />
+
+<!-- Soft Ambient Glow Orbs -->
+<g filter="url(#ambientBlur)">
+  <circle cx="720" cy="180" r="160" fill="#fecaca" opacity="0.45" />
+  <circle cx="160" cy="560" r="170" fill="#dbeafe" opacity="0.55" />
+  <circle cx="750" cy="740" r="150" fill="#e0e7ff" opacity="0.5" />
+</g>
+
+<!-- ================================================================= -->
+<!-- TOP ROW: BEHIND THE CODE (LEFT) + ID BADGE & LANYARD (RIGHT)      -->
+<!-- ================================================================= -->
+<g transform="translate(45, 50)">
+  <text x="0" y="24" class="heading-font text-slate-900" font-size="28" font-weight="900" letter-spacing="-0.5">Behind the Code</text>
+  <text x="0" y="48" class="body-font text-slate-500" font-size="11.5" font-weight="700" letter-spacing="0.5">FULL-STACK ENGINEER &amp; SOFTWARE ARCHITECT</text>
+  
+  <text x="0" y="86" class="body-font text-slate-700" font-size="13" font-weight="500">
+    <tspan x="0" dy="0">I am a passionate software engineer specializing in building high-performance,</tspan>
+    <tspan x="0" dy="22">scalable web applications and intuitive digital experiences. Over the past</tspan>
+    <tspan x="0" dy="22">several years, I have architected systems ranging from reactive client-side</tspan>
+    <tspan x="0" dy="22">interfaces to resilient, event-driven distributed microservices.</tspan>
+    
+    <tspan x="0" dy="32">My engineering philosophy centers on clean architectural design, strict type</tspan>
+    <tspan x="0" dy="22">safety, automated testing, and relentless runtime performance tuning.</tspan>
+    <tspan x="0" dy="22">Whether designing collaborative real-time canvases or optimizing complex</tspan>
+    <tspan x="0" dy="22">database queries, I bridge engineering rigor with human-centered product craft.</tspan>
+
+    <tspan x="0" dy="32">Deeply invested in open-source tooling, I regularly share solutions with the</tspan>
+    <tspan x="0" dy="22">developer community and continuously explore modern advancements in cloud</tspan>
+    <tspan x="0" dy="22">infrastructure, systems design, and developer tooling.</tspan>
+  </text>
+</g>
+
+<!-- RIGHT: ID BADGE (Fetched dynamically) -->
+<g transform="translate(560, 15)">
+  <!-- 1. BACK RIBBON STRAP -->
+  <g id="backStrap">
+    <path d="M 125 141 C 146 95 170 40 185 -15 L 205 -15 C 190 40 166 95 145 141 Z" fill="url(#ribbonBackGrad)"/>
+    <path d="M 135 141 C 156 95 180 40 195 -15" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 3" opacity="0.25" fill="none"/>
+  </g>
+
+  <!-- 2. ID BADGE CONTAINER -->
+  <g filter="url(#badgeShadow)">
+    <rect x="15" y="125" width="240" height="315" rx="22" fill="url(#badgeGrad)" stroke="#f87171" stroke-width="1.5"/>
+    <rect x="110" y="137" width="50" height="9" rx="4.5" fill="#0f172a" opacity="0.8"/>
+    
+    <circle cx="38" cy="164" r="11" fill="#ffffff" fill-opacity="0.2"/>
+    <path d="M 34 164 L 37 161 M 34 164 L 37 167 M 42 164 L 39 161 M 42 164 L 39 167" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="232" y="167" fill="#fee2e2" font-size="9" font-weight="800" text-anchor="end" class="heading-font" letter-spacing="1">WEB DEV</text>
+
+    <!-- Base64 Dynamic PFP Injected Here -->
+    <g transform="translate(50, 185)">
+      <rect x="-3" y="-3" width="176" height="176" rx="16" fill="#ffffff"/>
+      <g clip-path="url(#avatarClip)">
+        <image x="0" y="0" width="170" height="170" preserveAspectRatio="xMidYMid slice" href="{{AVATAR_DATA_URI}}" />
+      </g>
+    </g>
+
+    <!-- Dynamic Name & ID -->
+    <text x="35" y="394" fill="#ffffff" font-size="15" font-weight="900" class="heading-font" letter-spacing="-0.3">{{NAME}}</text>
+    <text x="35" y="410" fill="#fee2e2" font-size="9" font-weight="700" class="mono-font" letter-spacing="0.5">ID: DEV-{{USERNAME}}</text>
+
+    <!-- Red GitHub Logo -->
+    <g transform="translate(202, 380)">
+      <rect width="32" height="32" rx="8" fill="#ffffff" stroke="#fecaca" stroke-width="0.8"/>
+      <image href="./icons/github.svg" x="4" y="4" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+    </g>
+  </g>
+
+  <!-- 3. FRONT RIBBON STRAP -->
+  <g id="frontStrap">
+    <path d="M 123 125 L 125 141 L 145 141 L 142 125 Z" fill="#000000" opacity="0.25"/>
+    <path d="M 65 -15 C 80 40 102 95 125 141 L 145 141 C 122 95 100 40 85 -15 Z" fill="url(#ribbonFrontGrad)"/>
+    <path d="M 75 -15 C 90 40 112 95 135 141" stroke="#ffffff" stroke-width="1.2" stroke-dasharray="3.5 3.5" opacity="0.45" fill="none"/>
+    <line x1="125" y1="141" x2="145" y2="141" stroke="#0f172a" stroke-width="1.8" opacity="0.6"/>
+  </g>
+</g>
+
+<line x1="45" y1="475" x2="815" y2="475" stroke="#e2e8f0" stroke-width="1.2" stroke-dasharray="4 4"/>
+
+<!-- ================================================================= -->
+<!-- MIDDLE ROW: EDUCATION & GITHUB STATS (LEFT) + SKILLS & ICONS (RIGHT)-->
+<!-- ================================================================= -->
+<g transform="translate(45, 498)">
+  <rect width="365" height="292" rx="20" class="glass-card"/>
+
+  <!-- Education -->
+  <g transform="translate(24, 24)">
+    <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Education</text>
+    <line x1="6" y1="32" x2="6" y2="96" stroke="#cbd5e1" stroke-width="1.5"/>
+
+    <circle cx="6" cy="40" r="3.5" fill="#3b82f6"/>
+    <text x="20" y="44" class="body-font text-slate-900" font-size="11.5" font-weight="900">2021</text>
+    <text x="62" y="44" class="body-font text-slate-900" font-size="11" font-weight="800">B.S. COMPUTER SCIENCE</text>
+    <text x="62" y="58" class="body-font text-slate-500" font-size="10.5" font-weight="500">University of Technology • Honors</text>
+
+    <circle cx="6" cy="80" r="3.5" fill="#3b82f6"/>
+    <text x="20" y="84" class="body-font text-slate-900" font-size="11.5" font-weight="900">2023</text>
+    <text x="62" y="84" class="body-font text-slate-900" font-size="11" font-weight="800">FULL-STACK CERTIFICATION</text>
+    <text x="62" y="98" class="body-font text-slate-500" font-size="10.5" font-weight="500">Distributed Cloud Architecture &amp; APIs</text>
+  </g>
+
+  <!-- GitHub Live Overview -->
+  <g transform="translate(24, 150)">
+    <image href="./icons/github.svg" x="0" y="0" width="16" height="16"/>
+    <text x="24" y="13" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.4">GITHUB LIVE OVERVIEW</text>
+
+    <g transform="translate(0, 28)">
+      <rect x="0" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+      <text x="37" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">{{COMMITS}}</text>
+      <text x="37" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">COMMITS</text>
+
+      <rect x="81" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+      <text x="118" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">{{REPOS}}</text>
+      <text x="118" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">REPOS</text>
+
+      <rect x="162" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+      <text x="199" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="13" font-weight="900">{{ACTIVE_DAYS}}</text>
+      <text x="199" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">ACTIVE D</text>
+
+      <rect x="243" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+      <text x="280" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">{{STARS}}</text>
+      <text x="280" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">STARS</text>
+    </g>
+  </g>
+</g>
+
+<!-- RIGHT GLASS CONTAINER: SKILLS & UPLOADED REPO ICONS -->
+<g transform="translate(430, 498)">
+  <rect width="385" height="292" rx="20" class="glass-card"/>
+
+  <!-- Skills -->
+  <g transform="translate(24, 24)">
+    <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Skills</text>
+    
+    <g transform="translate(0, 30)">
+      <rect x="0" y="0" width="154" height="26" rx="13" class="pill-bg"/>
+      <text x="77" y="17" text-anchor="middle" class="pill-text">Frontend Architecture</text>
+      
+      <rect x="162" y="0" width="140" height="26" rx="13" class="pill-bg"/>
+      <text x="232" y="17" text-anchor="middle" class="pill-text">Backend &amp; REST APIs</text>
+      
+      <rect x="0" y="34" width="124" height="26" rx="13" class="pill-bg"/>
+      <text x="62" y="51" text-anchor="middle" class="pill-text">Database Design</text>
+
+      <rect x="132" y="34" width="144" height="26" rx="13" class="pill-bg"/>
+      <text x="204" y="51" text-anchor="middle" class="pill-text">UI/UX Design Systems</text>
+      
+      <rect x="0" y="68" width="146" height="26" rx="13" class="pill-bg"/>
+      <text x="73" y="85" text-anchor="middle" class="pill-text">Performance Tuning</text>
+
+      <rect x="154" y="68" width="118" height="26" rx="13" class="pill-bg"/>
+      <text x="213" y="85" text-anchor="middle" class="pill-text">DevOps &amp; Docker</text>
+    </g>
+  </g>
+
+  <!-- Keycaps using uploaded icons from ./icons/ -->
+  <g transform="translate(24, 150)">
+    <text x="0" y="14" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.4">TECH STACK</text>
+
+    <g transform="translate(0, 26)">
+      <!-- Vercel -->
+      <g transform="translate(0, 0)">
+        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
+        <image href="./icons/vercel.svg" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+      </g>
+      <!-- Supabase -->
+      <g transform="translate(48, 0)">
+        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
+        <image href="./icons/supabase.svg" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+      </g>
+      <!-- Hugging Face -->
+      <g transform="translate(96, 0)">
+        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
+        <image href="./icons/huggingface.svg" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+      </g>
+      <!-- GitHub -->
+      <g transform="translate(144, 0)">
+        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
+        <image href="./icons/github.svg" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+      </g>
+      <!-- Claude -->
+      <g transform="translate(192, 0)">
+        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
+        <image href="./icons/claude.svg" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+      </g>
+      <!-- Gemini -->
+      <g transform="translate(240, 0)">
+        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
+        <image href="./icons/gemini.svg" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+      </g>
+      <!-- Python -->
+      <g transform="translate(288, 0)">
+        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
+        <image href="./icons/python.svg" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+      </g>
+
+      <!-- TypeScript -->
+      <g transform="translate(0, 48)">
+        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
+        <image href="./icons/typescript.svg" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+      </g>
+      <!-- Firebase -->
+      <g transform="translate(48, 48)">
+        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
+        <image href="./icons/firebase.svg" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+      </g>
+    </g>
+  </g>
+</g>
+
+<!-- ================================================================= -->
+<!-- BOTTOM: LET'S CONNECT (Using Repo Icons from ./icons/)            -->
+<!-- ================================================================= -->
+<g transform="translate(45, 815)">
+  <rect width="770" height="62" rx="18" class="glass-card"/>
+
+  <!-- Location -->
+  <g transform="translate(28, 19)">
+    <image href="./icons/location.svg" x="0" y="0" width="24" height="24"/>
+    <text x="32" y="16" class="body-font text-slate-700" font-size="12" font-weight="700">{{LOCATION}}</text>
+  </g>
+
+  <!-- Email -->
+  <g transform="translate(325, 19)">
+    <image href="./icons/email.svg" x="0" y="0" width="24" height="24"/>
+    <text x="32" y="16" class="body-font text-slate-900" font-size="12" font-weight="800">{{EMAIL}}</text>
+  </g>
+
+  <!-- GitHub Profile -->
+  <g transform="translate(565, 19)">
+    <image href="./icons/github.svg" x="0" y="0" width="24" height="24"/>
+    <text x="32" y="16" class="body-font text-slate-900" font-size="12" font-weight="800">github.com/{{USERNAME}}</text>
+  </g>
+</g>
+
+</svg>
