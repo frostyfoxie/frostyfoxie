@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="6200" viewBox="0 0 1400 6200">
+<svg width="1400" height="6200" viewBox="0 0 1400 6200">
     <!-- Gradients -->
     <linearGradient id="lanyardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#2563eb" />
@@ -68,7 +68,7 @@
         <g transform="translate(18, 56)">
             <rect x="0" y="0" width="204" height="190" rx="16" fill="#ffe4e6" stroke="#ffffff" stroke-width="3"/>
             <!-- Replace 'path/to/your-image.jpg' with your actual image path -->
-            <image href="path/to/your-image.jpg" x="0" y="0" width="204" height="190" preserveAspectRatio="xMidYMid slice" clip-path="inset(0 round 16px)" />
+            <image href="pfp.jpg" x="0" y="0" width="204" height="190" preserveAspectRatio="xMidYMid slice" clip-path="inset(0 round 16px)" />
         </g>
 
         <!-- Badge Footer Details -->
