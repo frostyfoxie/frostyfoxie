@@ -10,7 +10,6 @@
     <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.04" />
   </filter>
 </defs>
-
 <style>
   .glass-card {
     fill: rgba(255, 255, 255, 0.75);
@@ -38,23 +37,23 @@
   }
 </style>
 
-<!-- 1. Seamless Canvas Base Background (Matches Template) -->
+<!-- Seamless Base Canvas -->
 <rect width="100%" height="100%" fill="#f8fafc" />
 
-<!-- 2. Ambient Glow (Matches Template) -->
+<!-- Soft Ambient Glow -->
 <g filter="url(#ambientBlur)">
   <circle cx="127" cy="38" r="50" fill="#e0e7ff" opacity="0.6" />
 </g>
 
-<!-- 3. Frosted Glass Container -->
+<!-- Frosted Glass Container -->
 <rect x="6" y="6" width="242" height="64" rx="18" class="glass-card" />
 
-<!-- 4. Inner White Button Pill -->
+<!-- Inner White Button Pill -->
 <rect x="14" y="16" width="226" height="44" rx="14" class="footer-btn" />
 
-<!-- GitHub Icon -->
-<g transform="translate(24, 27)">
-  <path fill="#0f172a" d="M11 0C4.925 0 0 4.925 0 11c0 4.86 3.152 8.98 7.524 10.435.55.1.75-.24.75-.53 0-.26-.01-.95-.015-1.87-3.06.66-3.706-1.475-3.706-1.475-.5-1.27-1.22-1.61-1.22-1.61-1-.68.075-.67.075-.67 1.105.08 1.685 1.135 1.685 1.135.98 1.68 2.57 1.195 3.2.915.1-.71.385-1.195.7-1.47-2.44-.28-5.005-1.22-5.005-5.43 0-1.2.43-2.18 1.135-2.95-.115-.28-.49-1.4.11-2.91 0 0 .925-.295 3.03 1.13.88-.245 1.82-.365 2.755-.37.935.005 1.875.125 2.755.37 2.105-1.425 3.03-1.13 3.03-1.13.6 1.51.225 2.63.11 2.91.705.77 1.135 1.75 1.135 2.95 0 4.22-2.57 5.145-5.015 5.42.395.34.75 1.01.75 2.04 0 1.47-.015 2.66-.015 3.02 0 .29.2.64.755.53A11.006 11.006 0 0022 11c0-6.075-4.925-11-11-11z" transform="scale(0.98)"/>
-</g>
-<text x="52" y="42" class="btn-text">github.com/Navneet-2008</text>
+<!-- Your Uploaded Icon from icons/ -->
+<image href="data:image/svg+xml;base64,PHN2ZyBmaWxsPSJjdXJyZW50Q29sb3IiIGZpbGwtcnVsZT0iZXZlbm9kZCIgaGVpZ2h0PSIxZW0iIHN0eWxlPSJmbGV4Om5vbmU7bGluZS1oZWlnaHQ6MSIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMWVtIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0aXRsZT5HaXRodWI8L3RpdGxlPjxwYXRoIGQ9Ik0xMiAwYzYuNjMgMCAxMiA1LjI3NiAxMiAxMS43OS0uMDAxIDUuMDY3LTMuMjkgOS41NjctOC4xNzUgMTEuMTg3LS42LjExOC0uODI1LS4yNS0uODI1LS41NiAwLS4zOTguMDE1LTEuNjY1LjAxNS0zLjI0MiAwLTEuMTA1LS4zNzUtMS44MTMtLjgxLTIuMTgxIDIuNjctLjI5NSA1LjQ3NS0xLjI5NyA1LjQ3NS01LjgyMiAwLTEuMjk3LS40NjUtMi4zNDQtMS4yMy0zLjE2OS4xMi0uMjk1LjU0LTEuNTAzLS4xMi0zLjEyNSAwIDAtMS4wMDUtLjMyNC0zLjMgMS4yMDlhMTEuMzIgMTEuMzIgMCAwMC0zLS4zOThjLTEuMDIgMC0yLjA0LjEzMy0zIC4zOTgtMi4yOTUtMS41MTgtMy4zLTEuMjA5LTMuMy0xLjIwOS0uNjYgMS42MjItLjI0IDIuODMtLjEyIDMuMTI1LS43NjUuODI1LTEuMjMgMS44ODctMS4yMyAzLjE2OSAwIDQuNTEgMi43OSA1LjUyNyA1LjQ2IDUuODIyLS4zNDUuMjk0LS42Ni44MS0uNzY1IDEuNTc3LS42OS4zMS0yLjQxNS44MS0zLjQ5NS0uOTczLS4yMjUtLjM1NC0uOS0xLjIyMy0xLjg0NS0xLjIwOS0xLjAwNS4wMTUtLjQwNS41Ni4wMTUuNzgxLjUxLjI4IDEuMDk1IDEuMzI3IDEuMjMgMS42NjYuMjQuNjYzIDEuMDIgMS45MyA0LjAzNSAxLjM4NSAwIC45ODguMDE1IDEuOTE2LjAxNSAyLjE5NiAwIC4zMS0uMjI1LjY2NC0uODI1LjU2QzMuMzAzIDIxLjM3NC0uMDAzIDE2Ljg2NyAwIDExLjc5MSAwIDUuMjc2IDUuMzcgMCAxMiAweiI+PC9wYXRoPjwvc3ZnPg==" x="22" y="27" width="22" height="22" preserveAspectRatio="xMidYMid meet"/>
+
+<!-- Label -->
+<text x="52" y="43" class="btn-text">github.com/frostyfoxie</text>
 </svg>
