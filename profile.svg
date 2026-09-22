@@ -8,12 +8,10 @@
     <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.04" />
   </filter>
 
-  <!-- Clean Neutral Shadow (Zero Red Tint) -->
   <filter id="neutralShadow" x="-10%" y="-10%" width="120%" height="125%">
     <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0f172a" flood-opacity="0.08" />
   </filter>
 
-  <!-- Button Drop Shadow -->
   <filter id="buttonShadow" x="-10%" y="-10%" width="120%" height="130%">
     <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.04" />
   </filter>
@@ -61,7 +59,6 @@
   .text-slate-700 { fill: #334155; }
   .text-slate-500 { fill: #64748b; }
 
-  /* Interactive Button Styling */
   .footer-btn {
     fill: #ffffff;
     stroke: #e2e8f0;
@@ -76,7 +73,7 @@
 <!-- Canvas Base -->
 <rect width="100%" height="100%" fill="#f8fafc" />
 
-<!-- Ambient Glow Orbs -->
+<!-- Soft Ambient Glow Orbs -->
 <g filter="url(#ambientBlur)">
   <circle cx="720" cy="180" r="160" fill="#fecaca" opacity="0.35" />
   <circle cx="160" cy="560" r="170" fill="#dbeafe" opacity="0.5" />
@@ -88,34 +85,20 @@
 <!-- ================================================================= -->
 <g transform="translate(45, 50)">
   <text x="0" y="24" class="heading-font text-slate-900" font-size="28" font-weight="900" letter-spacing="-0.5">Behind the Code</text>
-  <text x="0" y="48" class="body-font text-slate-500" font-size="11.5" font-weight="700" letter-spacing="0.5">FULL-STACK ENGINEER &amp; SOFTWARE ARCHITECT</text>
+  <text x="0" y="48" class="body-font text-slate-500" font-size="11.5" font-weight="700" letter-spacing="0.5">{{BEHIND_THE_CODE_SUBHEADING}}</text>
   
   <text x="0" y="86" class="body-font text-slate-700" font-size="13" font-weight="500">
-    <tspan x="0" dy="0">I am a passionate software engineer specializing in building high-performance,</tspan>
-    <tspan x="0" dy="22">scalable web applications and intuitive digital experiences. Over the past</tspan>
-    <tspan x="0" dy="22">several years, I have architected systems ranging from reactive client-side</tspan>
-    <tspan x="0" dy="22">interfaces to resilient, event-driven distributed microservices.</tspan>
-    
-    <tspan x="0" dy="32">My engineering philosophy centers on clean architectural design, strict type</tspan>
-    <tspan x="0" dy="22">safety, automated testing, and relentless runtime performance tuning.</tspan>
-    <tspan x="0" dy="22">Whether designing collaborative real-time canvases or optimizing complex</tspan>
-    <tspan x="0" dy="22">database queries, I bridge engineering rigor with human-centered product craft.</tspan>
-
-    <tspan x="0" dy="32">Deeply invested in open-source tooling, I regularly share solutions with the</tspan>
-    <tspan x="0" dy="22">developer community and continuously explore modern advancements in cloud</tspan>
-    <tspan x="0" dy="22">infrastructure, systems design, and developer tooling.</tspan>
+    {{BEHIND_THE_CODE_DESCRIPTION}}
   </text>
 </g>
 
-<!-- RIGHT: ID BADGE (Clean Neutral Shadow - Zero Red Glow) -->
+<!-- RIGHT: ID BADGE -->
 <g transform="translate(560, 15)">
-  <!-- 1. BACK RIBBON STRAP -->
   <g id="backStrap">
     <path d="M 125 141 C 146 95 170 40 185 -15 L 205 -15 C 190 40 166 95 145 141 Z" fill="url(#ribbonBackGrad)"/>
     <path d="M 135 141 C 156 95 180 40 195 -15" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 3" opacity="0.25" fill="none"/>
   </g>
 
-  <!-- 2. ID BADGE CONTAINER -->
   <g filter="url(#neutralShadow)">
     <rect x="15" y="125" width="240" height="315" rx="22" fill="url(#badgeGrad)" stroke="#f87171" stroke-width="1.5"/>
     <rect x="110" y="137" width="50" height="9" rx="4.5" fill="#0f172a" opacity="0.8"/>
@@ -124,7 +107,6 @@
     <path d="M 34 164 L 37 161 M 34 164 L 37 167 M 42 164 L 39 161 M 42 164 L 39 167" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
     <text x="232" y="167" fill="#fee2e2" font-size="9" font-weight="800" text-anchor="end" class="heading-font" letter-spacing="1">WEB DEV</text>
 
-    <!-- Dynamic Avatar -->
     <g transform="translate(50, 185)">
       <rect x="-3" y="-3" width="176" height="176" rx="16" fill="#ffffff"/>
       <g clip-path="url(#avatarClip)">
@@ -132,11 +114,9 @@
       </g>
     </g>
 
-    <!-- Dynamic User Details -->
     <text x="35" y="394" fill="#ffffff" font-size="15" font-weight="900" class="heading-font" letter-spacing="-0.3">NAVNEET</text>
     <text x="35" y="410" fill="#fee2e2" font-size="9" font-weight="700" class="mono-font" letter-spacing="0.5">ID: DEV-frostyfoxie</text>
 
-    <!-- Clickable GitHub Badge Button -->
     <a href="https://github.com/frostyfoxie" target="_blank">
       <g transform="translate(202, 380)">
         <rect width="32" height="32" rx="8" fill="#ffffff" stroke="#fecaca" stroke-width="0.8"/>
@@ -145,7 +125,6 @@
     </a>
   </g>
 
-  <!-- 3. FRONT RIBBON STRAP -->
   <g id="frontStrap">
     <path d="M 123 125 L 125 141 L 145 141 L 142 125 Z" fill="#000000" opacity="0.25"/>
     <path d="M 65 -15 C 80 40 102 95 125 141 L 145 141 C 122 95 100 40 85 -15 Z" fill="url(#ribbonFrontGrad)"/>
@@ -157,54 +136,35 @@
 <line x1="45" y1="475" x2="815" y2="475" stroke="#e2e8f0" stroke-width="1.2" stroke-dasharray="4 4"/>
 
 <!-- ================================================================= -->
-<!-- MIDDLE ROW: EDUCATION & ALL-TIME STATS + SKILLS & TECH KEYCAPS    -->
+<!-- MIDDLE ROW: EDUCATION & STATS + SKILLS & TECH KEYCAPS             -->
 <!-- ================================================================= -->
 <g transform="translate(45, 498)">
   <rect width="365" height="292" rx="20" class="glass-card"/>
 
-  <!-- Education -->
-  <g transform="translate(24, 24)">
+  <!-- Education (Dynamically Built from config.json) -->
+  <g transform="translate(24, 20)">
     <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Education</text>
-    <line x1="6" y1="32" x2="6" y2="96" stroke="#cbd5e1" stroke-width="1.5"/>
-
-    <circle cx="6" cy="40" r="3.5" fill="#3b82f6"/>
-    <text x="20" y="44" class="body-font text-slate-900" font-size="11.5" font-weight="900">2022</text>
-    <text x="62" y="44" class="body-font text-slate-900" font-size="11" font-weight="800">Primary School</text>
-    <text x="62" y="58" class="body-font text-slate-500" font-size="10.5" font-weight="500">St. Mary's Convent School</text>
-
-    <circle cx="6" cy="40" r="3.5" fill="#3b82f6"/>
-    <text x="20" y="44" class="body-font text-slate-900" font-size="11.5" font-weight="900">2024</text>
-    <text x="62" y="44" class="body-font text-slate-900" font-size="11" font-weight="800">Middle School</text>
-    <text x="62" y="58" class="body-font text-slate-500" font-size="10.5" font-weight="500">Sant Atulanand Convent School</text>
-
-    <circle cx="6" cy="80" r="3.5" fill="#3b82f6"/>
-    <text x="20" y="84" class="body-font text-slate-900" font-size="11.5" font-weight="900">2026</text>
-    <text x="62" y="84" class="body-font text-slate-900" font-size="11" font-weight="800">High School</text>
-    <text x="62" y="98" class="body-font text-slate-500" font-size="10.5" font-weight="500">Central Hindu Boys School, BHU</text>
+    {{EDUCATION_ITEMS}}
   </g>
 
-  <!-- GitHub Live Overview (Public + Private All-Time Stats) -->
-  <g transform="translate(24, 150)">
+  <!-- GitHub Live Overview -->
+  <g transform="translate(24, 160)">
     <image href="data:image/svg+xml;base64,PHN2ZyBmaWxsPSJjdXJyZW50Q29sb3IiIGZpbGwtcnVsZT0iZXZlbm9kZCIgaGVpZ2h0PSIxZW0iIHN0eWxlPSJmbGV4Om5vbmU7bGluZS1oZWlnaHQ6MSIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMWVtIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0aXRsZT5HaXRodWI8L3RpdGxlPjxwYXRoIGQ9Ik0xMiAwYzYuNjMgMCAxMiA1LjI3NiAxMiAxMS43OS0uMDAxIDUuMDY3LTMuMjkgOS41NjctOC4xNzUgMTEuMTg3LS42LjExOC0uODI1LS4yNS0uODI1LS41NiAwLS4zOTguMDE1LTEuNjY1LjAxNS0zLjI0MiAwLTEuMTA1LS4zNzUtMS44MTMtLjgxLTIuMTgxIDIuNjctLjI5NSA1LjQ3NS0xLjI5NyA1LjQ3NS01LjgyMiAwLTEuMjk3LS40NjUtMi4zNDQtMS4yMy0zLjE2OS4xMi0uMjk1LjU0LTEuNTAzLS4xMi0zLjEyNSAwIDAtMS4wMDUtLjMyNC0zLjMgMS4yMDlhMTEuMzIgMTEuMzIgMCAwMC0zLS4zOThjLTEuMDIgMC0yLjA0LjEzMy0zIC4zOTgtMi4yOTUtMS41MTgtMy4zLTEuMjA5LTMuMy0xLjIwOS0uNjYgMS42MjItLjI0IDIuODMtLjEyIDMuMTI1LS43NjUuODI1LTEuMjMgMS44ODctMS4yMyAzLjE2OSAwIDQuNTEgMi43OSA1LjUyNyA1LjQ2IDUuODIyLS4zNDUuMjk0LS42Ni44MS0uNzY1IDEuNTc3LS42OS4zMS0yLjQxNS44MS0zLjQ5NS0uOTczLS4yMjUtLjM1NC0uOS0xLjIyMy0xLjg0NS0xLjIwOS0xLjAwNS4wMTUtLjQwNS41Ni4wMTUuNzgxLjUxLjI4IDEuMDk1IDEuMzI3IDEuMjMgMS42NjYuMjQuNjYzIDEuMDIgMS45MyA0LjAzNSAxLjM4NSAwIC45ODguMDE1IDEuOTE2LjAxNSAyLjE5NiAwIC4zMS0uMjI1LjY2NC0uODI1LjU2QzMuMzAzIDIxLjM3NC0uMDAzIDE2Ljg2NyAwIDExLjc5MSAwIDUuMjc2IDUuMzcgMCAxMiAweiI+PC9wYXRoPjwvc3ZnPg==" x="0" y="0" width="16" height="16"/>
     <text x="24" y="13" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.4">GITHUB LIVE OVERVIEW (ALL-TIME)</text>
 
-    <g transform="translate(0, 28)">
-      <!-- All Commits (Till Date) -->
+    <g transform="translate(0, 26)">
       <rect x="0" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
       <text x="37" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">2.0k+</text>
       <text x="37" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">COMMITS</text>
 
-      <!-- Total Repos (Public + Private) -->
       <rect x="81" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
       <text x="118" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">25</text>
       <text x="118" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">REPOS</text>
 
-      <!-- All-time Active Days -->
       <rect x="162" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
       <text x="199" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="13" font-weight="900">73 D</text>
       <text x="199" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">ACTIVE D</text>
 
-      <!-- All Stars (Public + Private) -->
       <rect x="243" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
       <text x="280" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">3</text>
       <text x="280" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">STARS</text>
@@ -216,86 +176,25 @@
 <g transform="translate(430, 498)">
   <rect width="385" height="292" rx="20" class="glass-card"/>
 
-  <g transform="translate(24, 24)">
+  <!-- Skills (Dynamically Built from config.json) -->
+  <g transform="translate(24, 20)">
     <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Skills</text>
-    
-    <g transform="translate(0, 30)">
-      <rect x="0" y="0" width="154" height="26" rx="13" class="pill-bg"/>
-      <text x="77" y="17" text-anchor="middle" class="pill-text">Frontend Architecture</text>
-      
-      <rect x="162" y="0" width="140" height="26" rx="13" class="pill-bg"/>
-      <text x="232" y="17" text-anchor="middle" class="pill-text">Backend &amp; REST APIs</text>
-      
-      <rect x="0" y="34" width="124" height="26" rx="13" class="pill-bg"/>
-      <text x="62" y="51" text-anchor="middle" class="pill-text">Database Design</text>
-
-      <rect x="132" y="34" width="144" height="26" rx="13" class="pill-bg"/>
-      <text x="204" y="51" text-anchor="middle" class="pill-text">UI/UX Design Systems</text>
-      
-      <rect x="0" y="68" width="146" height="26" rx="13" class="pill-bg"/>
-      <text x="73" y="85" text-anchor="middle" class="pill-text">Performance Tuning</text>
-
-      <rect x="154" y="68" width="118" height="26" rx="13" class="pill-bg"/>
-      <text x="213" y="85" text-anchor="middle" class="pill-text">DevOps &amp; Docker</text>
+    <g transform="translate(0, 28)">
+      {{SKILLS_ITEMS}}
     </g>
   </g>
 
-  <!-- KEYCAPS -->
-  <g transform="translate(24, 150)">
+  <!-- Tech Stack (Dynamically Built from config.json) -->
+  <g transform="translate(24, 160)">
     <text x="0" y="14" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.4">TECH STACK</text>
-
-    <g transform="translate(0, 26)">
-      <!-- Vercel -->
-      <g transform="translate(0, 0)">
-        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9IjAgLTE3IDI1NiAyNTYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPgogICAgPGc+CiAgICAgICAgPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgcG9pbnRzPSIxMjggMCAyNTYgMjIxLjcwNTAwNyAwIDIyMS43MDUwMDciPgoKPC9wb2x5Z29uPgogICAgPC9nPgo8L3N2Zz4K" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
-      </g>
-      <!-- Supabase -->
-      <g transform="translate(48, 0)">
-        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA5NiA5NiIgaWQ9IlN1cGFiYXNlLUljb24tLVN0cmVhbWxpbmUtU3ZnLUxvZ29zIiBoZWlnaHQ9IjI0IiB3aWR0aD0iMjQiPgogIDxkZXNjPgogICAgU3VwYWJhc2UgSWNvbiBTdHJlYW1saW5lIEljb246IGh0dHBzOi8vc3RyZWFtbGluZWhxLmNvbQogIDwvZGVzYz4KICA8cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNNTUuNzIyMyA5My40MzgzYy0yLjQwMTQgMy4wMjQxLTcuMjcwNSAxLjM2NzItNy4zMjg0LTIuNDk0MmwtLjg0Ni01Ni40NzczaDM3Ljk3NTJjNi44Nzg0IDAgMTAuNzE0NiA3Ljk0NDUgNi40Mzc1IDEzLjMzMTVsLTM2LjIzODMgNDUuNjRaIj48L3BhdGg+CiAgPHBhdGggZmlsbD0idXJsKCNiKSIgZmlsbC1vcGFjaXR5PSIuMiIgZD0iTTU1LjcyMjMgOTMuNDM4M2MtMi40MDE0IDMuMDI0MS03LjI3MDUgMS4zNjcyLTcuMzI4NC0yLjQ5NDJsLS44NDYtNTYuNDc3M2gzNy45NzUyYzYuODc4NCAwIDEwLjcxNDYgNy45NDQ1IDYuNDM3NSAxMy4zMzE1bC0zNi4yMzgzIDQ1LjY0WiI+PC9wYXRoPgogIDxwYXRoIGZpbGw9IiMzZWNmOGUiIGQ9Ik00MC4yNzggMi41NjE4OWMyLjQwMTQtMy4wMjQ0MzYgNy4yNzA1LTEuMzY3MjYgNy4zMjg0IDIuNDk0MTdsLjM3MDcgNTYuNDc3MjRoLTM3LjVjLTYuODc4NTMgMC0xMC43MTQ4MTktNy45NDQ2LTYuNDM3NTMtMTMuMzMxNUw0MC4yNzggMi41NjE4OVoiPjwvcGF0aD4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9IjEwMTEuNTgiIHgyPSIzMTg5LjEyIiB5MT0iMTI4Ni43MSIgeTI9IjIxOTkuOTciIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iIzI0OTM2MSI+PC9zdG9wPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMzZWNmOGUiPjwvc3RvcD4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImIiIHgxPSIxMzkuNTYxIiB4Mj0iMTUzNy40NCIgeTE9Ii03NjIuMDU0IiB5Mj0iMTg2OS4zOCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcD48L3N0b3A+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIwIj48L3N0b3A+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KPC9zdmc+Cg==" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
-      </g>
-      <!-- Hugging Face -->
-      <g transform="translate(96, 0)">
-        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgc3R5bGU9ImZsZXg6bm9uZTtsaW5lLWhlaWdodDoxIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIxZW0iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkh1Z2dpbmdGYWNlPC90aXRsZT48cGF0aCBkPSJNMi4yNSAxMS41MzVjMC0zLjQwNyAxLjg0Ny02LjU1NCA0Ljg0NC04LjI1OGE5LjgyMiA5LjgyMiAwIDAxOS42ODcgMGMyLjk5NyAxLjcwNCA0Ljg0NCA0Ljg1MSA0Ljg0NCA4LjI1OCAwIDUuMjY2LTQuMzM3IDkuNTM1LTkuNjg3IDkuNTM1UzIuMjUgMTYuOCAyLjI1IDExLjUzNXoiIGZpbGw9IiNGRjlEMEIiPjwvcGF0aD48cGF0aCBkPSJNMTEuOTM4IDIwLjA4NmM0Ljc5NyAwIDguNjg3LTMuODI5IDguNjg3LTguNTUxIDAtNC43MjItMy44OS04LjU1LTguNjg3LTguNTUtNC43OTggMC04LjY4OCAzLjgyOC04LjY4OCA4LjU1IDAgNC43MjIgMy44OSA4LjU1IDguNjg4IDguNTV6IiBmaWxsPSIjRkZEMjFFIj48L3BhdGg+PHBhdGggZD0iTTExLjg3NSAxNS4xMTNjMi40NTcgMCAzLjI1LTIuMTU2IDMuMjUtMy4yNjMgMC0uNTc2LS4zOTMtLjM5NC0xLjAyMy0uMDg5LS41ODIuMjgzLTEuMzY1LjY3NS0yLjIyNC42NzUtMS43OTggMC0zLjI1LTEuNjkzLTMuMjUtLjU4NiAwIDEuMTA3Ljc5IDMuMjYzIDMuMjUgMy4yNjNoLS4wMDN6IiBmaWxsPSIjRkYzMjNEIj48L3BhdGg+PHBhdGggZD0iTTE0Ljc2IDkuMjFjLjMyLjEwOC40NDUuNzUzLjc2Ny41ODUuNDQ3LS4yMzMuNzA3LS43MDguNjU5LTEuMjA0YTEuMjM1IDEuMjM1IDAgMDAtLjg3OS0xLjA1OSAxLjI2MiAxLjI2MiAwIDAwLTEuMzMuMzk0Yy0uMzIyLjM4NC0uMzc3LjkyLS4xNCAxLjM2LjE1My4yODMuNjM4LS4xNzcuOTI1LS4wNzlsLS4wMDIuMDAzem0tNS44ODcgMGMtLjMyLjEwOC0uNDQ4Ljc1My0uNzY4LjU4NWExLjIyNiAxLjIyNiAwIDAxLS42NTgtMS4yMDRjLjA0OC0uNDk1LjM5NS0uOTEzLjg3OC0xLjA1OWExLjI2MiAxLjI2MiAwIDAxMS4zMy4zOTRjLjMyMi4zODQuMzc3LjkyLjE0IDEuMzYtLjE1Mi4yODMtLjY0LS4xNzctLjkyNS0uMDc5bC4wMDMuMDAzem0xLjEyIDUuMzRhMi4xNjYgMi4xNjYgMCAwMTEuMzI1LTEuMTA2Yy4wNy0uMDIuMTQ0LjA2LjIxOS4xNzFsLjE5Mi4zMDZjLjA2OS4xLjEzOS4xNzUuMjA5LjE3NS4wNzQgMCAuMTUtLjA3NC4yMjMtLjE3MmwuMjA1LS4zMDJjLjA4LS4xMS4xNTctLjE4OC4yMzQtLjE2NS41MzcuMTY4Ljk4Ni41MzYgMS4yNSAxLjAyNi45MzItLjcyNCAxLjI3NS0xLjkwNSAxLjI3NS0yLjYzMyAwLS41MDgtLjMwNi0uNDI2LS44MS0uMTlsLS42MTYuMjk2Yy0uNTIuMjQtMS4xNDguNDgtMS44MjQuNDgtLjY3NiAwLTEuMzAyLS4yNC0xLjgyMy0uNDhsLS41ODktLjI4M2MtLjUyLS4yNDgtLjgzOC0uMzQyLS44MzguMTc3IDAgLjcwMy4zMiAxLjgzMSAxLjE4NyAyLjU2bC4xOC4xNHoiIGZpbGw9IiMzQTNCNDUiPjwvcGF0aD48cGF0aCBkPSJNMTcuODEyIDEwLjM2NmEuODA2LjgwNiAwIDAwLjgxMy0uOGMwLS40NDEtLjM2NC0uOC0uODEzLS44YS44MDYuODA2IDAgMDAtLjgxMi44YzAgLjQ0Mi4zNjQuOC44MTIuOHptLTExLjYyNCAwYS44MDYuODA2IDAgMDAuODEyLS44YzAtLjQ0MS0uMzY0LS44LS44MTItLjhhLjgwNi44MDYgMCAwMC0uODEzLjhjMCAuNDQyLjM2NC44LjgxMy44ek00LjUxNSAxMy4wNzNjLS40MDUgMC0uNzY1LjE2Mi0xLjAxNy40NmExLjQ1NSAxLjQ1NSAwIDAwLS4zMzMuOTI1IDEuODAxIDEuODAxIDAgMDAtLjQ4NS0uMDc0Yy0uMzg3IDAtLjczNy4xNDYtLjk4NS40MDlhMS40MSAxLjQxIDAgMDAtLjIgMS43MjIgMS4zMDIgMS4zMDIgMCAwMC0uNDQ3LjY5NGMtLjA2LjIyMi0uMTIuNjkuMiAxLjE2NmExLjI2NyAxLjI2NyAwIDAwLS4wOTMgMS4yMzZjLjIzOC41MzMuODEuOTU4IDEuODkgMS40MDVsLjI0LjA5NmMuNzY4LjMgMS40NzMuNDkyIDEuNDc4LjQ5NC44OS4yNDMgMS44MDguMzc1IDIuNzMyLjM5NCAxLjQ2NSAwIDIuNTEzLS40NDMgMy4xMTUtMS4zMTQuOTMtMS4zNDIuODQyLTIuNTc1LS4yNzQtMy43NjNsLS4xNTEtLjE1NGMtLjY5Mi0uNjg0LTEuMTU1LTEuNjktMS4yNS0xLjkxMi0uMTk1LS42NTUtLjcxLTEuMzgzLTEuNTYyLTEuMzgzLS40Ni4wMDctLjg4OS4yMzMtMS4xNS42MDUtLjI1LS4zMS0uNDk1LS41NTMtLjcxNS0uNjk0YTEuODcgMS44NyAwIDAwLS45OTMtLjMxMnptMTQuOTcgMGMuNDA1IDAgLjc2Ny4xNjIgMS4wMTcuNDYuMjE2LjI2Mi4zMzMuNTg4LjMzMy45MjUuMTU4LS4wNDcuMzIyLS4wNzEuNDg3LS4wNzQuMzg4IDAgLjczOC4xNDYuOTg1LjQwOWExLjQxIDEuNDEgMCAwMS4yIDEuNzIyYy4yMi4xNzguMzc3LjQyMi40NDUuNjk0LjA2LjIyMi4xMi42OS0uMiAxLjE2Ni4yNDQuMzcuMjc5LjgzNi4wOTMgMS4yMzYtLjIzOC41MzMtLjgxLjk1OC0xLjg4OSAxLjQwNWwtLjIzOS4wOTZjLS43Ny4zLTEuNDc1LjQ5Mi0xLjQ4LjQ5NC0uODkuMjQzLTEuODA4LjM3NS0yLjczMi4zOTQtMS40NjUgMC0yLjUxMy0uNDQzLTMuMTE1LTEuMzE0LS45My0xLjM0Mi0uODQyLTIuNTc1LjI3NC0zLjc2M2wuMTUxLS4xNTRjLjY5NS0uNjg0IDEuMTU3LTEuNjkgMS4yNTItMS45MTIuMTk1LS42NTUuNzA4LTEuMzgzIDEuNTYtMS4zODMuNDYuMDA3Ljg4OS4yMzMgMS4xNS42MDUuMjUtLjMxLjQ5NS0uNTUzLjcxOC0uNjk0LjI0NC0uMTYyLjUyMy0uMjY1LjgxNC0uM2wuMTc2LS4wMTJ6IiBmaWxsPSIjRkY5RDBCIj48L3BhdGg+PHBhdGggZD0iTTkuNzg1IDIwLjEzMmMuNjg4LS45OTQuNjM4LTEuNzQtLjMwNS0yLjY2Ny0uOTQ1LS45MjgtMS40OTUtMi4yODgtMS40OTUtMi4yODhzLS4yMDUtLjc4OC0uNjcyLS43MTRjLS40NjguMDc0LS44MSAxLjI1LjE3IDEuOTcxLjk3Ny43MjEtLjE5NSAxLjIxLS41NzMuNTM0LS4zNzUtLjY3Ny0xLjQwNS0yLjQxNi0xLjk0LTIuNzUxLS41MzItLjMzMi0uOTA3LS4xNDgtLjc4Mi41NDEuMTI1LjY4NyAyLjM1NyAyLjM1IDIuMTQgMi43MDctLjIxOC4zNjItLjk4My0uNDItLjk4My0uNDJTMi45NTMgMTQuOSAyLjQzIDE1LjQ2Yy0uNTIuNTU4LjM5OCAxLjAyNiAxLjcgMS44MDMgMS4zMDguNzc4IDEuNDEuOTg1IDEuMjI1IDEuMjgtLjE4Ny4yOTUtMy4wNy0yLjEtMy4zNC0xLjA4My0uMjcgMS4wMTEgMi45NDMgMS4zMDQgMi43NDUgMi4wMDYtLjIuNy0yLjI2NS0xLjMyNC0yLjY4NS0uNTM3LS40MjUuNzkgMi45MTMgMS43MTggMi45NCAxLjcyNSAxLjA3NS4yNzYgMy44MTMuODU5IDQuNzctLjUyMnptNC40MzIgMGMtLjY4Ny0uOTk0LS42NC0xLjc0LjMwNS0yLjY2Ny45NDMtLjkyOCAxLjQ5My0yLjI4OCAxLjQ5My0yLjI4OHMuMjA1LS43ODguNjc1LS43MTRjLjQ2NS4wNzQuODA3IDEuMjUtLjE3IDEuOTcxLS45OC43MjEuMTk1IDEuMjEuNTcuNTM0LjM3Ny0uNjc3IDEuNDA3LTIuNDE2IDEuOTQtMi43NTEuNTMyLS4zMzIuOTEtLjE0OC43ODIuNTQxLS4xMjUuNjg3LTIuMzU1IDIuMzUtMi4xMzcgMi43MDcuMjE1LjM2Mi45OC0uNDIuOTgtLjQyUzIxLjA1IDE0LjkgMjEuNTcgMTUuNDZjLjUyLjU1OC0uMzk1IDEuMDI2LTEuNyAxLjgwMy0xLjMwOC43NzgtMS40MDguOTg1LTEuMjI1IDEuMjguMTg3LjI5NSAzLjA3LTIuMSAzLjM0LTEuMDgzLjI3IDEuMDExLTIuOTQgMS4zMDQtMi43NDMgMi4wMDYuMi43IDIuMjYzLTEuMzI0IDIuNjg1LS41MzcuNDIzLjc5LTIuOTEyIDEuNzE4LTIuOTQgMS43MjUtMS4wNzcuMjc2LTMuODE1Ljg1OS00Ljc3LS41MjJ6IiBmaWxsPSIjRkZEMjFFIj48L3BhdGg+PC9zdmc+Cg==" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
-      </g>
-      <!-- GitHub -->
-      <g transform="translate(144, 0)">
-        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="data:image/svg+xml;base64,PHN2ZyBmaWxsPSJjdXJyZW50Q29sb3IiIGZpbGwtcnVsZT0iZXZlbm9kZCIgaGVpZ2h0PSIxZW0iIHN0eWxlPSJmbGV4Om5vbmU7bGluZS1oZWlnaHQ6MSIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMWVtIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0aXRsZT5HaXRodWI8L3RpdGxlPjxwYXRoIGQ9Ik0xMiAwYzYuNjMgMCAxMiA1LjI3NiAxMiAxMS43OS0uMDAxIDUuMDY3LTMuMjkgOS41NjctOC4xNzUgMTEuMTg3LS42LjExOC0uODI1LS4yNS0uODI1LS41NiAwLS4zOTguMDE1LTEuNjY1LjAxNS0zLjI0MiAwLTEuMTA1LS4zNzUtMS44MTMtLjgxLTIuMTgxIDIuNjctLjI5NSA1LjQ3NS0xLjI5NyA1LjQ3NS01LjgyMiAwLTEuMjk3LS40NjUtMi4zNDQtMS4yMy0zLjE2OS4xMi0uMjk1LjU0LTEuNTAzLS4xMi0zLjEyNSAwIDAtMS4wMDUtLjMyNC0zLjMgMS4yMDlhMTEuMzIgMTEuMzIgMCAwMC0zLS4zOThjLTEuMDIgMC0yLjA0LjEzMy0zIC4zOTgtMi4yOTUtMS41MTgtMy4zLTEuMjA5LTMuMy0xLjIwOS0uNjYgMS42MjItLjI0IDIuODMtLjEyIDMuMTI1LS43NjUuODI1LTEuMjMgMS44ODctMS4yMyAzLjE2OSAwIDQuNTEgMi43OSA1LjUyNyA1LjQ2IDUuODIyLS4zNDUuMjk0LS42Ni44MS0uNzY1IDEuNTc3LS42OS4zMS0yLjQxNS44MS0zLjQ5NS0uOTczLS4yMjUtLjM1NC0uOS0xLjIyMy0xLjg0NS0xLjIwOS0xLjAwNS4wMTUtLjQwNS41Ni4wMTUuNzgxLjUxLjI4IDEuMDk1IDEuMzI3IDEuMjMgMS42NjYuMjQuNjYzIDEuMDIgMS45MyA0LjAzNSAxLjM4NSAwIC45ODguMDE1IDEuOTE2LjAxNSAyLjE5NiAwIC4zMS0uMjI1LjY2NC0uODI1LjU2QzMuMzAzIDIxLjM3NC0uMDAzIDE2Ljg2NyAwIDExLjc5MSAwIDUuMjc2IDUuMzcgMCAxMiAweiI+PC9wYXRoPjwvc3ZnPg==" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
-      </g>
-      <!-- Claude -->
-      <g transform="translate(192, 0)">
-        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgc3R5bGU9ImZsZXg6bm9uZTtsaW5lLWhlaWdodDoxIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIxZW0iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkNsYXVkZTwvdGl0bGU+PHBhdGggZD0iTTQuNzA5IDE1Ljk1NWw0LjcyLTIuNjQ3LjA4LS4yMy0uMDgtLjEyOEg5LjJsLS43OS0uMDQ4LTIuNjk4LS4wNzMtMi4zMzktLjA5Ny0yLjI2Ni0uMTIyLS41NzEtLjEyMUwwIDExLjc4NGwuMDU1LS4zNTIuNDgtLjMyMS42ODYuMDYgMS41Mi4xMDMgMi4yNzguMTU4IDEuNjUyLjA5NyAyLjQ0OS4yNTVoLjM4OWwuMDU1LS4xNTctLjEzNC0uMDk4LS4xMDMtLjA5Ny0yLjM1OC0xLjU5Ni0yLjU1Mi0xLjY4OC0xLjMzNi0uOTcyLS43MjQtLjQ5MS0uMzY0LS40NjItLjE1OC0xLjAwOC42NTYtLjcyMi44ODEuMDYuMjI1LjA2MS44OTMuNjg2IDEuOTA4IDEuNDc2IDIuNDkxIDEuODMzLjM2NS4zMDQuMTQ1LS4xMDMuMDE5LS4wNzMtLjE2NC0uMjc0LTEuMzU1LTIuNDQ2LTEuNDQ2LTIuNDktLjY0NC0xLjAzMi0uMTctLjYxOWEyLjk3IDIuOTcgMCAwMS0uMTA0LS43MjlMNi4yODMuMTM0IDYuNjk2IDBsLjk5Ni4xMzQuNDIuMzY0LjYyIDEuNDE0IDEuMDAyIDIuMjI5IDEuNTU1IDMuMDMuNDU2Ljg5OC4yNDMuODMyLjA5MS4yNTVoLjE1OFY5LjAxbC4xMjgtMS43MDYuMjM3LTIuMDk1LjIzLTIuNjk1LjA4LS43Ni4zNzYtLjkxLjc0Ny0uNDkyLjU4NC4yOC40OC42ODUtLjA2Ny40NDQtLjI4NiAxLjg1MS0uNTU5IDIuOTAzLS4zNjQgMS45NDJoLjIxMmwuMjQzLS4yNDIuOTg1LTEuMzA2IDEuNjUyLTIuMDY0LjczLS44Mi44NS0uOTA0LjU0Ny0uNDMxaDEuMDMzbC43NiAxLjEyOS0uMzQgMS4xNjYtMS4wNjQgMS4zNDctLjg4MSAxLjE0Mi0xLjI2NCAxLjctLjc5IDEuMzYuMDczLjExLjE4OC0uMDIgMi44NTYtLjYwNiAxLjU0My0uMjggMS44NDEtLjMxNS44MzMuMzg4LjA5MS4zOTUtLjMyOC44MDctMS45NjkuNDg2LTIuMzA5LjQ2Mi0zLjQzOS44MTMtLjA0Mi4wMy4wNDkuMDYxIDEuNTQ5LjE0Ni42NjIuMDM2aDEuNjIybDMuMDIuMjI1Ljc5LjUyMi40NzQuNjM4LS4wNzkuNDg1LTEuMjE1LjYyLTEuNjQtLjM4OS0zLjgyOS0uOTEtMS4zMTItLjMyOWgtLjE4MnYuMTFsMS4wOTMgMS4wNjggMi4wMDYgMS44MSAyLjUwOSAyLjMzLjEyNy41NzgtLjMyMi40NTUtLjM0LS4wNDktMi4yMDUtMS42NTctLjg1MS0uNzQ3LTEuOTI2LTEuNjJoLS4xMjh2LjE3bC40NDQuNjQ5IDIuMzQ1IDMuNTIxLjEyMiAxLjA4LS4xNy4zNTMtLjYwOC4yMTMtLjY2OC0uMTIyLTEuMzc0LTEuOTI1LTEuNDE1LTIuMTY3LTEuMTQzLTEuOTQzLS4xNC4wOC0uNjc0IDcuMjU0LS4zMTYuMzctLjcyOS4yOC0uNjA3LS40NjEtLjMyMi0uNzQ3LjMyMi0xLjQ3Ni4zODktMS45MjQuMzE1LTEuNTMuMjg2LTEuOS4xNy0uNjMyLS4wMTItLjA0Mi0uMTQuMDE4LTEuNDM0IDEuOTY3LTIuMTggMi45NDUtMS43MjYgMS44NDUtLjQxNC4xNjQtLjcxNy0uMzcuMDY3LS42NjIuNDAxLS41ODkgMi4zODgtMy4wMzYgMS40NC0xLjg4Mi45My0xLjA4Ni0uMDA2LS4xNThoLS4wNTVMNC4xMzIgMTguNTZsLTEuMTMuMTQ2LS40ODctLjQ1Ni4wNjEtLjc0Ni4yMzEtLjI0MyAxLjkwOC0xLjMxMi0uMDA2LjAwNnoiIGZpbGw9IiNEOTc3NTciIGZpbGwtcnVsZT0ibm9uemVybyI+PC9wYXRoPjwvc3ZnPgo=" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
-      </g>
-      <!-- Gemini -->
-      <g transform="translate(240, 0)">
-        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgc3R5bGU9ImZsZXg6bm9uZTtsaW5lLWhlaWdodDoxIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIxZW0iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkdlbWluaTwvdGl0bGU+PHBhdGggZD0iTTIwLjYxNiAxMC44MzVhMTQuMTQ3IDE0LjE0NyAwIDAxLTQuNDUtMy4wMDEgMTQuMTExIDE0LjExMSAwIDAxLTMuNjc4LTYuNDUyLjUwMy41MDMgMCAwMC0uOTc1IDAgMTQuMTM0IDE0LjEzNCAwIDAxLTMuNjc5IDYuNDUyIDE0LjE1NSAxNC4xNTUgMCAwMS00LjQ1IDMuMDAxYy0uNjUuMjgtMS4zMTguNTA1LTIuMDAyLjY3OGEuNTAyLjUwMiAwIDAwMCAuOTc1Yy42ODQuMTcyIDEuMzUuMzk3IDIuMDAyLjY3N2ExNC4xNDcgMTQuMTQ3IDAgMDE0LjQ1IDMuMDAxIDE0LjExMiAxNC4xMTIgMCAwMTMuNjc5IDYuNDUzLjUwMi41MDIgMCAwMC45NzUgMGMuMTcyLS42ODUuMzk3LTEuMzUxLjY3Ny0yLjAwM2ExNC4xNDUgMTQuMTQ1IDAgMDEzLjAwMS00LjQ1IDE0LjExMyAxNC4xMTMgMCAwMTYuNDUzLTMuNjc4LjUwMy41MDMgMCAwMDAtLjk3NSAxMy4yNDUgMTMuMjQ1IDAgMDEtMi4wMDMtLjY3OHoiIGZpbGw9IiMzMTg2RkYiPjwvcGF0aD48cGF0aCBkPSJNMjAuNjE2IDEwLjgzNWExNC4xNDcgMTQuMTQ3IDAgMDEtNC40NS0zLjAwMSAxNC4xMTEgMTQuMTExIDAgMDEtMy42NzgtNi40NTIuNTAzLjUwMyAwIDAwLS45NzUgMCAxNC4xMzQgMTQuMTM0IDAgMDEtMy42NzkgNi40NTIgMTQuMTU1IDE0LjE1NSAwIDAxLTQuNDUgMy4wMDFjLS42NS4yOC0xLjMxOC41MDUtMi4wMDIuNjc4YS41MDIuNTAyIDAgMDAwIC45NzVjLjY4NC4xNzIgMS4zNS4zOTcgMi4wMDIuNjc3YTE0LjE0NyAxNC4xNDcgMCAwMTQuNDUgMy4wMDEgMTQuMTEyIDE0LjExMiAwIDAxMy42NzkgNi40NTMuNTAyLjUwMiAwIDAwLjk3NSAwYy4xNzItLjY4NS4zOTctMS4zNTEuNjc3LTIuMDAzYTE0LjE0NSAxNC4xNDUgMCAwMTMuMDAxLTQuNDUgMTQuMTEzIDE0LjExMyAwIDAxNi40NTMtMy42NzguNTAzLjUwMyAwIDAwMC0uOTc1IDEzLjI0NSAxMy4yNDUgMCAwMS0yLjAwMy0uNjc4eiIgZmlsbD0idXJsKCNsb2JlLWljb25zLWdlbWluaS0wLV9SXzBfKSI+PC9wYXRoPjxwYXRoIGQ9Ik0yMC42MTYgMTAuODM1YTE0LjE0NyAxNC4xNDcgMCAwMS00LjQ1LTMuMDAxIDE0LjExMSAxNC4xMTEgMCAwMS0zLjY3OC02LjQ1Mi41MDMuNTAzIDAgMDAtLjk3NSAwIDE0LjEzNCAxNC4xMzQgMCAwMS0zLjY3OSA2LjQ1MiAxNC4xNTUgMTQuMTU1IDAgMDEtNC40NSAzLjAwMWMtLjY1LjI4LTEuMzE4LjUwNS0yLjAwMi42NzhhLjUwMi41MDIgMCAwMDAgLjk3NWMuNjg0LjE3MiAxLjM1LjM5NyAyLjAwMi42NzdhMTQuMTQ3IDE0LjE0NyAwIDAxNC40NSAzLjAwMSAxNC4xMTIgMTQuMTEyIDAgMDEzLjY3OSA2LjQ1My41MDIuNTAyIDAgMDAuOTc1IDBjLjE3Mi0uNjg1LjM5Ny0xLjM1MS42NzctMi4wMDNhMTQuMTQ1IDE0LjE0NSAwIDAxMy4wMDEtNC40NSAxNC4xMTMgMTQuMTEzIDAgMDE2LjQ1My0zLjY3OC41MDMuNTAzIDAgMDAwLS45NzUgMTMuMjQ1IDEzLjI0NSAwIDAxLTIuMDAzLS42Nzh6IiBmaWxsPSJ1cmwoI2xvYmUtaWNvbnMtZ2VtaW5pLTEtX1JfMF8pIj48L3BhdGg+PHBhdGggZD0iTTIwLjYxNiAxMC44MzVhMTQuMTQ3IDE0LjE0NyAwIDAxLTQuNDUtMy4wMDEgMTQuMTExIDE0LjExMSAwIDAxLTMuNjc4LTYuNDUyLjUwMy41MDMgMCAwMC0uOTc1IDAgMTQuMTM0IDE0LjEzNCAwIDAxLTMuNjc5IDYuNDUyIDE0LjE1NSAxNC4xNTUgMCAwMS00LjQ1IDMuMDAxYy0uNjUuMjgtMS4zMTguNTA1LTIuMDAyLjY3OGEuNTAyLjUwMiAwIDAwMCAuOTc1Yy42ODQuMTcyIDEuMzUuMzk3IDIuMDAyLjY3N2ExNC4xNDcgMTQuMTQ3IDAgMDE0LjQ1IDMuMDAxIDE0LjExMiAxNC4xMTIgMCAwMTMuNjc5IDYuNDUzLjUwMi41MDIgMCAwMC45NzUgMGMuMTcyLS42ODUuMzk3LTEuMzUxLjY3Ny0yLjAwM2ExNC4xNDUgMTQuMTQ1IDAgMDEzLjAwMS00LjQ1IDE0LjExMyAxNC4xMTMgMCAwMTYuNDUzLTMuNjc4LjUwMy41MDMgMCAwMDAtLjk3NSAxMy4yNDUgMTMuMjQ1IDAgMDEtMi4wMDMtLjY3OHoiIGZpbGw9InVybCgjbG9iZS1pY29ucy1nZW1pbmktMi1fUl8wXykiPjwvcGF0aD48ZGVmcz48bGluZWFyR3JhZGllbnQgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGlkPSJsb2JlLWljb25zLWdlbWluaS0wLV9SXzBfIiB4MT0iNyIgeDI9IjExIiB5MT0iMTUuNSIgeTI9IjEyIj48c3RvcCBzdG9wLWNvbG9yPSIjMDhCOTYyIj48L3N0b3A+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDhCOTYyIiBzdG9wLW9wYWNpdHk9IjAiPjwvc3RvcD48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgaWQ9ImxvYmUtaWNvbnMtZ2VtaW5pLTEtX1JfMF8iIHgxPSI4IiB4Mj0iMTEuNSIgeTE9IjUuNSIgeTI9IjExIj48c3RvcCBzdG9wLWNvbG9yPSIjRjk0NTQzIj48L3N0b3A+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRjk0NTQzIiBzdG9wLW9wYWNpdHk9IjAiPjwvc3RvcD48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgaWQ9ImxvYmUtaWNvbnMtZ2VtaW5pLTItX1JfMF8iIHgxPSIzLjUiIHgyPSIxNy41IiB5MT0iMTMuNSIgeTI9IjEyIj48c3RvcCBzdG9wLWNvbG9yPSIjRkFCQzEyIj48L3N0b3A+PHN0b3Agb2Zmc2V0PSIuNDYiIHN0b3AtY29sb3I9IiNGQUJDMTIiIHN0b3Atb3BhY2l0eT0iMCI+PC9zdG9wPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjwvc3ZnPgo=" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
-      </g>
-      <!-- Python -->
-      <g transform="translate(288, 0)">
-        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IS0tIFVwbG9hZGVkIHRvOiBTVkcgUmVwbywgd3d3LnN2Z3JlcG8uY29tLCBHZW5lcmF0b3I6IFNWRyBSZXBvIE1peGVyIFRvb2xzIC0tPg0KPHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTMuMDE2NCAyQzEwLjgxOTMgMiA5LjAzODI1IDMuNzI0NTMgOS4wMzgyNSA1Ljg1MTg1VjguNTE4NTJIMTUuOTIzNVY5LjI1OTI2SDUuOTc4MTRDMy43ODEwNyA5LjI1OTI2IDIgMTAuOTgzOCAyIDEzLjExMTFMMiAxOC44ODg5QzIgMjEuMDE2MiAzLjc4MTA3IDIyLjc0MDcgNS45NzgxNCAyMi43NDA3SDguMjczMjJWMTkuNDgxNUM4LjI3MzIyIDE3LjM1NDIgMTAuMDU0MyAxNS42Mjk2IDEyLjI1MTQgMTUuNjI5NkgxOS41OTU2QzIxLjQ1NDcgMTUuNjI5NiAyMi45NjE3IDE0LjE3MDQgMjIuOTYxNyAxMi4zNzA0VjUuODUxODVDMjIuOTYxNyAzLjcyNDUzIDIxLjE4MDcgMiAxOC45ODM2IDJIMTMuMDE2NFpNMTIuMDk4NCA2Ljc0MDc0QzEyLjg1ODkgNi43NDA3NCAxMy40NzU0IDYuMTQzNzggMTMuNDc1NCA1LjQwNzQxQzEzLjQ3NTQgNC42NzEwMyAxMi44NTg5IDQuMDc0MDcgMTIuMDk4NCA0LjA3NDA3QzExLjMzNzggNC4wNzQwNyAxMC43MjEzIDQuNjcxMDMgMTAuNzIxMyA1LjQwNzQxQzEwLjcyMTMgNi4xNDM3OCAxMS4zMzc4IDYuNzQwNzQgMTIuMDk4NCA2Ljc0MDc0WiIgZmlsbD0idXJsKCNwYWludDBfbGluZWFyXzg3XzgyMDQpIi8+DQo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTE4Ljk4MzQgMzBDMjEuMTgwNSAzMCAyMi45NjE2IDI4LjI3NTUgMjIuOTYxNiAyNi4xNDgyVjIzLjQ4MTVMMTYuMDc2MyAyMy40ODE1TDE2LjA3NjMgMjIuNzQwOEwyNi4wMjE3IDIyLjc0MDhDMjguMjE4OCAyMi43NDA4IDI5Ljk5OTggMjEuMDE2MiAyOS45OTk4IDE4Ljg4ODlWMTMuMTExMUMyOS45OTk4IDEwLjk4MzggMjguMjE4OCA5LjI1OTI4IDI2LjAyMTcgOS4yNTkyOEwyMy43MjY2IDkuMjU5MjhWMTIuNTE4NUMyMy43MjY2IDE0LjY0NTkgMjEuOTQ1NSAxNi4zNzA0IDE5Ljc0ODUgMTYuMzcwNEwxMi40MDQyIDE2LjM3MDRDMTAuNTQ1MSAxNi4zNzA0IDkuMDM4MDkgMTcuODI5NiA5LjAzODA5IDE5LjYyOTZMOS4wMzgwOSAyNi4xNDgyQzkuMDM4MDkgMjguMjc1NSAxMC44MTkyIDMwIDEzLjAxNjIgMzBIMTguOTgzNFpNMTkuOTAxNSAyNS4yNTkzQzE5LjE0MDkgMjUuMjU5MyAxOC41MjQ0IDI1Ljg1NjIgMTguNTI0NCAyNi41OTI2QzE4LjUyNDQgMjcuMzI5IDE5LjE0MDkgMjcuOTI1OSAxOS45MDE1IDI3LjkyNTlDMjAuNjYyIDI3LjkyNTkgMjEuMjc4NSAyNy4zMjkgMjEuMjc4NSAyNi41OTI2QzIxLjI3ODUgMjUuODU2MiAyMC42NjIgMjUuMjU5MyAxOS45MDE1IDI1LjI1OTNaIiBmaWxsPSJ1cmwoI3BhaW50MV9saW5lYXJfODdfODIwNCkiLz4NCjxkZWZzPg0KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyXzg3XzgyMDQiIHgxPSIxMi40ODA5IiB5MT0iMiIgeDI9IjEyLjQ4MDkiIHkyPSIyMi43NDA3IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+DQo8c3RvcCBzdG9wLWNvbG9yPSIjMzI3RUJEIi8+DQo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMxNTY1QTciLz4NCjwvbGluZWFyR3JhZGllbnQ+DQo8bGluZWFyR3JhZGllbnQgaWQ9InBhaW50MV9saW5lYXJfODdfODIwNCIgeDE9IjE5LjUxOSIgeTE9IjkuMjU5MjgiIHgyPSIxOS41MTkiIHkyPSIzMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPg0KPHN0b3Agc3RvcC1jb2xvcj0iI0ZGREE0QiIvPg0KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRjlDNjAwIi8+DQo8L2xpbmVhckdyYWRpZW50Pg0KPC9kZWZzPg0KPC9zdmc+DQo=" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
-      </g>
-      <!-- TypeScript -->
-      <g transform="translate(0, 48)">
-        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IS0tIFVwbG9hZGVkIHRvOiBTVkcgUmVwbywgd3d3LnN2Z3JlcG8uY29tLCBHZW5lcmF0b3I6IFNWRyBSZXBvIE1peGVyIFRvb2xzIC0tPgo8c3ZnIHdpZHRoPSI4MDBweCIgaGVpZ2h0PSI4MDBweCIgdmlld0JveD0iMCAwIDMyIDMyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0aXRsZT5maWxlX3R5cGVfdHlwZXNjcmlwdDwvdGl0bGU+PHBhdGggZD0iTTIzLjgyNyw4LjI0M0E0LjQyNCw0LjQyNCwwLDAsMSwyNi4wNSw5LjUyNGE1Ljg1Myw1Ljg1MywwLDAsMSwuODUyLDEuMTQzYy4wMTEuMDQ1LTEuNTM0LDEuMDgzLTIuNDcxLDEuNjYyLS4wMzQuMDIzLS4xNjktLjEyNC0uMzIyLS4zNWEyLjAxNCwyLjAxNCwwLDAsMC0xLjY3LTFjLTEuMDc3LS4wNzQtMS43NzEuNDktMS43NjYsMS40MzNhMS4zLDEuMywwLDAsMCwuMTUzLjY2NmMuMjM3LjQ5LjY3Ny43ODQsMi4wNTksMS4zODMsMi41NDQsMS4wOTUsMy42MzYsMS44MTcsNC4zMSwyLjg0M2E1LjE1OCw1LjE1OCwwLDAsMSwuNDE2LDQuMzMzLDQuNzY0LDQuNzY0LDAsMCwxLTMuOTMyLDIuODE1LDEwLjksMTAuOSwwLDAsMS0yLjcwOC0uMDI4LDYuNTMxLDYuNTMxLDAsMCwxLTMuNjE2LTEuODg0LDYuMjc4LDYuMjc4LDAsMCwxLS45MjYtMS4zNzEsMi42NTUsMi42NTUsMCwwLDEsLjMyNy0uMjA4Yy4xNTgtLjA5Ljc1Ni0uNDM0LDEuMzItLjc2MUwxOS4xLDE5LjZsLjIxNC4zMTJhNC43NzEsNC43NzEsMCwwLDAsMS4zNSwxLjI5MiwzLjMsMy4zLDAsMCwwLDMuNDU4LS4xNzUsMS41NDUsMS41NDUsMCwwLDAsLjItMS45NzRjLS4yNzYtLjM5NS0uODQtLjcyNy0yLjQ0My0xLjQyMmE4LjgsOC44LDAsMCwxLTMuMzQ5LTIuMDU1LDQuNjg3LDQuNjg3LDAsMCwxLS45NzYtMS43NzcsNy4xMTYsNy4xMTYsMCwwLDEtLjA2Mi0yLjI2OCw0LjMzMiw0LjMzMiwwLDAsMSwzLjY0NC0zLjM3NEE5LDksMCwwLDEsMjMuODI3LDguMjQzWk0xNS40ODQsOS43MjZsLjAxMSwxLjQ1NGgtNC42M1YyNC4zMjhINy42VjExLjE4M0gyLjk3VjkuNzU1QTEzLjk4NiwxMy45ODYsMCwwLDEsMy4wMSw4LjI4OWMuMDE3LS4wMjMsMi44MzItLjAzNCw2LjI0NS0uMDI4bDYuMjExLjAxN1oiIHN0eWxlPSJmaWxsOiMwMDdhY2MiLz48L3N2Zz4K" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
-      </g>
-      <!-- Firebase -->
-      <g transform="translate(48, 48)">
-        <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
-        <image href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IS0tIFVwbG9hZGVkIHRvOiBTVkcgUmVwbywgd3d3LnN2Z3JlcG8uY29tLCBHZW5lcmF0b3I6IFNWRyBSZXBvIE1peGVyIFRvb2xzIC0tPgo8c3ZnIHdpZHRoPSI4MDBweCIgaGVpZ2h0PSI4MDBweCIgdmlld0JveD0iMCAwIDMyIDMyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0aXRsZT5maWxlX3R5cGVfZmlyZWJhc2U8L3RpdGxlPjxwYXRoIGQ9Ik01LjgsMjQuNmwuMTctLjIzN0wxMy45OSw5LjE0OWwuMDE3LS4xNjFMMTAuNDcyLDIuMzQ4YS42NTYuNjU2LDAsMCwwLTEuMjI3LjIwN1oiIHN0eWxlPSJmaWxsOiNmZmMyNGEiLz48cGF0aCBkPSJNNS45LDI0LjQybC4xMjgtLjI1TDEzLjk2NSw5LjExNCwxMC40MzksMi40NDhhLjYuNiwwLDAsMC0xLjEzMy4yMDZaIiBzdHlsZT0iZmlsbDojZmZhNzEyIi8+PHBhdGggZD0iTTE2LjU4NCwxNC4wMWwyLjYzMi0yLjdMMTYuNTgzLDYuMjg5YS42NzguNjc4LDAsMCwwLTEuMTk1LDBMMTMuOTgxLDguOTcxVjkuMloiIHN0eWxlPSJmaWxsOiNmNGJkNjIiLz48cGF0aCBkPSJNMTYuNTM3LDEzLjlsMi41NTktMi42MkwxNi41MzcsNi40YS41ODkuNTg5LDAsMCwwLTEuMDc0LS4wNDdMMTQuMDQ5LDkuMDgybC0uMDQyLjEzOVoiIHN0eWxlPSJmaWxsOiNmZmE1MGUiLz48cG9seWdvbiBwb2ludHM9IjUuODAyIDI0LjYwMSA1Ljg3OSAyNC41MjMgNi4xNTggMjQuNDEgMTYuNDE4IDE0LjE4OCAxNi41NDggMTMuODM0IDEzLjk4OSA4Ljk1NiA1LjgwMiAyNC42MDEiIHN0eWxlPSJmaWxsOiNmNjgyMGMiLz48cGF0aCBkPSJNMTYuOTEyLDI5Ljc1NiwyNi4yLDI0LjU3NywyMy41NDYsOC4yNDZBLjYzNS42MzUsMCwwLDAsMjIuNDcxLDcuOUw1LjgsMjQuNmw5LjIzMyw1LjE1NWExLjkyNywxLjkyNywwLDAsMCwxLjg3OCwwIiBzdHlsZT0iZmlsbDojZmRlMDY4Ii8+PHBhdGggZD0iTTI2LjExNSwyNC41MzQsMjMuNDgzLDguMzI2YS41NTcuNTU3LDAsMCwwLS45NjctLjM1M0w1LjksMjQuNTY5bDkuMTMxLDUuMWExLjkxMiwxLjkxMiwwLDAsMCwxLjg2MywwWiIgc3R5bGU9ImZpbGw6I2ZjY2EzZiIvPjxwYXRoIGQ9Ik0xNi45MTIsMjkuNmExLjkyNywxLjkyNywwLDAsMS0xLjg3OCwwTDUuODc2LDI0LjUyMiw1LjgsMjQuNmw5LjIzMyw1LjE1NWExLjkyNywxLjkyNywwLDAsMCwxLjg3OCwwTDI2LjIsMjQuNTc3bC0uMDIzLS4xNFoiIHN0eWxlPSJmaWxsOiNlZWFiMzciLz48L3N2Zz4K" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
-      </g>
+    <g transform="translate(0, 24)">
+      {{TECH_STACK_ITEMS}}
     </g>
   </g>
 </g>
 
 <!-- ================================================================= -->
-<!-- BOTTOM: LET'S CONNECT (CLICKABLE ROUNDED BUTTON PILLS)           -->
+<!-- BOTTOM: LET'S CONNECT (CONFIG-DRIVEN BUTTON PILLS)                -->
 <!-- ================================================================= -->
 <g transform="translate(45, 815)">
   <rect width="770" height="68" rx="20" class="glass-card"/>
@@ -305,7 +204,7 @@
     <g transform="translate(18, 12)">
       <rect width="232" height="44" rx="14" class="footer-btn"/>
       <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI0U0NDA1RiIgZD0iTTEyIDIuMTYzYzMuMjA0IDAgMy41ODQuMDEyIDQuODUuMDcgMy4yNTIuMTQ4IDQuNzcxIDEuNjkxIDQuOTE5IDQuOTE5LjA1OCAxLjI2NS4wNjkgMS42NDUuMDY5IDQuODQ5IDAgMy4yMDUtLjAxMiAzLjU4NC0uMDY5IDQuODQ5LS4xNDkgMy4yMjUtMS42NjQgNC43NzEtNC45MTkgNC45MTktMS4yNjYuMDU4LTEuNjQ0LjA3LTQuODUuMDctMy4yMDQgMC0zLjU4NC0uMDEyLTQuODQ5LS4wNy0zLjI2LS4xNDktNC43NzEtMS42OTktNC45MTktNC45Mi0uMDU4LTEuMjY1LS4wNy0xLjY0NC0uMDctNC44NDkgMC0zLjIwNC4wMTMtMy41ODMuMDctNC44NDkuMTQ5LTMuMjI3IDEuNjY0LTQuNzcxIDQuOTE5LTQuOTE5IDEuMjY2LS4wNTcgMS42NDUtLjA2OSA0Ljg0OS0uMDY5em0wLTIuMTYzYy0zLjI1OSAwLTMuNjY3LjAxNC00Ljk0Ny4wNzItNC4zNTguMi02Ljc4IDIuNjE4LTYuOTggNi45OC0uMDU5IDEuMjgxLS4wNzMgMS42ODktLjA3MyA0Ljk0OCAwIDMuMjU5LjAxNCAzLjY2OC4wNzIgNC45NDguMiA0LjM1OCAyLjYxOCA2Ljc4IDYuOTggNi45OCAxLjI4MS4wNTggMS42ODkuMDcyIDQuOTQ4LjA3MiAzLjI1OSAwIDMuNjY4LS4wMTQgNC45NDgtLjA3MiA0LjM1NC0uMiA2Ljc4Mi0yLjYxOCA2Ljk3OS02Ljk4LjA1OS0xLjI4LjA3My0xLjY4OS4wNzMtNC45NDggMC0zLjI1OS0uMDE0LTMuNjY3LS4wNzItNC45NDctLjE5Ni00LjM1NC0yLjYxNy02Ljc4LTYuOTc5LTYuOTgtMS4yODEtLjA1OS0xLjY5LS4wNzMtNC45NDktLjA3M3ptMCA1LjgzOGMtMy40MDMgMC02LjE2MiAyLjc1OS02LjE2MiA2LjE2MnMyLjc1OSA2LjE2MyA2LjE2MiA2LjE2MyA2LjE2Mi0yLjc1OSA2LjE2Mi02LjE2M2MwLTMuNDAzLTIuNzU5LTYuMTYyLTYuMTYyLTYuMTYyem0wIDEwLjE2MmMtMi4yMDkgMC00LTEuNzktNC00IDAtMi4yMDkgMS43OTEtNCA0LTRzNCAxLjc5MSA0IDRjMCAyLjIxLTEuNzkxIDQtNCA0em02LjQwNi0xMS44NDVjLS43OTYgMC0xLjQ0MS42NDUtMS40NDEgMS40NHMuNjQ1IDEuNDQgMS40NDEgMS40NGMuNzk1IDAgMS40MzktLjY0NSAxLjQzOS0xLjQ0cy0uNjQ0LTEuNDQtMS40MzktMS40NHoiLz48L3N2Zz4=" x="14" y="11" width="22" height="22"/>
-      <text x="44" y="27" class="body-font text-slate-800" font-size="12" font-weight="700">@oneinagoogolplex._</text>
+      <text x="44" y="27" class="body-font text-slate-800" font-size="12" font-weight="700">@your_instagram</text>
     </g>
   </a>
 
@@ -314,7 +213,7 @@
     <g transform="translate(268, 12)">
       <rect width="232" height="44" rx="14" class="footer-btn"/>
       <image href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PgoKPCEtLSBVcGxvYWRlZCB0bzogU1ZHIFJlcG8sIHd3dy5zdmdyZXBvLmNvbSwgR2VuZXJhdG9yOiBTVkcgUmVwbyBNaXhlciBUb29scyAtLT4KPHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9IjAgMCA1MDAgNTAwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MDAgNTAwIiBpZD0iTGF5ZXJfMSIgdmVyc2lvbj0iMS4xIiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KCjxnPgoKPHBhdGggZD0iTTQxNS40ODQsOTguODAyYy0zMi41MTMtMzQuNzIxLTc5LjQ3Ni03Ljc2LTgwLjE0NywzNS42NzJjLTcwLjA3NSw1LjA2MS0xNDAuMTg3LDkuNTMyLTIxMC4yMzYsMTQuOTU2ICAgYy0xNy45NjYsMi45NS00Ni4yMzItMi4xNTUtNTAuODA0LDIxLjM0MmMtMS4yNCw2MC43MzQsMi42MjIsMTIzLjQzOSw2LjczMSwxODQuNjQ1YzMuNjI2LDUzLjk4MSwxMy41MDgsNjYuMzMsNjguNzc1LDYwLjIyNCAgIGM2MC4wMjItMy43MjUsMTE5Ljk4My04LjUyNywxODAuMDY3LTExLjE3NGMyNC4wNzYtMy4zNDQsNTguODkxLDUuODEzLDcyLjg3NC0xOS42MDhjNi44MDMtNjkuNjEyLTEuNjUtMTQxLjczNy04LjE4Mi0yMTEuNTg5ICAgQzQyMi4yMDYsMTU5LjY4NCw0MzcuMzg3LDEyNS4yNzgsNDE1LjQ4NCw5OC44MDJ6IiBmaWxsPSIjNTg0NTREIi8+Cgo8cGF0aCBkPSJNNzcuMDQzLDIwMC4yMmMwLDAtNS44OTgtMzcuNTE0LDkuNjg1LTQzLjAzMmMxNS41ODItNS41MTgsMjUyLjE1MS0yMC4wNDIsMjUyLjE1MS0yMC4wNDIgICBjNC43MjUsMjUuMzM2LDI5LjE4MiwzNS44ODksNTEuODAxLDMyLjQyMnYxMC45MDVMMjkwLjQzNSwyNjMuNTlsMTAzLjE1OSwxMTMuNDc1YzAsMCw1Ljk5Myw1LjMwNSw0LjQyMSw5LjYyOCAgIGMtMS41NzIsNC4zMjMtMy4zNCw5LjgyNS0zMC4wNjQsMTEuOTg2Yy0yNi43MjMsMi4xNjEtMjQwLjQ1MywxOC4wNTktMjU1LjI5LDE0LjYzOXMtMjEuMDEtMTcuMzktMjEuMDEtMTcuMzkgICBjMzEuNTQyLTM4Ljk4MSw5MC43NzktOTUuNjIyLDEyMi43NTQtMTI4LjcxM0w3Ny4wNDMsMjAwLjIyeiIgZmlsbD0iI0Y4Qzc5NSIvPgoKPHBhdGggZD0iTTc1Ljk0OCwyMDMuNzU3YzEuMzg3LDE4LjY0NSw3Ljc3NSwxNjUuNjE0LDE1LjcwNCwxOTIuMTcxYzI3LjUwMS0zMy42MDMsOTUuNzUtMTAwLjk4MSwxMjIuNzU0LTEyOC43MTMgICBMODIuMDA5LDIwMi42NDNMNzUuOTQ4LDIwMy43NTd6IiBmaWxsPSIjRUVCMzc4Ii8+Cgo8cGF0aCBkPSJNMzkwLjY3OSwxODAuNDczYzMuMzExLDkuODQ4LDExLjc0MiwxNzkuMzUsMTEuMjYzLDE5Ni43ODljMC4wMDMtMC4wMDEtMy45MjcsOS40MzEtMy45MjcsOS40MzEgICBsLTIuODEyLTcuOTU3Yy0yNC44MS0yNy4xOTctNzkuNjA3LTg3LjQ1My0xMDQuNzY5LTExNS4xNDZMMzkwLjY3OSwxODAuNDczeiIgZmlsbD0iI0U3OTk1OSIvPgoKPHBhdGggZD0iTTc4LjQ5MywyMDcuNjE3YzE0LjAxLDExLjMzOCw5Ny43NjMsMzIuODA5LDg2LjQ0OCw3MC43NzVjLTE3LjkyOCw1Ni4xMzktNDMuMDgsNzMuMTYyLTc1LjIxOSwxMDYuMzc0ICAgbDIuNSwxMC4yNzhjMjcuOTcyLTM1LjE1Niw5MC40NTMtOTUuNzcsMTIxLjc0My0xMjguMDQ0Yy0xNi4zMDUtNy44OTEtMTE5LjA3NS01OC4zNDgtMTMyLjkyMy02NC4zNTggICBDODEuMDQyLDIwMi42NDMsNzguMzIyLDIwNC44NDQsNzguNDkzLDIwNy42MTd6IiBmaWxsPSIjRTc5QTU5Ii8+Cgo8cGF0aCBkPSJNMzAwLjgxNywyNjQuMDgxYzE3LjE2Ny0yMS4xODIsNjkuMzg1LTUzLjQ5MSw3Mi43MjQsMTYuNDUyYzMuMzk3LDM3LjM4OSw1LjQ4Niw1NS4zNjYsMS42MTksNTUuMzE3ICAgQzM3MS4yOTIsMzM1LjgwMSwyOTkuMTE1LDI3MC4xNzIsMzAwLjgxNywyNjQuMDgxeiIgZmlsbD0iI0VFQjM3OCIvPgoKPHBhdGggZD0iTTQyMS4zNDIsMTI4LjY0NGMtMC45MDMsNTIuODg1LTc5LjU2OSw1Mi44NzctODAuNDY0LTAuMDAyQzM0MS43ODEsNzUuNzU5LDQyMC40NDcsNzUuNzY3LDQyMS4zNDIsMTI4LjY0NCAgIHoiIGZpbGw9IiNFRjdGNUYiLz4KCjxwYXRoIGQ9Ik0zNjEuMzA2LDE2NS40NjdjMTMuNTQxLTI4LjYxMyw3MS43MjgtMjQuNTA3LDQzLjgxNy02OS40NzMgICBDNDQ2LjY3MywxMjUuMjUsNDA1LjQ3MywxODkuMzMyLDM2MS4zMDYsMTY1LjQ2N3oiIGZpbGw9IiNFODYwNDIiLz4KCjxwYXRoIGQ9Ik0zNDguNjYsMzk3LjVjOC44MjctMTIuNzYzLDE4LjQzMS0zMC4yNzIsMTIuMzY3LTQ2LjIyNGMtMi4xNDUtNS41NDctNy4wNTctMTAuNDQ4LTcuMTQ0LTE2LjU4NiAgIEMzODMuODEzLDM3My4xOTksNDMzLjYyMSwzOTcuOTc5LDM0OC42NiwzOTcuNXoiIGZpbGw9IiNGNUIyNzgiLz4KCjxwYXRoIGQ9Ik0zODIuMjExLDE4NC4yNDRjLTIzLjQ4MS0xLjU4NS00OS44OTgtMTkuMTc2LTUzLjY4LTQzLjU3MmMtMC4wNjMtMS41MDMtMS4xNjMtMC44NDgtMS44NTctMS4wNjMgICBjMi41NDgsMC4yODEsMTAuMTk5LTIuMjA4LDEwLjg1OCwwLjY4MWM0LjU0MiwxOC4wNjYsMjAuMjc2LDMyLjA0NywzOC45MiwzMy43NzZjMy4wMSwxLjQwMSwxMy4zMzUtMS44NjcsMTMuNDg2LDAuOTE0ICAgQzM5MS43NzYsMTgwLjMwMSwzODUuNDc4LDE4MS40MzMsMzgyLjIxMSwxODQuMjQ0eiIgZmlsbD0iI0Y1QjI3OCIvPgoKPHBhdGggZD0iTTI5MC4xMTQsMjY1LjU2MmMtNDMuNTksMjkuMDc1LTE2LjE4NywzMC4xMjctNjguMjQzLDYuMDk1bDAsMGMwLDAsMCwwLDAsMGMwLDAuMDAxLDAsMC4wMDIsMCwwLjAwMyAgIGMtMS45MzktMS4zMTMtNC4xOTMtMS45MTUtNi4yMTctMy4wMzhjLTIuOTY3LTIuNTY0LTQuMTc0LDAuNjYyLTYuMzI5LDIuNDQxYy0zLjU3MywzLjM5My03LjI3Niw2Ljc5NS0xMC42NywxMC40MjMgICBjMjAuNTE3LTE3LjkyNyw0MC4zLDEzLjQ1Niw2Mi4wMTgsMTEuMDVjMTkuNzQxLTYuOTI5LDEyLjYyNi0xNi4wOCw0Mi40MzYtMTQuNjVDMjk5LjE1MSwyNzMuMzgzLDI5NC40MywyNjkuNjg2LDI5MC4xMTQsMjY1LjU2MnogICAiIGZpbGw9IiNGNUIyNzgiLz4KCjxwYXRoIGQ9Ik04MC40NCwyMDguNDkxQzgwLjQ0LDIwOC40OTEsODAuNDQsMjA4LjQ5MSw4MC40NCwyMDguNDkxYzAsMC4wMSwwLDAuMDE5LTAuMDAxLDAuMDI5ICAgYzAuMDA2LTAuMDA4LDAuMDEzLTAuMDExLDAuMDE5LTAuMDE4QzgwLjQ1MiwyMDguNDk5LDgwLjQ0NiwyMDguNDk1LDgwLjQ0LDIwOC40OTF6IiBmaWxsPSIjNTg0NTREIi8+Cgo8cGF0aCBkPSJNNDE1LjQ4NCw5OC44MDJjLTMyLjUxMy0zNC43MjEtNzkuNDc2LTcuNzYtODAuMTQ3LDM1LjY3MmMtNzAuMDc1LDUuMDYxLTE0MC4xODcsOS41MzItMjEwLjIzNiwxNC45NTYgICBjLTE3Ljk2NiwyLjk1LTQ2LjIzMi0yLjE1NS01MC44MDQsMjEuMzQyYy0xLjI0LDYwLjczNCwyLjYyMiwxMjMuNDM5LDYuNzMxLDE4NC42NDVjMy42MjYsNTMuOTgxLDEzLjUwOCw2Ni4zMyw2OC43NzUsNjAuMjI0ICAgYzYwLjAyMi0zLjcyNSwxMTkuOTgzLTguNTI3LDE4MC4wNjctMTEuMTc0YzI0LjA3Ni0zLjM0NCw1OC44OTEsNS44MTMsNzIuODc0LTE5LjYwOGM2LjgwMy02OS42MTItMS42NS0xNDEuNzM3LTguMTgyLTIxMS41ODkgICBDNDIyLjIwNiwxNTkuNjg0LDQzNy4zODcsMTI1LjI3OCw0MTUuNDg0LDk4LjgwMnogTTc5LjYwMiwxOTguMzljLTMuOTQ4LTMzLjA2OSwxLjQ1OS00My4zMjIsMzYuMTczLTQyLjg0ICAgYzczLjY3My0zLjkyNywxNDcuMjQtMTAuMDE0LDIyMC44ODEtMTQuNDcyYzE2LjU4Nyw0Ny4wMDMsNTIuNDM5LDI2LjEyOSw1MS4zNDYsMzcuMzMyICAgYy00NC4xMzUsMzIuNTY4LTg1LjU4OCw3NC4zOTYtMTI5LjkxMywxMDUuNTdDMTk4LjY3LDI1NS44NjEsMTM3Ljk0MywyMjcuMTE0LDc5LjYwMiwxOTguMzl6IE05Mi44MTcsMzkwLjkxNCAgIGMtMC42NjUtMi4xNDQtMC45MjQtNC4xOTktMS4xMTMtNi4yNjdjMCwwLDAsMCwwLDBjLTAuMDQ0LTAuMTc5LTAuMDg4LTAuMzU4LTAuMTMyLTAuNTM3YzAsMCwwLDAsMCwwICAgYy03LjcwMS01OC44ODEtOC4wMDQtMTE4LjQ3NS0xMS40NzktMTc3LjY5OGMyLjU3MS0zLjQ4LDMwLjQxNiwxMi44NDQsMTI4LjgxNCw1OS44NzggICBDMTc2LjEwNSwzMDYuOTc3LDEyNy40NDQsMzQ3LjMzMiw5Mi44MTcsMzkwLjkxNHogTTM5NC45ODUsMzg2LjU4N2MtMTIuMDMxLDE0LjI3Ni00Mi4wNCw3LjY1NS01OS4zNzksMTAuMDQ5ICAgYy01Mi45NjcsMS42NDItMTA1Ljc3NSw2LjEzMS0xNTguNTg4LDEwLjI4OGMtMjIuNzk0LTAuNjYxLTY3LjIyNywxNC4wOTEtODAuOTIzLTcuOTZjLTIuNDk3LTMuNTc2LTIuNDIyLTMuNTUzLDAuMzk2LTYuOTE3ICAgYzM2LjczNi00MS4wOTYsNzUuNjk5LTgwLjM4MywxMTQuODUxLTExOS4xMTFjMi4wOTEtMS43MjQsMy4yNTEtNC44NDQsNi4xMjctMi4zNjNjMS45NTksMS4wODcsNC4xNDIsMS42Nyw2LjAxOSwyLjk0MSAgIGMwLTAuMDAxLDAtMC4wMDIsMC0wLjAwM2MwLDAsMCwwLDAsMGwwLDBjNDMuNjksMTkuMTYzLDI2LjM1NywyNS43ODYsNjQuNTY3LTUuOTY4YzI0Ljc1LDE4LjQ1LDQ1LjEyNCw0Ni42NDIsNjYuOTczLDY5LjYwMnYwICAgQzM2Mi42OTMsMzQ3Ljk0NCwzOTUuMzE3LDM3Ni42NjUsMzk0Ljk4NSwzODYuNTg3eiBNMzk1Ljk2NiwyODkuNzdjLTAuODcxLDMwLjEwMiw0LjgzOCw2MC41MjEsMi4yMDIsOTAuMzMzICAgYy0zMy43MTgtMzkuNzYxLTY4LjMzLTc4LjU5OC0xMDQuNzQtMTE1Ljg2NWMyMS4xMTItMjAuNzY3LDQ4LjY1OC00MC4wODQsNzEuNzk1LTYwLjQ4OGMzLjg3NC0yLjI2OCwyMS43MDMtMjEuMTUxLDIzLjUxMi0xNy41MSAgIEMzOTEuNzg5LDIyMC42OTIsMzk0Ljg1LDI1NS4xOTQsMzk1Ljk2NiwyODkuNzd6IE00MTkuMTI2LDEyOC44NjJjLTguMzY2LDY5LjY2My0xMDguNjgyLDMxLjQzMy02NS44NDgtMjUuMjk3ICAgQzM3NS40OTgsNzcuMTIyLDQyMC43MTcsOTQuMjMzLDQxOS4xMjYsMTI4Ljg2MnoiIGZpbGw9IiM1ODQ1NEQiLz4KCjwvZz4KCjwvc3ZnPgo=" x="14" y="11" width="22" height="22"/>
-      <text x="44" y="27" class="body-font text-slate-800" font-size="12" font-weight="700">navneetkrgupta01@gmail.com</text>
+      <text x="44" y="27" class="body-font text-slate-800" font-size="12" font-weight="700">frostyfoxie@users.noreply.github.com</text>
     </g>
   </a>
 
