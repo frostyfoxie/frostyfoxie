@@ -1,0 +1,534 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 2200" width="100%" height="auto" style="background-color: #0A0A0C; font-family: 'Space Grotesk', 'JetBrains Mono', -apple-system, sans-serif;">
+  
+  <!-- STREAMING_CHUNK:Defining SVG filters, fonts, and patterns... -->
+  <defs>
+    <!-- Embedded Google Fonts for crisp Brutalist Y2K rendering -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&amp;family=JetBrains+Mono:wght@700;800&amp;family=Space+Grotesk:wght@600;700;800;900&amp;display=swap');
+
+      .font-poster { font-family: 'Black Ops One', 'Impact', 'Arial Black', sans-serif; }
+      .font-mono { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+      .font-sans { font-family: 'Space Grotesk', system-ui, sans-serif; }
+
+      .text-stroke-black {
+        stroke: #000000;
+        stroke-width: 4px;
+        paint-order: stroke fill;
+      }
+
+      .text-stroke-thick {
+        stroke: #000000;
+        stroke-width: 7px;
+        paint-order: stroke fill;
+      }
+
+      .sticker-hover {
+        transition: transform 0.2s ease;
+      }
+      .sticker-hover:hover {
+        transform: scale(1.03) rotate(1deg);
+      }
+    </style>
+
+    <!-- Brutalist Heavy Drop Shadow Filter -->
+    <filter id="brutal-shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="6" dy="6" stdDeviation="0" flood-color="#000000" flood-opacity="1" />
+    </filter>
+
+    <filter id="brutal-shadow-lg" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="10" dy="10" stdDeviation="0" flood-color="#000000" flood-opacity="1" />
+    </filter>
+
+    <filter id="brutal-shadow-sm" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="4" dy="4" stdDeviation="0" flood-color="#000000" flood-opacity="1" />
+    </filter>
+
+    <!-- Poster Grid Pattern -->
+    <pattern id="poster-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#FF0B23" stroke-width="1" stroke-opacity="0.12" />
+    </pattern>
+
+    <!-- Halftone Dot Pattern -->
+    <pattern id="dots-pattern" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="8" r="2.5" fill="#FFFFFF" fill-opacity="0.18" />
+    </pattern>
+
+    <pattern id="dots-red-pattern" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="8" r="3" fill="#FF0B23" fill-opacity="0.25" />
+    </pattern>
+  </defs>
+
+  <!-- STREAMING_CHUNK:Rendering canvas background and grid pattern... -->
+  <!-- Main Background Container -->
+  <rect width="800" height="2200" fill="#0A0A0C" />
+  <rect width="800" height="2200" fill="url(#poster-grid)" />
+
+  <!-- STREAMING_CHUNK:Creating top main poster banner... -->
+  <!-- HERO POSTER SECTION (Top Red Banner mirroring PORTFOLIO 2026) -->
+  <g transform="translate(25, 25)">
+    <!-- Main Red Poster Box -->
+    <rect x="0" y="0" width="750" height="420" rx="24" fill="#FF0B23" stroke="#000000" stroke-width="5" filter="url(#brutal-shadow-lg)" />
+    <!-- Dot Overlay -->
+    <rect x="0" y="0" width="750" height="420" rx="24" fill="url(#dots-pattern)" />
+
+    <!-- Y2K Corner Deco Crosses -->
+    <path d="M 20 20 L 35 35 M 35 20 L 20 35" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" />
+    <path d="M 715 20 L 730 35 M 730 20 L 715 35" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Header Badges -->
+    <g transform="translate(24, 24)">
+      <!-- System Badge -->
+      <rect x="0" y="0" width="220" height="32" rx="10" fill="#000000" stroke="#000000" stroke-width="2" filter="url(#brutal-shadow-sm)" />
+      <circle cx="18" cy="16" r="5" fill="#FF0B23" />
+      <text x="32" y="21" class="font-mono" font-size="11" fill="#FFE500">BUILDER &amp; SYSTEMS CREATOR</text>
+
+      <!-- Repos Badge -->
+      <rect x="420" y="0" width="280" height="32" rx="10" fill="#FFFFFF" stroke="#000000" stroke-width="2" filter="url(#brutal-shadow-sm)" />
+      <text x="432" y="21" class="font-mono" font-size="11" fill="#000000">⚡ 25 REPOS • 9 PUBLIC / 16 PRIVATE</text>
+    </g>
+
+    <!-- Giant Brutalist Title: PORTFOLIO 2026 / FROSTYFOXIE -->
+    <g transform="translate(24, 80)">
+      <text x="0" y="80" class="font-poster text-stroke-thick" font-size="95" fill="#FFFFFF">PORT</text>
+      <text x="0" y="165" class="font-poster text-stroke-thick" font-size="95" fill="#FFE500">FOLIO</text>
+      
+      <!-- 2026 Y2K Badge Circle -->
+      <g transform="translate(270, 20)">
+        <circle cx="55" cy="55" r="55" fill="#000000" stroke="#FFFFFF" stroke-width="4" filter="url(#brutal-shadow)" />
+        <text x="55" y="50" class="font-poster" font-size="36" fill="#FFFFFF" text-anchor="middle">20</text>
+        <text x="55" y="86" class="font-poster" font-size="36" fill="#FF0B23" text-anchor="middle">26</text>
+      </g>
+
+      <!-- Main Name Ribbon Banner -->
+      <g transform="translate(0, 195) rotate(-1)">
+        <rect x="0" y="0" width="410" height="52" rx="14" fill="#FFFFFF" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <text x="20" y="36" class="font-sans" font-weight="900" font-size="24" fill="#000000">NAVNEET // @FROSTYFOXIE</text>
+      </g>
+    </g>
+
+    <!-- Right Side Speech Bubble & Age Badge (Mirrors Emasign "hola! hello" & "25 YEARS") -->
+    <g transform="translate(450, 140)">
+      <!-- Speech Bubble -->
+      <g transform="rotate(2)">
+        <rect x="0" y="0" width="260" height="110" rx="18" fill="#FFFFFF" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <!-- Pointer tail -->
+        <polygon points="30,110 45,128 60,110" fill="#FFFFFF" stroke="#000000" stroke-width="4" />
+        <rect x="29" y="105" width="33" height="10" fill="#FFFFFF" />
+        
+        <text x="16" y="28" class="font-mono" font-size="11" fill="#FF0B23">✦ WELCOME / NAMASTE 🇮🇳</text>
+        <text x="16" y="54" class="font-sans" font-weight="800" font-size="15" fill="#000000">"I turn ideas into working</text>
+        <text x="16" y="76" class="font-sans" font-weight="800" font-size="15" fill="#000000">interactive systems."</text>
+      </g>
+
+      <!-- Age Identity Sticker Badge -->
+      <g transform="translate(10, 140) rotate(-2)">
+        <rect x="0" y="0" width="240" height="90" rx="18" fill="#FFE500" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <text x="120" y="24" class="font-mono" font-size="10" fill="#000000" text-anchor="middle">DEVELOPER &amp; MAKER</text>
+        <text x="120" y="60" class="font-poster text-stroke-black" font-size="38" fill="#FF0B23" text-anchor="middle">18 Y/O</text>
+        <rect x="40" y="66" width="160" height="18" rx="6" fill="#000000" />
+        <text x="120" y="79" class="font-mono" font-size="9" fill="#FFFFFF" text-anchor="middle">BASED IN INDIA 🇮🇳</text>
+      </g>
+    </g>
+
+    <!-- Bottom Tech Pill Strip -->
+    <g transform="translate(24, 365)">
+      <line x1="0" y1="0" x2="702" y2="0" stroke="#000000" stroke-width="4" />
+      
+      <g transform="translate(0, 12)">
+        <rect x="0" y="0" width="160" height="26" rx="8" fill="#000000" stroke="#FFFFFF" stroke-width="1.5" />
+        <text x="80" y="17" class="font-mono" font-size="10" fill="#FFE500" text-anchor="middle">🧠 MULTI-AGENT AI</text>
+      </g>
+
+      <g transform="translate(175, 12)">
+        <rect x="0" y="0" width="170" height="26" rx="8" fill="#000000" stroke="#FFFFFF" stroke-width="1.5" />
+        <text x="85" y="17" class="font-mono" font-size="10" fill="#FFFFFF" text-anchor="middle">🎓 EDTECH &amp; JEE TOOLS</text>
+      </g>
+
+      <g transform="translate(360, 12)">
+        <rect x="0" y="0" width="165" height="26" rx="8" fill="#000000" stroke="#FFFFFF" stroke-width="1.5" />
+        <text x="82" y="17" class="font-mono" font-size="10" fill="#FFE500" text-anchor="middle">🌌 COSMOS &amp; PHYSICS</text>
+      </g>
+
+      <g transform="translate(540, 12)">
+        <rect x="0" y="0" width="160" height="26" rx="8" fill="#000000" stroke="#FFFFFF" stroke-width="1.5" />
+        <text x="80" y="17" class="font-mono" font-size="10" fill="#FFFFFF" text-anchor="middle">✨ CREATIVE TECH</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- STREAMING_CHUNK:Creating yellow ticker marquee strip... -->
+  <!-- MARQUEE TICKER TAPE SECTION -->
+  <g transform="translate(0, 480)">
+    <rect x="0" y="0" width="800" height="42" fill="#FFE500" stroke="#000000" stroke-width="4" />
+    <text x="400" y="27" class="font-sans" font-weight="900" font-size="14" fill="#000000" text-anchor="middle" letter-spacing="2">
+      ⚡ NAVNEET // FROSTYFOXIE  ✖  BUILDER &amp; AI SYSTEMS  ✖  THETA IDE  ✖  NEWTON AI TUTOR  ✖  COSMOS &amp; PIXELVERSE  ✖  SYL-TRACK ⚡
+    </text>
+  </g>
+
+  <!-- STREAMING_CHUNK:Building About Me & Badge Wall section... -->
+  <!-- SECTION 1: ABOUT ME & IDENTITY WALL -->
+  <g transform="translate(25, 550)">
+    
+    <!-- Left: Core Bio Card -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="480" height="340" rx="24" fill="#151518" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+      <rect x="0" y="0" width="480" height="340" rx="24" fill="url(#dots-pattern)" />
+
+      <!-- Section Title Header -->
+      <g transform="translate(20, 20)">
+        <rect x="0" y="0" width="40" height="32" rx="10" fill="#FF0B23" stroke="#000000" stroke-width="2" />
+        <text x="20" y="22" class="font-poster" font-size="18" fill="#FFFFFF" text-anchor="middle">01</text>
+        
+        <text x="52" y="24" class="font-sans" font-weight="900" font-size="24" fill="#FFFFFF">ABOUT ME</text>
+        
+        <rect x="330" y="2" width="110" height="26" rx="8" fill="#FFE500" stroke="#000000" stroke-width="2" />
+        <text x="385" y="18" class="font-mono" font-size="10" fill="#000000" text-anchor="middle">MANIFESTO</text>
+        
+        <line x1="0" y1="44" x2="440" y2="44" stroke="#2A2A30" stroke-width="2" />
+      </g>
+
+      <!-- Manifesto Body Text Box -->
+      <g transform="translate(20, 80)">
+        <rect x="0" y="0" width="440" height="110" rx="14" fill="#0A0A0C" stroke="#2A2A30" stroke-width="2" />
+        <text x="16" y="28" class="font-sans" font-weight="600" font-size="13" fill="#E2E8F0">
+          I'm <tspan font-weight="900" fill="#FFE500">Navneet (`frostyfoxie`)</tspan>, an 18-year-old software builder
+        </text>
+        <text x="16" y="48" class="font-sans" font-weight="600" font-size="13" fill="#E2E8F0">
+          from India. I engineer <tspan fill="#FF0B23" font-weight="800">complete, autonomous, and interactive</tspan>
+        </text>
+        <text x="16" y="68" class="font-sans" font-weight="600" font-size="13" fill="#E2E8F0">
+          <tspan fill="#FF0B23" font-weight="800">products</tspan> designed around real human needs.
+        </text>
+        <text x="16" y="92" class="font-mono" font-size="11" fill="#94A3B8">
+          > 25 REPOSITORIES EXPLORING AI, EDTECH &amp; SCIENCE
+        </text>
+      </g>
+
+      <!-- Highlight Grid Cards -->
+      <g transform="translate(20, 205)">
+        <!-- Box A: Agentic AI -->
+        <rect x="0" y="0" width="210" height="110" rx="12" fill="#0A0A0C" stroke="#FF0B23" stroke-width="2" />
+        <text x="14" y="24" class="font-mono" font-size="11" fill="#FF0B23">🤖 AI &amp; AGENT SYSTEMS</text>
+        <text x="14" y="46" class="font-sans" font-size="11" fill="#94A3B8">ReAct loops, sub-agents,</text>
+        <text x="14" y="62" class="font-sans" font-size="11" fill="#94A3B8">Vercel sandboxes, and</text>
+        <text x="14" y="78" class="font-sans" font-size="11" fill="#94A3B8">persistent agent state.</text>
+
+        <!-- Box B: EdTech -->
+        <rect x="230" y="0" width="210" height="110" rx="12" fill="#0A0A0C" stroke="#FFE500" stroke-width="2" />
+        <text x="244" y="24" class="font-mono" font-size="11" fill="#FFE500">🎓 EDTECH INFRA</text>
+        <text x="244" y="46" class="font-sans" font-size="11" fill="#94A3B8">Adaptive doubt solving,</text>
+        <text x="244" y="62" class="font-sans" font-size="11" fill="#94A3B8">PYQ analytics &amp; Discord</text>
+        <text x="244" y="78" class="font-sans" font-size="11" fill="#94A3B8">AI learning tutors.</text>
+      </g>
+    </g>
+
+    <!-- Right: Y2K Badge Wall (Emasign Sticker Graphics) -->
+    <g transform="translate(500, 0)">
+      <rect x="0" y="0" width="250" height="340" rx="24" fill="#FF0B23" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+      <rect x="0" y="0" width="250" height="340" rx="24" fill="url(#dots-pattern)" opacity="0.3" />
+
+      <text x="20" y="36" class="font-poster" font-size="20" fill="#000000">BADGE WALL</text>
+      <line x1="20" y1="46" x2="230" y2="46" stroke="#000000" stroke-width="3" />
+
+      <!-- Sticker 1 -->
+      <g transform="translate(15, 60) rotate(1)">
+        <rect x="0" y="0" width="220" height="50" rx="14" fill="#FFFFFF" stroke="#000000" stroke-width="3" filter="url(#brutal-shadow-sm)" />
+        <text x="15" y="30" class="font-sans" font-weight="900" font-size="13" fill="#000000">🤖 AGENTIC AI</text>
+        <rect x="145" y="12" width="60" height="24" rx="6" fill="#000000" />
+        <text x="175" y="28" class="font-mono" font-size="9" fill="#FFFFFF" text-anchor="middle">BUILDER</text>
+      </g>
+
+      <!-- Sticker 2 -->
+      <g transform="translate(15, 125) rotate(-2)">
+        <rect x="0" y="0" width="220" height="50" rx="14" fill="#FFE500" stroke="#000000" stroke-width="3" filter="url(#brutal-shadow-sm)" />
+        <text x="15" y="30" class="font-sans" font-weight="900" font-size="13" fill="#000000">📚 JEE &amp; EDTECH</text>
+        <rect x="150" y="12" width="55" height="24" rx="6" fill="#000000" />
+        <text x="177" y="28" class="font-mono" font-size="9" fill="#FFE500" text-anchor="middle">TOOLS</text>
+      </g>
+
+      <!-- Sticker 3 -->
+      <g transform="translate(15, 190) rotate(2)">
+        <rect x="0" y="0" width="220" height="50" rx="14" fill="#000000" stroke="#000000" stroke-width="3" filter="url(#brutal-shadow-sm)" />
+        <text x="15" y="30" class="font-sans" font-weight="900" font-size="13" fill="#FFFFFF">🌌 COSMOS &amp; SIMS</text>
+        <rect x="155" y="12" width="50" height="24" rx="6" fill="#FF0B23" />
+        <text x="180" y="28" class="font-mono" font-size="9" fill="#FFFFFF" text-anchor="middle">PHYSICS</text>
+      </g>
+
+      <!-- Sticker 4 -->
+      <g transform="translate(15, 255) rotate(-1)">
+        <rect x="0" y="0" width="220" height="50" rx="14" fill="#FFFFFF" stroke="#000000" stroke-width="3" filter="url(#brutal-shadow-sm)" />
+        <text x="15" y="30" class="font-sans" font-weight="900" font-size="13" fill="#000000">🎨 CREATIVE TECH</text>
+        <rect x="155" y="12" width="50" height="24" rx="6" fill="#0055FF" />
+        <text x="180" y="28" class="font-mono" font-size="9" fill="#FFFFFF" text-anchor="middle">VISUAL</text>
+      </g>
+    </g>
+
+  </g>
+
+  <!-- STREAMING_CHUNK:Building Skills and Tech Stack section... -->
+  <!-- SECTION 2: TECHNICAL SKILLS & ARCHITECTURE -->
+  <g transform="translate(25, 930)">
+    <rect x="0" y="0" width="750" height="260" rx="24" fill="#151518" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+    
+    <!-- Title Bar -->
+    <g transform="translate(24, 20)">
+      <rect x="0" y="0" width="160" height="28" rx="8" fill="#FFE500" stroke="#000000" stroke-width="2" />
+      <text x="80" y="18" class="font-mono" font-size="11" fill="#000000" text-anchor="middle">STACK &amp; ARCHITECTURE</text>
+      
+      <text x="0" y="58" class="font-poster" font-size="32" fill="#FFFFFF">TECHNICAL SKILLS</text>
+      <text x="500" y="54" class="font-mono" font-size="12" fill="#94A3B8">// FULL-STACK + AI SYSTEMS</text>
+      <line x1="0" y1="70" x2="702" y2="70" stroke="#000000" stroke-width="3" />
+    </g>
+
+    <!-- 3 Category Column Cards -->
+    <g transform="translate(24, 105)">
+      <!-- Col 1: AI & Agentic -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="220" height="130" rx="14" fill="#0A0A0C" stroke="#FF0B23" stroke-width="2" />
+        <text x="14" y="26" class="font-sans" font-weight="900" font-size="14" fill="#FF0B23">🧠 AI &amp; AGENTIC</text>
+        <text x="14" y="52" class="font-mono" font-size="10" fill="#E2E8F0">• Multi-Agent Orchestration</text>
+        <text x="14" y="70" class="font-mono" font-size="10" fill="#E2E8F0">• ReAct Execution Loops</text>
+        <text x="14" y="88" class="font-mono" font-size="10" fill="#E2E8F0">• LLM Fallbacks &amp; Memory</text>
+        <text x="14" y="106" class="font-mono" font-size="10" fill="#E2E8F0">• Voice &amp; TTS Synthesis</text>
+      </g>
+
+      <!-- Col 2: Languages & Web -->
+      <g transform="translate(241, 0)">
+        <rect x="0" y="0" width="220" height="130" rx="14" fill="#0A0A0C" stroke="#FFE500" stroke-width="2" />
+        <text x="14" y="26" class="font-sans" font-weight="900" font-size="14" fill="#FFE500">💻 LANGUAGES &amp; WEB</text>
+        <text x="14" y="52" class="font-mono" font-size="10" fill="#E2E8F0">• Python (FastAPI, Datasets)</text>
+        <text x="14" y="70" class="font-mono" font-size="10" fill="#E2E8F0">• JavaScript / TypeScript</text>
+        <text x="14" y="88" class="font-mono" font-size="10" fill="#E2E8F0">• React &amp; Tailwind CSS</text>
+        <text x="14" y="106" class="font-mono" font-size="10" fill="#E2E8F0">• Discord API &amp; Bot Infra</text>
+      </g>
+
+      <!-- Col 3: Data & Infra -->
+      <g transform="translate(482, 0)">
+        <rect x="0" y="0" width="220" height="130" rx="14" fill="#0A0A0C" stroke="#0055FF" stroke-width="2" />
+        <text x="14" y="26" class="font-sans" font-weight="900" font-size="14" fill="#0055FF">🗄️ DATA &amp; INFRA</text>
+        <text x="14" y="52" class="font-mono" font-size="10" fill="#E2E8F0">• Supabase &amp; Relational DBs</text>
+        <text x="14" y="70" class="font-mono" font-size="10" fill="#E2E8F0">• Vector Embeddings / Search</text>
+        <text x="14" y="88" class="font-mono" font-size="10" fill="#E2E8F0">• Vercel Sandbox Isolation</text>
+        <text x="14" y="106" class="font-mono" font-size="10" fill="#E2E8F0">• OCR &amp; Document Parsing</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- STREAMING_CHUNK:Building Featured Projects Folio grid section... -->
+  <!-- SECTION 3: PROJECT FOLIO (Emasign LOGOFOLIO Style) -->
+  <g transform="translate(25, 1230)">
+    
+    <!-- Red Section Banner Header -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="750" height="90" rx="20" fill="#FF0B23" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+      <rect x="0" y="0" width="750" height="90" rx="20" fill="url(#dots-pattern)" opacity="0.2" />
+
+      <text x="24" y="32" class="font-mono" font-size="11" fill="#FFE500">FEATURED SYSTEMS &amp; PRODUCTS</text>
+      <text x="24" y="72" class="font-poster text-stroke-black" font-size="42" fill="#FFFFFF">PROJECT FOLIO</text>
+      
+      <rect x="520" y="25" width="200" height="38" rx="12" fill="#000000" stroke="#000000" stroke-width="2" />
+      <text x="620" y="49" class="font-mono" font-size="12" fill="#FFFFFF" text-anchor="middle">25 REPOSITORIES</text>
+    </g>
+
+    <!-- PROJECTS GRID CARDS (2 Columns) -->
+    <g transform="translate(0, 115)">
+      
+      <!-- CARD 1: THETA -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="360" height="210" rx="20" fill="#151518" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <rect x="250" y="0" width="110" height="28" rx="8" fill="#FF0B23" stroke="#000000" stroke-width="2" />
+        <text x="305" y="18" class="font-mono" font-size="9" fill="#FFFFFF" text-anchor="middle">AI SYSTEM</text>
+
+        <!-- Icon Badge -->
+        <rect x="20" y="20" width="44" height="44" rx="12" fill="#FF0B23" stroke="#000000" stroke-width="2" />
+        <text x="42" y="52" class="font-poster" font-size="28" fill="#FFFFFF" text-anchor="middle">Θ</text>
+
+        <text x="76" y="40" class="font-sans" font-weight="900" font-size="22" fill="#FFFFFF">THETA</text>
+        <text x="76" y="56" class="font-mono" font-size="10" fill="#FF0B23">// Multi-Agent AI Workbench</text>
+
+        <text x="20" y="92" class="font-sans" font-size="11" fill="#CBD5E1">Autonomous multi-agent IDE featuring orchestrator</text>
+        <text x="20" y="108" class="font-sans" font-size="11" fill="#CBD5E1">routing, sub-agents, Vercel Sandbox execution,</text>
+        <text x="20" y="124" class="font-sans" font-size="11" fill="#CBD5E1">Supabase state, and semantic search.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(20, 158)">
+          <rect x="0" y="0" width="85" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="42" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">ReAct Loop</text>
+
+          <rect x="93" y="0" width="80" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="133" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Python/TS</text>
+
+          <rect x="180" y="0" width="80" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="220" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Supabase</text>
+        </g>
+      </g>
+
+      <!-- CARD 2: NEWTON -->
+      <g transform="translate(390, 0)">
+        <rect x="0" y="0" width="360" height="210" rx="20" fill="#151518" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <rect x="230" y="0" width="130" height="28" rx="8" fill="#FFE500" stroke="#000000" stroke-width="2" />
+        <text x="295" y="18" class="font-mono" font-size="9" fill="#000000" text-anchor="middle">EDTECH + DISCORD</text>
+
+        <!-- Icon Badge -->
+        <rect x="20" y="20" width="44" height="44" rx="12" fill="#FFE500" stroke="#000000" stroke-width="2" />
+        <text x="42" y="50" class="font-poster" font-size="22" fill="#000000" text-anchor="middle">🍎</text>
+
+        <text x="76" y="40" class="font-sans" font-weight="900" font-size="22" fill="#FFFFFF">NEWTON</text>
+        <text x="76" y="56" class="font-mono" font-size="10" fill="#FFE500">// Educational AI Platform</text>
+
+        <text x="20" y="92" class="font-sans" font-size="11" fill="#CBD5E1">Interactive AI tutor inside Discord built for JEE &amp;</text>
+        <text x="20" y="108" class="font-sans" font-size="11" fill="#CBD5E1">competitive students. Supports adaptive doubt solving,</text>
+        <text x="20" y="124" class="font-sans" font-size="11" fill="#CBD5E1">voice lessons, and PYQ analytics.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(20, 158)">
+          <rect x="0" y="0" width="95" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="47" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Discord API</text>
+
+          <rect x="103" y="0" width="95" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="150" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Voice Synthesis</text>
+
+          <rect x="206" y="0" width="110" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="261" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Adaptive Memory</text>
+        </g>
+      </g>
+
+      <!-- CARD 3: COSMOS & PIXELVERSE -->
+      <g transform="translate(0, 235)">
+        <rect x="0" y="0" width="360" height="210" rx="20" fill="#151518" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <rect x="250" y="0" width="110" height="28" rx="8" fill="#0055FF" stroke="#000000" stroke-width="2" />
+        <text x="305" y="18" class="font-mono" font-size="9" fill="#FFFFFF" text-anchor="middle">SIMULATION</text>
+
+        <!-- Icon Badge -->
+        <rect x="20" y="20" width="44" height="44" rx="12" fill="#0055FF" stroke="#000000" stroke-width="2" />
+        <text x="42" y="50" class="font-poster" font-size="22" fill="#FFFFFF" text-anchor="middle">🌌</text>
+
+        <text x="76" y="40" class="font-sans" font-weight="900" font-size="20" fill="#FFFFFF">COSMOS // PIXELVERSE</text>
+        <text x="76" y="56" class="font-mono" font-size="10" fill="#0055FF">// Astrophysics Experience</text>
+
+        <text x="20" y="92" class="font-sans" font-size="11" fill="#CBD5E1">Interactive physics and cosmology platform. Combines</text>
+        <text x="20" y="108" class="font-sans" font-size="11" fill="#CBD5E1">gravitational simulations, optical phenomena, space</text>
+        <text x="20" y="124" class="font-sans" font-size="11" fill="#CBD5E1">storytelling, and philosophical writing.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(20, 158)">
+          <rect x="0" y="0" width="90" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="45" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Canvas 2D/3D</text>
+
+          <rect x="98" y="0" width="105" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="150" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Physics Engines</text>
+
+          <rect x="211" y="0" width="100" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="261" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Interactive Art</text>
+        </g>
+      </g>
+
+      <!-- CARD 4: HUMAN LIKE AI -->
+      <g transform="translate(390, 235)">
+        <rect x="0" y="0" width="360" height="210" rx="20" fill="#151518" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <rect x="240" y="0" width="120" height="28" rx="8" fill="#FFFFFF" stroke="#000000" stroke-width="2" />
+        <text x="300" y="18" class="font-mono" font-size="9" fill="#000000" text-anchor="middle">AI BEHAVIOR</text>
+
+        <!-- Icon Badge -->
+        <rect x="20" y="20" width="44" height="44" rx="12" fill="#FFFFFF" stroke="#000000" stroke-width="2" />
+        <text x="42" y="50" class="font-poster" font-size="22" fill="#000000" text-anchor="middle">🤖</text>
+
+        <text x="76" y="40" class="font-sans" font-weight="900" font-size="20" fill="#FFFFFF">HUMAN LIKE AI</text>
+        <text x="76" y="56" class="font-mono" font-size="10" fill="#FFFFFF">// Timing &amp; Chat Simulation</text>
+
+        <text x="20" y="92" class="font-sans" font-size="11" fill="#CBD5E1">Discord bot framework engineered to model natural</text>
+        <text x="20" y="108" class="font-sans" font-size="11" fill="#CBD5E1">human messaging behavior, response delay, contextual</text>
+        <text x="20" y="124" class="font-sans" font-size="11" fill="#CBD5E1">memory, and human typing cadences.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(20, 158)">
+          <rect x="0" y="0" width="145" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="72" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Conversational Memory</text>
+
+          <rect x="153" y="0" width="70" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="188" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Python</text>
+        </g>
+      </g>
+
+      <!-- CARD 5: SYL-TRACK -->
+      <g transform="translate(0, 470)">
+        <rect x="0" y="0" width="360" height="210" rx="20" fill="#151518" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <rect x="240" y="0" width="120" height="28" rx="8" fill="#FFE500" stroke="#000000" stroke-width="2" />
+        <text x="300" y="18" class="font-mono" font-size="9" fill="#000000" text-anchor="middle">STUDENT TOOL</text>
+
+        <!-- Icon Badge -->
+        <rect x="20" y="20" width="44" height="44" rx="12" fill="#FFE500" stroke="#000000" stroke-width="2" />
+        <text x="42" y="50" class="font-poster" font-size="22" fill="#000000" text-anchor="middle">📊</text>
+
+        <text x="76" y="40" class="font-sans" font-weight="900" font-size="22" fill="#FFFFFF">SYL-TRACK</text>
+        <text x="76" y="56" class="font-mono" font-size="10" fill="#FFE500">// Syllabus &amp; Study Analytics</text>
+
+        <text x="20" y="92" class="font-sans" font-size="11" fill="#CBD5E1">Student-first study tracking system for competitive</text>
+        <text x="20" y="108" class="font-sans" font-size="11" fill="#CBD5E1">exams. Analytics for topic confidence, weak area</text>
+        <text x="20" y="124" class="font-sans" font-size="11" fill="#CBD5E1">identification, and study schedules.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(20, 158)">
+          <rect x="0" y="0" width="110" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="55" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">JEE Syllabus</text>
+
+          <rect x="118" y="0" width="90" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="163" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Analytics</text>
+        </g>
+      </g>
+
+      <!-- CARD 6: I AM NOT SORRY -->
+      <g transform="translate(390, 470)">
+        <rect x="0" y="0" width="360" height="210" rx="20" fill="#151518" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow)" />
+        <rect x="230" y="0" width="130" height="28" rx="8" fill="#FF0B23" stroke="#000000" stroke-width="2" />
+        <text x="295" y="18" class="font-mono" font-size="9" fill="#FFFFFF" text-anchor="middle">CREATIVE TECH</text>
+
+        <!-- Icon Badge -->
+        <rect x="20" y="20" width="44" height="44" rx="12" fill="#FF0B23" stroke="#000000" stroke-width="2" />
+        <text x="42" y="52" class="font-poster" font-size="28" fill="#FFFFFF" text-anchor="middle">✦</text>
+
+        <text x="76" y="40" class="font-sans" font-weight="900" font-size="20" fill="#FFFFFF">I AM NOT SORRY</text>
+        <text x="76" y="56" class="font-mono" font-size="10" fill="#FF0B23">// Visual Storytelling Web</text>
+
+        <text x="20" y="92" class="font-sans" font-size="11" fill="#CBD5E1">Experimental interactive website combining social</text>
+        <text x="20" y="108" class="font-sans" font-size="11" fill="#CBD5E1">commentary, physics-inspired UI animations,</text>
+        <text x="20" y="124" class="font-sans" font-size="11" fill="#CBD5E1">typography experiments, and storytelling.</text>
+
+        <!-- Tech Tags -->
+        <g transform="translate(20, 158)">
+          <rect x="0" y="0" width="105" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="52" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">Visual Design</text>
+
+          <rect x="113" y="0" width="80" height="22" rx="6" fill="#0A0A0C" stroke="#334155" stroke-width="1" />
+          <text x="153" y="15" class="font-mono" font-size="9" fill="#94A3B8" text-anchor="middle">CSS Art</text>
+        </g>
+      </g>
+
+    </g>
+  </g>
+
+  <!-- STREAMING_CHUNK:Designing footer connecting banner... -->
+  <!-- FOOTER CONNECT BANNER -->
+  <g transform="translate(25, 2030)">
+    <rect x="0" y="0" width="750" height="140" rx="24" fill="#FF0B23" stroke="#000000" stroke-width="4" filter="url(#brutal-shadow-lg)" />
+    <rect x="0" y="0" width="750" height="140" rx="24" fill="url(#dots-pattern)" opacity="0.25" />
+
+    <g transform="translate(24, 24)">
+      <rect x="0" y="0" width="180" height="24" rx="8" fill="#000000" />
+      <text x="90" y="16" class="font-mono" font-size="10" fill="#FFE500" text-anchor="middle">LET'S CONNECT &amp; BUILD</text>
+
+      <text x="0" y="58" class="font-poster text-stroke-black" font-size="34" fill="#FFFFFF">NAVNEET // @FROSTYFOXIE</text>
+      <text x="0" y="80" class="font-sans" font-weight="700" font-size="13" fill="#FFFFFF">Open to collaborating on Multi-Agent AI, EdTech infra, or creative web systems.</text>
+
+      <g transform="translate(490, 12)">
+        <rect x="0" y="0" width="210" height="40" rx="12" fill="#FFFFFF" stroke="#000000" stroke-width="3" filter="url(#brutal-shadow-sm)" />
+        <text x="105" y="25" class="font-sans" font-weight="900" font-size="13" fill="#000000" text-anchor="middle">GITHUB / FROSTYFOXIE</text>
+      </g>
+    </g>
+
+    <line x1="24" y1="108" x2="726" y2="108" stroke="#000000" stroke-width="2" />
+    <text x="35" y="125" class="font-mono" font-size="9" fill="#FFFFFF">© 2026 NAVNEET (FROSTYFOXIE) • ALL RIGHTS RESERVED</text>
+    <text x="715" y="125" class="font-mono" font-size="9" fill="#FFE500" text-anchor="end">INDIA 🇮🇳</text>
+  </g>
+
+</svg>
