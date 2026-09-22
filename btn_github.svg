@@ -1,0 +1,60 @@
+<svg width="254" height="76" viewBox="0 0 254 76" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <filter id="ambientBlur" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="30" />
+  </filter>
+  <filter id="glassShadow" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.04" />
+  </filter>
+  <filter id="buttonShadow" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.04" />
+  </filter>
+</defs>
+
+<style>
+  .glass-card {
+    fill: rgba(255, 255, 255, 0.75);
+    stroke: rgba(255, 255, 255, 0.9);
+    stroke-width: 1.2;
+    filter: url(#glassShadow);
+  }
+  .footer-btn {
+    fill: #ffffff;
+    stroke: #e2e8f0;
+    stroke-width: 1;
+    filter: url(#buttonShadow);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  svg:hover .footer-btn {
+    fill: #f8fafc;
+    stroke: #cbd5e1;
+  }
+  .btn-text {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    fill: #1e293b;
+  }
+</style>
+
+<!-- 1. Seamless Canvas Base Background (Matches Template) -->
+<rect width="100%" height="100%" fill="#f8fafc" />
+
+<!-- 2. Ambient Glow (Matches Template) -->
+<g filter="url(#ambientBlur)">
+  <circle cx="127" cy="38" r="50" fill="#e0e7ff" opacity="0.6" />
+</g>
+
+<!-- 3. Frosted Glass Container -->
+<rect x="6" y="6" width="242" height="64" rx="18" class="glass-card" />
+
+<!-- 4. Inner White Button Pill -->
+<rect x="14" y="16" width="226" height="44" rx="14" class="footer-btn" />
+
+<!-- GitHub Icon -->
+<g transform="translate(24, 27)">
+  <path fill="#0f172a" d="M11 0C4.925 0 0 4.925 0 11c0 4.86 3.152 8.98 7.524 10.435.55.1.75-.24.75-.53 0-.26-.01-.95-.015-1.87-3.06.66-3.706-1.475-3.706-1.475-.5-1.27-1.22-1.61-1.22-1.61-1-.68.075-.67.075-.67 1.105.08 1.685 1.135 1.685 1.135.98 1.68 2.57 1.195 3.2.915.1-.71.385-1.195.7-1.47-2.44-.28-5.005-1.22-5.005-5.43 0-1.2.43-2.18 1.135-2.95-.115-.28-.49-1.4.11-2.91 0 0 .925-.295 3.03 1.13.88-.245 1.82-.365 2.755-.37.935.005 1.875.125 2.755.37 2.105-1.425 3.03-1.13 3.03-1.13.6 1.51.225 2.63.11 2.91.705.77 1.135 1.75 1.135 2.95 0 4.22-2.57 5.145-5.015 5.42.395.34.75 1.01.75 2.04 0 1.47-.015 2.66-.015 3.02 0 .29.2.64.755.53A11.006 11.006 0 0022 11c0-6.075-4.925-11-11-11z" transform="scale(0.98)"/>
+</g>
+<text x="52" y="42" class="btn-text">github.com/Navneet-2008</text>
+</svg>
