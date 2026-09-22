@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="./readme.svg" alt="Navneet // frostyfoxie Portfolio Banner" width="100%">
-</p>
+![Profile Banner](./profile.svg)
 
 **Hi, I am Navneet !**
 
