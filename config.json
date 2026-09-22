@@ -45,6 +45,12 @@
     "gemini",
     "python",
     "typescript",
-    "firebase"
+    "firebase",
+    "chatgpt",
+    "sql",
+    "vite",
+    "discord",
+    "java",
+    "html"
   ]
 }
