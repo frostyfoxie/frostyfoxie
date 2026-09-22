@@ -1,21 +1,22 @@
-<svg width="100%" height="100%" viewBox="0 0 860 1085" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="100%" height="100%" viewBox="0 0 860 1085" overflow="visible" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
-  <!-- Ambient Blur Filter -->
-  <filter id="ambientBlur" x="-30%" y="-30%" width="160%" height="160%">
+  <!-- Ambient Blur Filter (Expanded bounds to prevent any clipping) -->
+  <filter id="ambientBlur" x="-200%" y="-200%" width="500%" height="500%">
     <feGaussianBlur stdDeviation="75" />
   </filter>
 
-  <filter id="glassShadow" x="-10%" y="-10%" width="120%" height="125%">
+  <!-- Expanded Shadow Filters to permanently fix sharp cutoff lines -->
+  <filter id="glassShadow" x="-200%" y="-200%" width="500%" height="500%">
     <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.04" />
   </filter>
 
-  <!-- Clean Neutral Badge Shadow (Zero Red Tint) -->
-  <filter id="neutralShadow" x="-10%" y="-10%" width="120%" height="125%">
-    <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0f172a" flood-opacity="0.08" />
+  <!-- Clean Neutral Badge Shadow (Infinitely wide bounds) -->
+  <filter id="neutralShadow" x="-200%" y="-200%" width="500%" height="500%">
+    <feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#0f172a" flood-opacity="0.1" />
   </filter>
 
   <!-- Button Drop Shadow -->
-  <filter id="buttonShadow" x="-10%" y="-10%" width="120%" height="130%">
+  <filter id="buttonShadow" x="-200%" y="-200%" width="500%" height="500%">
     <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.04" />
   </filter>
 
@@ -69,7 +70,7 @@
   .text-slate-700 { fill: #334155; }
   .text-slate-500 { fill: #64748b; }
 
-  /* True Harmonic Pendulum Sway */
+  /* Smooth Harmonic Pendulum Sway */
   @keyframes lanyardSway {
     0%   { transform: rotate(-2.2deg); }
     50%  { transform: rotate(2.2deg); }
@@ -82,12 +83,12 @@
 
   /* Floating Ambient Glow Animations */
   @keyframes floatGlow1 {
-    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.35; }
-    50%      { transform: translate(30px, 25px) scale(1.15); opacity: 0.55; }
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.45; }
+    50%      { transform: translate(30px, 25px) scale(1.15); opacity: 0.65; }
   }
   @keyframes floatGlow2 {
-    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.45; }
-    50%      { transform: translate(-30px, -20px) scale(1.1); opacity: 0.65; }
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
+    50%      { transform: translate(-30px, -20px) scale(1.1); opacity: 0.75; }
   }
   .glow-orb-1 { animation: floatGlow1 11s ease-in-out infinite; }
   .glow-orb-2 { animation: floatGlow2 13s ease-in-out infinite; }
@@ -106,11 +107,11 @@
 <!-- Base Background -->
 <rect width="100%" height="100%" fill="#f8fafc" />
 
-<!-- Soft Ambient Glow Orbs -->
+<!-- Soft Ambient Glow Orbs (Replaced red orb with clean indigo/blue) -->
 <g filter="url(#ambientBlur)">
-  <circle cx="720" cy="180" r="160" fill="#fecaca" class="glow-orb-1" />
-  <circle cx="160" cy="560" r="170" fill="#dbeafe" class="glow-orb-2" />
-  <circle cx="750" cy="850" r="160" fill="#e0e7ff" class="glow-orb-1" />
+  <circle cx="680" cy="200" r="140" fill="#e0e7ff" class="glow-orb-1" />
+  <circle cx="160" cy="560" r="160" fill="#dbeafe" class="glow-orb-2" />
+  <circle cx="700" cy="850" r="150" fill="#e0e7ff" class="glow-orb-1" />
 </g>
 
 <!-- ================================================================= -->
@@ -169,14 +170,13 @@
 </g>
 
 <!-- ================================================================= -->
-<!-- 2. FULL WIDTH CONTRIBUTION GRID WITH ARCADE GROWING SNAKE         -->
+<!-- 2. FULL WIDTH CONTRIBUTION GRID WITH ARCADE SNAKE                 -->
 <!-- ================================================================= -->
 <g transform="translate(45, 475)">
   <rect width="770" height="152" rx="20" class="glass-card"/>
   
   <g transform="translate(15.5, 18)">
     <text x="0" y="10" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.5">CONTRIBUTION GRAPH &amp; COMMIT ACTIVITY (LAST 365 DAYS)</text>
-    
     <g transform="translate(0, 22)">
       {{CONTRIBUTION_SNAKE_SECTION}}
     </g>
