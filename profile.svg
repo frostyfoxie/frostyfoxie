@@ -69,7 +69,7 @@
   .text-slate-700 { fill: #334155; }
   .text-slate-500 { fill: #64748b; }
 
-  /* 1. PERFECT HARMONIC PENDULUM SWAY (No Stuttering) */
+  /* Smooth Harmonic Pendulum Sway */
   @keyframes lanyardSway {
     0%   { transform: rotate(-2.2deg); }
     50%  { transform: rotate(2.2deg); }
@@ -77,10 +77,10 @@
   }
   .swinging-assembly {
     transform-origin: 135px -15px;
-    animation: lanyardSway 5s ease-in-out infinite;
+    animation: lanyardSway 4.8s ease-in-out infinite;
   }
 
-  /* 2. Floating Ambient Glow Animations */
+  /* Floating Ambient Glow Animations */
   @keyframes floatGlow1 {
     0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.35; }
     50%      { transform: translate(30px, 25px) scale(1.15); opacity: 0.55; }
@@ -136,16 +136,14 @@
   </text>
 </g>
 
-<!-- SWINGING ID BADGE -->
+<!-- SWINGING ID BADGE (Physics Fixed) -->
 <g transform="translate(560, 15)">
   <g class="swinging-assembly">
-    <!-- 1. BACK RIBBON STRAP -->
     <g id="backStrap">
       <path d="M 121 141 C 144 95 168 40 183 -15 L 209 -15 C 192 40 168 95 149 141 Z" fill="url(#ribbonBackGrad)"/>
       <path d="M 135 141 C 156 95 180 40 196 -15" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 3" opacity="0.25" fill="none"/>
     </g>
 
-    <!-- 2. ID BADGE CONTAINER -->
     <g filter="url(#neutralShadow)">
       <rect x="15" y="125" width="240" height="315" rx="22" fill="url(#badgeGrad)" stroke="#f87171" stroke-width="1.5"/>
       <rect x="108" y="136" width="54" height="11" rx="5.5" fill="#0f172a" opacity="0.8"/>
@@ -172,7 +170,6 @@
       </a>
     </g>
 
-    <!-- 3. FRONT RIBBON STRAP -->
     <g id="frontStrap">
       <path d="M 119 125 L 121 141 L 149 141 L 146 125 Z" fill="#000000" opacity="0.25"/>
       <path d="M 61 -15 C 78 40 100 95 121 141 L 149 141 C 124 95 100 40 87 -15 Z" fill="url(#ribbonFrontGrad)"/>
@@ -183,13 +180,13 @@
 </g>
 
 <!-- ================================================================= -->
-<!-- 2. FULL WIDTH CONTRIBUTION GRID WITH ARCADE EATING SNAKE          -->
+<!-- 2. FULL WIDTH CONTRIBUTION GRID WITH ARCADE GROWING SNAKE         -->
 <!-- ================================================================= -->
 <g transform="translate(45, 475)">
   <rect width="770" height="152" rx="20" class="glass-card"/>
   
   <g transform="translate(15.5, 18)">
-    <text x="0" y="10" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.5">CONTRIBUTION GRAPH &amp; COMMIT ACTIVITY</text>
+    <text x="0" y="10" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.5">CONTRIBUTION GRAPH &amp; COMMIT ACTIVITY ({{CURRENT_YEAR}})</text>
     
     <g transform="translate(0, 22)">
       
