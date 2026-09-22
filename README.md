@@ -1,5 +1,3 @@
-![Animated profile](./assets/animated-profile.gif)
-
 ## Hi, I am Navneet!
 
 **Student · Software Builder · AI & Emerging Technology**
