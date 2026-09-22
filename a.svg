@@ -1,335 +1,405 @@
-<svg width="1400" height="6200" viewBox="0 0 1400 6200">
-    <!-- Gradients -->
-    <linearGradient id="lanyardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#2563eb" />
-        <stop offset="100%" stop-color="#1d4ed8" />
-    </linearGradient>
-    <linearGradient id="redBadgeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stop-color="#ef4444" />
-        <stop offset="100%" stop-color="#dc2626" />
-    </linearGradient>
-    <linearGradient id="pythonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#2563eb" />
-        <stop offset="100%" stop-color="#f59e0b" />
-    </linearGradient>
-</defs>
+<svg>
+.bg-main { fill: #e8ecef; }
+  .heading-font { font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif; }
+  .body-font { font-family: 'Plus Jakarta Sans', sans-serif; }
+  .mono-font { font-family: 'JetBrains Mono', monospace; }
 
-<!-- STREAMING_CHUNK:Rendering background poster frame... -->
-<!-- Main Poster Frame -->
-<rect x="50" y="50" width="900" height="1320" rx="36" class="card-bg" stroke="#e2e8f0" stroke-width="1" />
+  .poster-bg { fill: #fbfbfb; stroke: rgba(226, 232, 240, 0.8); stroke-width: 1.5; }
+  .card-shadow { filter: drop-shadow(0px 15px 25px rgba(0, 0, 0, 0.07)); }
+  .id-card-shadow { filter: drop-shadow(0px 15px 20px rgba(220, 38, 38, 0.25)); }
+  
+  .pill-bg { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1; }
+  .pill-text { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 11px; fill: #1e293b; }
 
-<!-- ==================== TOP HEADER SECTION ==================== -->
-<!-- STREAMING_CHUNK:Rendering header and description... -->
-<g transform="translate(90, 95)">
-    <!-- Behind the Visuals / Behind the Code Title -->
-    <text x="0" y="32" class="heading" font-size="30">Behind the Code</text>
+  .keycap-bg { rx: 10px; ry: 10px; filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.12)); }
+  
+  .text-slate-900 { fill: #0f172a; }
+  .text-slate-800 { fill: #1e293b; }
+  .text-slate-700 { fill: #334155; }
+  .text-slate-600 { fill: #475569; }
+  .text-slate-500 { fill: #64748b; }
+  .text-red-100 { fill: #fee2e2; }
+</style>
+
+<!-- Dot Pattern -->
+<pattern id="dotGrid" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+  <circle cx="2" cy="2" r="1.5" fill="#cbd5e1" />
+</pattern>
+
+<!-- Lanyard Gradient -->
+<linearGradient id="lanyardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#2563eb" />
+  <stop offset="100%" stop-color="#1d4ed8" />
+</linearGradient>
+
+<!-- ID Card Gradient -->
+<linearGradient id="badgeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+  <stop offset="0%" stop-color="#ef4444" />
+  <stop offset="100%" stop-color="#dc2626" />
+</linearGradient>
+
+<!-- Python Gradient -->
+<linearGradient id="pythonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+  <stop offset="0%" stop-color="#2563eb" />
+  <stop offset="100%" stop-color="#f59e0b" />
+</linearGradient>
+
+<!-- Image Clip Path for ID Photo -->
+<clipPath id="avatarClip">
+  <rect x="0" y="0" width="200" height="200" rx="16" ry="16" />
+</clipPath>
+
+
+<!-- STREAMING_CHUNK: Rendering Top Header Section & Behind the Code... -->
+<!-- TOP HEADER: Left Side - Behind the Code -->
+<g transform="translate(45, 50)">
+  <text x="0" y="28" class="heading-font text-slate-900" font-size="28" font-weight="900" letter-spacing="-0.5">Behind the Code</text>
+  
+  <text x="0" y="62" class="body-font text-slate-700" font-size="13" font-weight="500" width="460">
+    <tspan x="0" dy="0">I'm a passionate Web Developer specializing in building high-performance full-stack</tspan>
+    <tspan x="0" dy="20">web applications and intuitive digital experiences. Through diverse open-source and</tspan>
+    <tspan x="0" dy="20">client projects, I strive to write clean, scalable code and continuously adopt modern</tspan>
+    <tspan x="0" dy="20">web technologies.</tspan>
     
-    <!-- Description paragraphs -->
-    <text x="0" y="75" class="body-text" width="480">
-        <tspan x="0" dy="0">I'm a passionate Web Developer specializing in building high-performance</tspan>
-        <tspan x="0" dy="20">full-stack web applications and intuitive digital experiences. Through diverse</tspan>
-        <tspan x="0" dy="20">open-source and client projects, I strive to write clean, scalable code and</tspan>
-        <tspan x="0" dy="20">continuously adopt modern web technologies.</tspan>
-        <tspan x="0" dy="30">My strengths lie in rapid prototyping, clean architecture, responsive design,</tspan>
-        <tspan x="0" dy="20">and solving complex technical challenges efficiently.</tspan>
-    </text>
+    <tspan x="0" dy="35">My strengths lie in rapid prototyping, clean architecture, responsive design, and</tspan>
+    <tspan x="0" dy="20">solving complex technical challenges efficiently.</tspan>
+  </text>
 </g>
 
-<!-- ==================== ID CARD & LANYARD (RIGHT SIDE) ==================== -->
-<!-- STREAMING_CHUNK:Rendering ID card and lanyard graphic... -->
-<g transform="translate(620, 45)">
-    <!-- Lanyard Ribbon Straps -->
-    <path d="M 50 0 C 70 60 120 100 145 132" stroke="url(#lanyardGrad)" stroke-width="18" fill="none" stroke-linecap="round"/>
-    <path d="M 50 0 C 70 60 120 100 145 132" stroke="#ffffff" stroke-width="1.2" stroke-dasharray="4 4" fill="none" opacity="0.45"/>
+<!-- STREAMING_CHUNK: Rendering Lanyard Graphic and Tilted ID Badge... -->
+<!-- RIGHT SIDE: Lanyard & Red ID Badge Card -->
+<g transform="translate(540, 10)">
+  
+  <!-- LANYARD STRAPS & BUCKLE -->
+  <g id="lanyardRibbon">
+    <!-- Left Strap -->
+    <path d="M 60 -10 C 75 35 100 80 138 100" stroke="url(#lanyardGrad)" stroke-width="18" stroke-linecap="round" fill="none"/>
+    <path d="M 60 -10 C 75 35 100 80 138 100" stroke="#ffffff" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.45" fill="none"/>
+    <text x="80" y="28" fill="white" font-size="8" font-weight="800" class="heading-font" transform="rotate(48 80 28)">PROFILE •</text>
+
+    <!-- Right Strap -->
+    <path d="M 220 -10 C 205 35 180 80 142 100" stroke="url(#lanyardGrad)" stroke-width="18" stroke-linecap="round" fill="none"/>
+    <path d="M 220 -10 C 205 35 180 80 142 100" stroke="#ffffff" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.45" fill="none"/>
+    <text x="182" y="28" fill="white" font-size="8" font-weight="800" class="heading-font" transform="rotate(-48 182 28)">PROFILE •</text>
+
+    <!-- Buckle -->
+    <rect x="131" y="94" width="18" height="16" rx="3" fill="#cbd5e1" stroke="#475569" stroke-width="1.2"/>
+    <rect x="135" y="98" width="10" height="4" fill="#1e293b"/>
+    <path d="M 140 110 L 140 124 A 3 3 0 0 0 143 124 L 143 110 Z" fill="#94a3b8" stroke="#334155" stroke-width="1"/>
+  </g>
+
+  <!-- Tilted ID Badge (-3 deg) -->
+  <g transform="rotate(-3 140 240)" class="id-card-shadow">
     
-    <path d="M 230 0 C 210 60 160 100 135 132" stroke="url(#lanyardGrad)" stroke-width="18" fill="none" stroke-linecap="round"/>
-    <path d="M 230 0 C 210 60 160 100 135 132" stroke="#ffffff" stroke-width="1.2" stroke-dasharray="4 4" fill="none" opacity="0.45"/>
+    <!-- Red Card Outer Container -->
+    <rect x="15" y="125" width="250" height="320" rx="24" fill="url(#badgeGrad)" stroke="#f87171" stroke-width="2"/>
+    
+    <!-- Top Slot Cutout -->
+    <rect x="120" y="137" width="40" height="8" rx="4" fill="#0f172a" opacity="0.6" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1"/>
 
-    <!-- Metal Buckle Mechanism -->
-    <rect x="131" y="126" width="18" height="16" rx="3" fill="#cbd5e1" stroke="#475569" stroke-width="1.2"/>
-    <rect x="135" y="130" width="10" height="4" fill="#1e293b"/>
-    <path d="M 140 142 L 140 156 A 3 3 0 0 0 143 156 L 143 142 Z" fill="#94a3b8" stroke="#334155" stroke-width="1"/>
+    <!-- Header emblem -->
+    <circle cx="36" cy="162" r="12" fill="#ffffff" fill-opacity="0.2"/>
+    <!-- Code icon inside circle -->
+    <path d="M 32 162 L 35 159 M 32 162 L 35 165 M 40 162 L 37 159 M 40 162 L 37 165" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="250" y="165" fill="#fee2e2" font-size="9" font-weight="800" text-anchor="end" class="heading-font" letter-spacing="1">WEB DEV</text>
 
-    <!-- ID Badge Card Container (Rotated slightly) -->
-    <g transform="translate(15, 150) rotate(-3)">
-        <rect x="0" y="0" width="240" height="310" rx="24" fill="url(#redBadgeGrad)" stroke="#fca5a5" stroke-width="2" filter="drop-shadow(0 15px 30px rgba(220,38,38,0.3))"/>
-        
-        <!-- Top Slot Cutout -->
-        <rect x="100" y="10" width="40" height="8" rx="4" fill="#0f172a" opacity="0.6"/>
-
-        <!-- Badge Header -->
-        <g transform="translate(18, 28)">
-            <circle cx="12" cy="12" r="12" fill="#ffffff" fill-opacity="0.2"/>
-            <text x="12" y="16" font-size="11" fill="#ffffff" text-anchor="middle">&#128187;</text>
-            <text x="210" y="15" font-size="9" font-weight="900" fill="#fee2e2" letter-spacing="1.5" text-anchor="end">WEB DEV</text>
-        </g>
-
-        <!-- ID Photo Container with Image Path -->
-        <g transform="translate(18, 56)">
-            <rect x="0" y="0" width="204" height="190" rx="16" fill="#ffe4e6" stroke="#ffffff" stroke-width="3"/>
-            <!-- Replace 'path/to/your-image.jpg' with your actual image path -->
-            <image href="pfp.jpg" x="0" y="0" width="204" height="190" preserveAspectRatio="xMidYMid slice" clip-path="inset(0 round 16px)" />
-        </g>
-
-        <!-- Badge Footer Details -->
-        <g transform="translate(18, 264)">
-            <text x="0" y="0" class="heading" font-size="14" fill="#ffffff">ALEX MORGAN</text>
-            <text x="0" y="15" class="mono" font-size="9" font-weight="700" fill="#fee2e2" letter-spacing="1">ID: DEV-2025-SF</text>
-            
-            <!-- QR Code Box -->
-            <g transform="translate(168, -16)" fill="#0f172a">
-                <rect x="0" y="0" width="36" height="36" rx="6" fill="#ffffff"/>
-                <rect x="4" y="4" width="12" height="12" fill="#0f172a"/>
-                <rect x="20" y="4" width="12" height="12" fill="#0f172a"/>
-                <rect x="4" y="20" width="12" height="12" fill="#0f172a"/>
-                <rect x="20" y="20" width="4" height="4" fill="#0f172a"/>
-                <rect x="28" y="20" width="4" height="12" fill="#0f172a"/>
-            </g>
-        </g>
+    <!-- ID PROFILE IMAGE CONTAINER -->
+    <g transform="translate(40, 182)">
+      <rect x="-3" y="-3" width="206" height="206" rx="19" fill="#ffffff"/>
+      <g clip-path="url(#avatarClip)">
+        <!-- REPLACE 'YOUR_IMAGE_PATH_HERE' WITH YOUR IMAGE PATH OR URL BELOW -->
+        <image href="YOUR_IMAGE_PATH_HERE" x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" 
+               onerror="this.setAttribute('href','https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=600&amp;q=80')"/>
+      </g>
     </g>
+
+    <!-- Name & ID Details -->
+    <text x="40" y="410" fill="#ffffff" font-size="16" font-weight="900" class="heading-font" letter-spacing="-0.3">ALEX MORGAN</text>
+    <text x="40" y="426" fill="#fee2e2" font-size="9" font-weight="700" class="mono-font" letter-spacing="0.5">ID: DEV-2025-SF</text>
+
+    <!-- QR Code Graphic -->
+    <g transform="translate(222, 398)">
+      <rect x="-4" y="-4" width="32" height="32" rx="6" fill="#ffffff"/>
+      <path d="M0 0h10v10H0V0zm2 2v6h6V2H2zm11-2h10v10H13V0zm2 2v6h6V2h-6zM0 13h10v10H0V13zm2 2v6h6v-6H2zm16-2h2v2h-2v-2zm-5 0h2v2h-2v-2zm2 5h2v2h-2v-2zm2-2h2v2h-2v-2zm2 2h2v2h-2v-2zm-5 2h2v2h-2v-2zm2 0h5v2h-5v-2z" fill="#0f172a"/>
+    </g>
+
+  </g>
 </g>
 
 <!-- Horizontal Divider Line -->
-<line x1="90" y1="410" x2="910" y2="410" stroke="#cbd5e1" stroke-width="1" opacity="0.8"/>
+<line x1="45" y1="260" x2="785" y2="260" stroke="#e2e8f0" stroke-width="1.5"/>
 
-<!-- ==================== LEFT & RIGHT CONTENT COLUMNS ==================== -->
-<!-- STREAMING_CHUNK:Rendering education, skills, and software stack... -->
-
-<!-- LEFT COLUMN (Education, Skills, Software, GitHub Stats) -->
-<g transform="translate(90, 445)">
+<!-- STREAMING_CHUNK: Rendering Left Column (Education, Skills, Tech Stack, GitHub Stats)... -->
+<!-- LEFT COLUMN (Education, Skills, Tech Stack, GitHub Stats) -->
+<g transform="translate(45, 290)">
+  
+  <!-- EDUCATION SECTION -->
+  <g transform="translate(0, 0)">
+    <text x="0" y="20" class="heading-font text-slate-900" font-size="20" font-weight="900">Education</text>
     
-    <!-- Education Section -->
-    <text x="0" y="20" class="heading" font-size="22">Education</text>
-    <g transform="translate(0, 40)">
-        <!-- Vertical line -->
-        <line x1="4" y1="0" x2="4" y2="105" stroke="#cbd5e1" stroke-width="2"/>
-        
-        <!-- Item 1 -->
-        <g transform="translate(20, 5)">
-            <circle cx="-16" cy="4" r="4" fill="#64748b"/>
-            <text x="0" y="0" class="heading" font-size="12">2021</text>
-            <text x="65" y="0" class="subheading" font-size="12">B.S. COMPUTER SCIENCE</text>
-            <text x="65" y="16" class="body-text" font-size="11" fill="#64748b">University of Technology • Honors Graduate</text>
-        </g>
+    <line x1="8" y1="36" x2="8" y2="105" stroke="#cbd5e1" stroke-width="1.5"/>
 
-        <!-- Item 2 -->
-        <g transform="translate(20, 65)">
-            <circle cx="-16" cy="4" r="4" fill="#64748b"/>
-            <text x="0" y="0" class="heading" font-size="12">2023</text>
-            <text x="65" y="0" class="subheading" font-size="12">FULL-STACK CERTIFICATION</text>
-            <text x="65" y="16" class="body-text" font-size="11" fill="#64748b">Web Architecture &amp; Distributed Systems</text>
-        </g>
+    <!-- Timeline item 1 -->
+    <circle cx="8" cy="46" r="3.5" fill="#94a3b8"/>
+    <text x="24" y="50" class="body-font text-slate-900" font-size="12" font-weight="900">2021</text>
+    <text x="70" y="50" class="body-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.3">B.S. COMPUTER SCIENCE</text>
+    <text x="70" y="65" class="body-font text-slate-600" font-size="11" font-weight="500">University of Technology • Honors Graduate</text>
+
+    <!-- Timeline item 2 -->
+    <circle cx="8" cy="88" r="3.5" fill="#94a3b8"/>
+    <text x="24" y="92" class="body-font text-slate-900" font-size="12" font-weight="900">2023</text>
+    <text x="70" y="92" class="body-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.3">FULL-STACK ADVANCED CERTIFICATION</text>
+    <text x="70" y="107" class="body-font text-slate-600" font-size="11" font-weight="500">Web Architecture &amp; Distributed Systems</text>
+  </g>
+
+  <!-- SKILLS SECTION -->
+  <g transform="translate(0, 140)">
+    <text x="0" y="20" class="heading-font text-slate-900" font-size="20" font-weight="900">Skills</text>
+    
+    <!-- Skill Pills Row 1 -->
+    <g transform="translate(0, 32)">
+      <!-- Pill 1 -->
+      <rect x="0" y="0" width="148" height="28" rx="14" class="pill-bg"/>
+      <text x="74" y="18" text-anchor="middle" class="pill-text">Frontend Development</text>
+      
+      <!-- Pill 2 -->
+      <rect x="156" y="0" width="112" height="28" rx="14" class="pill-bg"/>
+      <text x="212" y="18" text-anchor="middle" class="pill-text">Backend &amp; APIs</text>
+      
+      <!-- Pill 3 -->
+      <rect x="276" y="0" width="112" height="28" rx="14" class="pill-bg"/>
+      <text x="332" y="18" text-anchor="middle" class="pill-text">Database Design</text>
     </g>
 
-    <!-- Skills Section -->
-    <g transform="translate(0, 185)">
-        <text x="0" y="20" class="heading" font-size="22">Skills</text>
-        <g transform="translate(0, 35)">
-            <rect x="0" y="0" width="150" height="30" class="skill-pill"/>
-            <text x="75" y="19" class="skill-text" text-anchor="middle">Frontend Development</text>
-
-            <rect x="160" y="0" width="130" height="30" class="skill-pill"/>
-            <text x="225" y="19" class="skill-text" text-anchor="middle">Backend &amp; APIs</text>
-
-            <rect x="0" y="40" width="130" height="30" class="skill-pill"/>
-            <text x="65" y="59" class="skill-text" text-anchor="middle">Database Design</text>
-
-            <rect x="140" y="40" width="135" height="30" class="skill-pill"/>
-            <text x="207.5" y="59" class="skill-text" text-anchor="middle">UI/UX &amp; Tailwind</text>
-
-            <rect x="0" y="80" width="155" height="30" class="skill-pill"/>
-            <text x="77.5" y="99" class="skill-text" text-anchor="middle">Performance Tuning</text>
-
-            <rect x="165" y="80" width="110" height="30" class="skill-pill"/>
-            <text x="220" y="99" class="skill-text" text-anchor="middle">Git &amp; DevOps</text>
-        </g>
+    <!-- Skill Pills Row 2 -->
+    <g transform="translate(0, 68)">
+      <!-- Pill 4 -->
+      <rect x="0" y="0" width="120" height="28" rx="14" class="pill-bg"/>
+      <text x="60" y="18" text-anchor="middle" class="pill-text">UI/UX &amp; Tailwind</text>
+      
+      <!-- Pill 5 -->
+      <rect x="128" y="0" width="140" height="28" rx="14" class="pill-bg"/>
+      <text x="198" y="18" text-anchor="middle" class="pill-text">Performance Tuning</text>
+      
+      <!-- Pill 6 -->
+      <rect x="276" y="0" width="102" height="28" rx="14" class="pill-bg"/>
+      <text x="327" y="18" text-anchor="middle" class="pill-text">Git &amp; DevOps</text>
     </g>
+  </g>
 
-    <!-- Software / Tech Stack Section -->
-    <g transform="translate(0, 345)">
-        <text x="0" y="20" class="heading" font-size="22">Tech Stack</text>
-        <g transform="translate(0, 38)">
-            <!-- Vercel -->
-            <rect x="0" y="0" width="42" height="42" rx="10" fill="#000000" class="keycap"/>
-            <polygon points="21,10 33,30 9,30" fill="#ffffff"/>
+  <!-- TECH STACK SECTION -->
+  <g transform="translate(0, 260)">
+    <text x="0" y="20" class="heading-font text-slate-900" font-size="20" font-weight="900">Tech Stack</text>
 
-            <!-- Supabase -->
-            <rect x="52" y="0" width="42" height="42" rx="10" fill="#0f172a" stroke="#334155" class="keycap"/>
-            <path d="M 73 10 L 61 24 L 70 24 L 67 34 L 81 20 L 72 20 Z" fill="#34d399"/>
+    <!-- Keycaps Row -->
+    <g transform="translate(0, 35)">
+      <!-- Vercel -->
+      <g transform="translate(0,0)">
+        <rect width="40" height="40" fill="#000000" class="keycap-bg"/>
+        <polygon points="20,11 31,30 9,30" fill="#ffffff"/>
+      </g>
 
-            <!-- Hugging Face -->
-            <rect x="104" y="0" width="42" height="42" rx="10" fill="#fbbf24" class="keycap"/>
-            <text x="125" y="27" font-size="20" text-anchor="middle">&#129393;</text>
+      <!-- Supabase -->
+      <g transform="translate(48,0)">
+        <rect width="40" height="40" fill="#0f172a" stroke="#334155" stroke-width="1" class="keycap-bg"/>
+        <path d="M22 36v-14h11a1 1 0 0 0 .8-1.6L18 4v14H7a1 1 0 0 0-.8 1.6L22 36z" fill="#3ecf8e" transform="scale(0.75) translate(4,3)"/>
+      </g>
 
-            <!-- GitHub -->
-            <rect x="156" y="0" width="42" height="42" rx="10" fill="#0f172a" class="keycap"/>
-            <text x="177" y="27" font-size="18" fill="#ffffff" text-anchor="middle">&#9679;</text>
+      <!-- HuggingFace -->
+      <g transform="translate(96,0)">
+        <rect width="40" height="40" fill="#fbbf24" class="keycap-bg"/>
+        <text x="20" y="26" font-size="18" text-anchor="middle">🤗</text>
+      </g>
 
-            <!-- Claude -->
-            <rect x="208" y="0" width="42" height="42" rx="10" fill="#78350f" class="keycap"/>
-            <text x="229" y="27" font-size="14" fill="#fef3c7" font-weight="900" text-anchor="middle">Cl</text>
+      <!-- GitHub -->
+      <g transform="translate(144,0)">
+        <rect width="40" height="40" fill="#0f172a" class="keycap-bg"/>
+        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill="#ffffff" transform="scale(1.2) translate(3.5, 3.5)"/>
+      </g>
 
-            <!-- Gemini -->
-            <rect x="260" y="0" width="42" height="42" rx="10" fill="#311042" stroke="#6366f1" class="keycap"/>
-            <text x="281" y="27" font-size="14" fill="#a5b4fc" font-weight="900" text-anchor="middle">G</text>
+      <!-- Claude -->
+      <g transform="translate(192,0)">
+        <rect width="40" height="40" fill="#78350f" class="keycap-bg"/>
+        <path d="M12 2L14.2 9.2L21.4 11.4L14.2 13.6L12 20.8L9.8 13.6L2.6 11.4L9.8 9.2L12 2Z" fill="#fef3c7" transform="scale(0.8) translate(3,3)"/>
+      </g>
 
-            <!-- Python -->
-            <rect x="0" y="52" width="42" height="42" rx="10" fill="url(#pythonGrad)" class="keycap"/>
-            <text x="21" y="79" font-size="12" fill="#ffffff" font-weight="900" text-anchor="middle">PY</text>
+      <!-- Gemini -->
+      <g transform="translate(240,0)">
+        <rect width="40" height="40" fill="#050b2b" stroke="#3730a3" stroke-width="1" class="keycap-bg"/>
+        <path d="M12 0C12 6.627 6.627 12 0 12c6.627 0 12 5.373 12 12 0-6.627 5.373-12 12-12-6.627 0-12-5.373-12-12z" fill="#a5b4fc" transform="scale(0.8) translate(3,3)"/>
+      </g>
 
-            <!-- TypeScript -->
-            <rect x="52" y="52" width="42" height="42" rx="10" fill="#2563eb" class="keycap"/>
-            <text x="73" y="79" font-size="12" fill="#ffffff" font-weight="900" text-anchor="middle">TS</text>
+      <!-- Python -->
+      <g transform="translate(288,0)">
+        <rect width="40" height="40" fill="url(#pythonGrad)" class="keycap-bg"/>
+        <text x="20" y="26" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="900" fill="#ffffff" text-anchor="middle">Py</text>
+      </g>
 
-            <!-- Firebase -->
-            <rect x="104" y="52" width="42" height="42" rx="10" fill="#f59e0b" class="keycap"/>
-            <text x="125" y="79" font-size="16" text-anchor="middle">&#128293;</text>
-        </g>
+      <!-- TypeScript -->
+      <g transform="translate(336,0)">
+        <rect width="40" height="40" fill="#2563eb" class="keycap-bg"/>
+        <text x="20" y="26" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle">TS</text>
+      </g>
+
+      <!-- Firebase -->
+      <g transform="translate(384,0)">
+        <rect width="40" height="40" fill="#f59e0b" class="keycap-bg"/>
+        <path d="M3.89 15.672L6.255.461A.542.542 0 017.27.286l2.543 4.772zm10.238 2.016l-2.08-12.87a.541.541 0 00-.962-.231l-8.88 15.101zM1.23 18.381l.83-15.01a.543.543 0 01.916-.355l12.443 15.365z" fill="#0f172a" transform="scale(0.8) translate(5,4)"/>
+      </g>
     </g>
+  </g>
 
-    <!-- GitHub Overview Stats Card (Without Star duplicate) -->
-    <g transform="translate(0, 485)">
-        <rect x="0" y="0" width="390" height="95" rx="16" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
-        <text x="20" y="25" class="subheading" font-size="12">GitHub Overview</text>
-        
-        <g transform="translate(20, 42)">
-            <!-- Commits -->
-            <g transform="translate(0,0)">
-                <rect x="0" y="0" width="80" height="40" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
-                <text x="40" y="18" class="heading" font-size="13" text-anchor="middle">1.4k+</text>
-                <text x="40" y="30" font-size="9" fill="#64748b" font-weight="700" text-anchor="middle">COMMITS</text>
-            </g>
-            <!-- Repos -->
-            <g transform="translate(90,0)">
-                <rect x="0" y="0" width="80" height="40" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
-                <text x="40" y="18" class="heading" font-size="13" text-anchor="middle">28</text>
-                <text x="40" y="30" font-size="9" fill="#64748b" font-weight="700" text-anchor="middle">REPOS</text>
-            </g>
-            <!-- Active Days -->
-            <g transform="translate(180,0)">
-                <rect x="0" y="0" width="80" height="40" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
-                <text x="40" y="18" class="heading" font-size="13" text-anchor="middle">284</text>
-                <text x="40" y="30" font-size="9" fill="#64748b" font-weight="700" text-anchor="middle">ACTIVE DAYS</text>
-            </g>
-            <!-- Stars -->
-            <g transform="translate(270,0)">
-                <rect x="0" y="0" width="80" height="40" rx="8" fill="#ffffff" stroke="#e2e8f0"/>
-                <text x="40" y="18" class="heading" font-size="13" text-anchor="middle">340+</text>
-                <text x="40" y="30" font-size="9" fill="#64748b" font-weight="700" text-anchor="middle">STARS</text>
-            </g>
-        </g>
+  <!-- GITHUB OVERVIEW CARD -->
+  <g transform="translate(0, 360)">
+    <rect width="390" height="110" rx="16" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
+    
+    <!-- Header -->
+    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill="#0f172a" transform="translate(14, 12) scale(0.7)"/>
+    <text x="36" y="25" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.5">GITHUB OVERVIEW</text>
+
+    <!-- Stats Grid (4 columns) -->
+    <g transform="translate(12, 38)">
+      <!-- Stat 1 -->
+      <rect x="0" y="0" width="85" height="58" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8"/>
+      <text x="42" y="26" text-anchor="middle" class="body-font text-slate-900" font-size="15" font-weight="900">1.4k+</text>
+      <text x="42" y="42" text-anchor="middle" class="body-font text-slate-500" font-size="9" font-weight="700" letter-spacing="0.5">COMMITS</text>
+
+      <!-- Stat 2 -->
+      <rect x="92" y="0" width="85" height="58" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8"/>
+      <text x="134" y="26" text-anchor="middle" class="body-font text-slate-900" font-size="15" font-weight="900">28</text>
+      <text x="134" y="42" text-anchor="middle" class="body-font text-slate-500" font-size="9" font-weight="700" letter-spacing="0.5">REPOS</text>
+
+      <!-- Stat 3 -->
+      <rect x="184" y="0" width="90" height="58" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8"/>
+      <text x="229" y="26" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">284 Days</text>
+      <text x="229" y="42" text-anchor="middle" class="body-font text-slate-500" font-size="9" font-weight="700" letter-spacing="0.5">ACTIVE DAYS</text>
+
+      <!-- Stat 4 -->
+      <rect x="280" y="0" width="85" height="58" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8"/>
+      <text x="322" y="26" text-anchor="middle" class="body-font text-slate-900" font-size="15" font-weight="900">340+</text>
+      <text x="322" y="42" text-anchor="middle" class="body-font text-slate-500" font-size="9" font-weight="700" letter-spacing="0.5">STARS</text>
     </g>
+  </g>
 
 </g>
 
+<!-- STREAMING_CHUNK: Rendering Right Column (Experience & Projects)... -->
 <!-- RIGHT COLUMN (Experience & Projects) -->
-<!-- STREAMING_CHUNK:Rendering experience and project list... -->
-<g transform="translate(520, 445)">
-    <text x="0" y="20" class="heading" font-size="22">Experience &amp; Projects</text>
+<g transform="translate(470, 290)">
+  <text x="0" y="20" class="heading-font text-slate-900" font-size="20" font-weight="900">Experience &amp; Projects</text>
+
+  <line x1="8" y1="36" x2="8" y2="450" stroke="#cbd5e1" stroke-width="1.5"/>
+
+  <!-- Project 1 -->
+  <g transform="translate(0, 42)">
+    <circle cx="8" cy="6" r="3.5" fill="#94a3b8"/>
+    <text x="24" y="10" class="body-font text-slate-900" font-size="12" font-weight="900">08/2024</text>
+    <text x="85" y="10" class="body-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.3">DEVHUB SAAS PLATFORM</text>
+    <text x="24" y="28" class="body-font text-slate-800" font-size="11.5" font-weight="700">Role: Full-Stack Engineer &amp; Creator (⭐ 180+ Stars)</text>
     
-    <g transform="translate(0, 40)">
-        <line x1="4" y1="0" x2="4" y2="390" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="24" y="45" class="body-font text-slate-700" font-size="11" font-weight="700">Description:</text>
+    <text x="24" y="60" class="body-font text-slate-600" font-size="11" font-weight="500">
+      <tspan x="24" dy="0">• Architected modern developer analytics portal using Next.js &amp; Node.js.</tspan>
+      <tspan x="24" dy="16">• Integrated OAuth2, Stripe payments, and real-time WebSockets.</tspan>
+      <tspan x="24" dy="16">• Optimized serverless API endpoints resulting in 40% faster response.</tspan>
+    </text>
+  </g>
 
-        <!-- Project 1 -->
-        <g transform="translate(20, 5)">
-            <circle cx="-16" cy="4" r="4" fill="#64748b"/>
-            <text x="0" y="0" class="heading" font-size="13">08/2024</text>
-            <text x="85" y="0" class="subheading" font-size="13">DEVHUB SAAS PLATFORM</text>
-            <text x="0" y="20" font-size="11" font-weight="700" fill="#1e293b">Role: Full-Stack Engineer &amp; Creator (&#9733; 180+ Stars)</text>
-            <text x="0" y="35" font-size="11" font-weight="700" fill="#475569">Description:</text>
-            <text x="0" y="50" class="body-text" font-size="11">
-                <tspan x="10" dy="0">&#8226; Architected modern developer analytics portal using Next.js &amp; Node.js.</tspan>
-                <tspan x="10" dy="16">&#8226; Integrated OAuth2, Stripe payments, and real-time WebSocket telemetry.</tspan>
-                <tspan x="10" dy="16">&#8226; Optimized serverless API endpoints resulting in 40% faster response times.</tspan>
-            </text>
-        </g>
+  <!-- Project 2 -->
+  <g transform="translate(0, 175)">
+    <circle cx="8" cy="6" r="3.5" fill="#94a3b8"/>
+    <text x="24" y="10" class="body-font text-slate-900" font-size="12" font-weight="900">04/2025</text>
+    <text x="85" y="10" class="body-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.3">NEBULA COLLAB EDITOR</text>
+    <text x="24" y="28" class="body-font text-slate-800" font-size="11.5" font-weight="700">Role: Lead Frontend Engineer (⭐ 120+ Stars)</text>
+    
+    <text x="24" y="45" class="body-font text-slate-700" font-size="11" font-weight="700">Description:</text>
+    <text x="24" y="60" class="body-font text-slate-600" font-size="11" font-weight="500">
+      <tspan x="24" dy="0">• Built real-time collaborative Markdown editor using CRDTs &amp; WebSockets.</tspan>
+      <tspan x="24" dy="16">• Designed glassmorphic UI with Tailwind CSS &amp; responsive canvas.</tspan>
+    </text>
+  </g>
 
-        <!-- Project 2 -->
-        <g transform="translate(20, 150)">
-            <circle cx="-16" cy="4" r="4" fill="#64748b"/>
-            <text x="0" y="0" class="heading" font-size="13">04/2025</text>
-            <text x="85" y="0" class="subheading" font-size="13">NEBULA COLLAB EDITOR</text>
-            <text x="0" y="20" font-size="11" font-weight="700" fill="#1e293b">Role: Lead Frontend Engineer (&#9733; 120+ Stars)</text>
-            <text x="0" y="35" font-size="11" font-weight="700" fill="#475569">Description:</text>
-            <text x="0" y="50" class="body-text" font-size="11">
-                <tspan x="10" dy="0">&#8226; Built real-time collaborative Markdown editor using CRDT &amp; WebSockets.</tspan>
-                <tspan x="10" dy="16">&#8226; Designed glassmorphic UI with Tailwind CSS and responsive canvas previews.</tspan>
-            </text>
-        </g>
+  <!-- Project 3 -->
+  <g transform="translate(0, 290)">
+    <circle cx="8" cy="6" r="3.5" fill="#94a3b8"/>
+    <text x="24" y="10" class="body-font text-slate-900" font-size="12" font-weight="900">08/2025</text>
+    <text x="85" y="10" class="body-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.3">QUERYFLOW ORM LIGHT</text>
+    <text x="24" y="28" class="body-font text-slate-800" font-size="11.5" font-weight="700">Role: Open Source Maintainer</text>
+    
+    <text x="24" y="45" class="body-font text-slate-700" font-size="11" font-weight="700">Description:</text>
+    <text x="24" y="60" class="body-font text-slate-600" font-size="11" font-weight="500">
+      <tspan x="24" dy="0">• Authored lightweight TypeScript ORM wrapper for SQL databases.</tspan>
+      <tspan x="24" dy="16">• Mentored 15+ external contributors and managed GitHub release pipelines.</tspan>
+    </text>
+  </g>
 
-        <!-- Project 3 -->
-        <g transform="translate(20, 260)">
-            <circle cx="-16" cy="4" r="4" fill="#64748b"/>
-            <text x="0" y="0" class="heading" font-size="13">08/2025</text>
-            <text x="85" y="0" class="subheading" font-size="13">QUERYFLOW ORM LIGHT</text>
-            <text x="0" y="20" font-size="11" font-weight="700" fill="#1e293b">Role: Open Source Maintainer</text>
-            <text x="0" y="35" font-size="11" font-weight="700" fill="#475569">Description:</text>
-            <text x="0" y="50" class="body-text" font-size="11">
-                <tspan x="10" dy="0">&#8226; Authored lightweight TypeScript ORM wrapper for SQL databases.</tspan>
-                <tspan x="10" dy="16">&#8226; Mentored 15+ external contributors and managed release pipelines.</tspan>
-            </text>
-        </g>
-    </g>
 </g>
 
-<!-- ==================== ACHIEVEMENT SECTION ==================== -->
-<!-- STREAMING_CHUNK:Rendering achievement timeline... -->
-<g transform="translate(90, 1050)">
-    <line x1="0" y1="20" x2="820" y2="20" stroke="#cbd5e1" stroke-width="1"/>
-    <text x="0" y="0" class="heading" font-size="22">Achievement</text>
+<!-- STREAMING_CHUNK: Rendering Achievement section timeline... -->
+<!-- ACHIEVEMENT SECTION -->
+<g transform="translate(45, 810)">
+  <line x1="0" y1="0" x2="740" y2="0" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="0" y="32" class="heading-font text-slate-900" font-size="20" font-weight="900">Achievement</text>
+
+  <g transform="translate(0, 50)">
+    <!-- Horizontal connecting line -->
+    <line x1="120" y1="5" x2="620" y2="5" stroke="#cbd5e1" stroke-width="1"/>
 
     <!-- Achievement 1 -->
-    <g transform="translate(0, 45)">
-        <circle cx="100" cy="-25" r="5" fill="#475569"/>
-        <text x="100" y="-10" class="heading" font-size="12" text-anchor="middle">08/2024</text>
-        <text x="100" y="10" class="subheading" font-size="11" text-anchor="middle">1ST PLACE WINNER</text>
-        <text x="100" y="24" font-size="10" fill="#64748b" font-weight="700" text-anchor="middle">Global Hackathon 2024</text>
+    <g transform="translate(120, 0)">
+      <circle cx="0" cy="5" r="4.5" fill="#475569"/>
+      <text x="0" y="25" text-anchor="middle" class="body-font text-slate-900" font-size="12" font-weight="900">08/2024</text>
+      <text x="0" y="42" text-anchor="middle" class="body-font text-slate-900" font-size="11" font-weight="800">1ST PLACE WINNER | GLOBAL HACKATHON 2024</text>
+      <text x="0" y="58" text-anchor="middle" class="body-font text-slate-500" font-size="11" font-weight="500">DevPost Community</text>
     </g>
 
     <!-- Achievement 2 -->
-    <g transform="translate(310, 45)">
-        <circle cx="100" cy="-25" r="5" fill="#475569"/>
-        <text x="100" y="-10" class="heading" font-size="12" text-anchor="middle">04/2025</text>
-        <text x="100" y="10" class="subheading" font-size="11" text-anchor="middle">FEATURED AUTHOR</text>
-        <text x="100" y="24" font-size="10" fill="#64748b" font-weight="700" text-anchor="middle">GitHub Trending Dev</text>
+    <g transform="translate(370, 0)">
+      <circle cx="0" cy="5" r="4.5" fill="#475569"/>
+      <text x="0" y="25" text-anchor="middle" class="body-font text-slate-900" font-size="12" font-weight="900">04/2025</text>
+      <text x="0" y="42" text-anchor="middle" class="body-font text-slate-900" font-size="11" font-weight="800">FEATURED OPEN SOURCE AUTHOR</text>
+      <text x="0" y="58" text-anchor="middle" class="body-font text-slate-500" font-size="11" font-weight="500">GitHub Trending Developer</text>
     </g>
 
     <!-- Achievement 3 -->
-    <g transform="translate(620, 45)">
-        <circle cx="100" cy="-25" r="5" fill="#475569"/>
-        <text x="100" y="-10" class="heading" font-size="12" text-anchor="middle">10/2025</text>
-        <text x="100" y="10" class="subheading" font-size="11" text-anchor="middle">TOP CONTRIBUTOR</text>
-        <text x="100" y="24" font-size="10" fill="#64748b" font-weight="700" text-anchor="middle">Open Source Initiative</text>
+    <g transform="translate(620, 0)">
+      <circle cx="0" cy="5" r="4.5" fill="#475569"/>
+      <text x="0" y="25" text-anchor="middle" class="body-font text-slate-900" font-size="12" font-weight="900">10/2025</text>
+      <text x="0" y="42" text-anchor="middle" class="body-font text-slate-900" font-size="11" font-weight="800">TOP CONTRIBUTOR SCHOLARSHIP</text>
+      <text x="0" y="58" text-anchor="middle" class="body-font text-slate-500" font-size="11" font-weight="500">Open Source Initiative</text>
     </g>
+
+  </g>
 </g>
 
-<!-- ==================== LET'S CONNECT SECTION (BOTTOM) ==================== -->
-<!-- STREAMING_CHUNK:Rendering bottom connect footer... -->
-<g transform="translate(90, 1180)">
-    <text x="0" y="0" class="heading" font-size="22">Let's Connect</text>
-    
-    <rect x="0" y="15" width="820" height="70" rx="16" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
-    
+<!-- STREAMING_CHUNK: Rendering Let's Connect contact bar... -->
+<!-- LET'S CONNECT SECTION -->
+<g transform="translate(45, 1020)">
+  <line x1="0" y1="0" x2="740" y2="0" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="0" y="32" class="heading-font text-slate-900" font-size="20" font-weight="900">Let's Connect</text>
+
+  <g transform="translate(0, 48)">
+    <rect width="740" height="52" rx="16" fill="#f1f5f9" opacity="0.8" stroke="#e2e8f0" stroke-width="1"/>
+
     <!-- Location -->
-    <g transform="translate(35, 50)">
-        <circle cx="12" cy="-5" r="12" fill="#fbbf24"/>
-        <text x="12" y="0" font-size="11" text-anchor="middle">&#128205;</text>
-        <text x="35" y="0" class="heading" font-size="12">San Francisco, CA (Remote)</text>
+    <g transform="translate(20, 14)">
+      <circle cx="12" cy="12" r="12" fill="#fbbf24"/>
+      <path d="M12 6c-2.76 0-5 2.24-5 5 0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5zm0 7c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#ffffff" transform="translate(-0.5, -0.5) scale(0.8)"/>
+      <text x="32" y="16" class="body-font text-slate-800" font-size="12" font-weight="700">San Francisco, CA (Open to Remote)</text>
     </g>
 
     <!-- Email -->
-    <g transform="translate(310, 50)">
-        <circle cx="12" cy="-5" r="12" fill="#ef4444"/>
-        <text x="12" y="0" font-size="11" text-anchor="middle">&#9993;</text>
-        <text x="35" y="0" class="heading" font-size="12">alex.dev@github.io</text>
+    <g transform="translate(300, 14)">
+      <circle cx="12" cy="12" r="12" fill="#ef4444"/>
+      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="#ffffff" transform="translate(-1, -1) scale(0.7)"/>
+      <text x="32" y="16" class="body-font text-slate-900" font-size="12" font-weight="800">alex.dev@github.io</text>
     </g>
 
-    <!-- GitHub Profile -->
-    <g transform="translate(585, 50)">
-        <circle cx="12" cy="-5" r="12" fill="#0f172a"/>
-        <text x="12" y="0" font-size="11" text-anchor="middle" fill="#ffffff">&#9835;</text>
-        <text x="35" y="0" class="heading" font-size="12">github.com/alex-webdev</text>
+    <!-- GitHub -->
+    <g transform="translate(530, 14)">
+      <circle cx="12" cy="12" r="12" fill="#0f172a"/>
+      <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill="#ffffff" transform="translate(1, 1) scale(0.65)"/>
+      <text x="32" y="16" class="body-font text-slate-900" font-size="12" font-weight="800">github.com/alex-webdev</text>
     </g>
-</g>
-
-</svg>
+  </g>
+</g></svg>
