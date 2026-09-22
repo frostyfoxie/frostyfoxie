@@ -1,8 +1,7 @@
-## Hi, I am Navneet!
+**Hi, I am Navneet !**
 
-**Student · Software Builder · AI & Emerging Technology**
 
-I build software at the intersection of **artificial intelligence, education, science, and interactive technology**. My work ranges from AI systems and developer tools to educational platforms and interactive scientific experiences.
+I build projects at the intersection of **artificial intelligence, education, science, and interactive technology**. My work ranges from creative websites , AI systems and developer tools to educational platforms and interactive scientific experiences.
 
 I am particularly interested in ambitious technical problems, human–AI interaction, and turning complex ideas into usable systems.
 
