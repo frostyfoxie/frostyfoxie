@@ -1,25 +1,35 @@
-<svg width="100%" height="100%" viewBox="0 0 860 930" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="100%" height="100%" viewBox="0 0 860 1085" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
-  <filter id="ambientBlur" x="-20%" y="-20%" width="140%" height="140%">
-    <feGaussianBlur stdDeviation="70" />
+  <!-- Ambient Blur Filter -->
+  <filter id="ambientBlur" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur stdDeviation="75" />
   </filter>
 
   <filter id="glassShadow" x="-10%" y="-10%" width="120%" height="125%">
     <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.04" />
   </filter>
 
+  <!-- Clean Neutral Badge Shadow (Zero Red Tint) -->
   <filter id="neutralShadow" x="-10%" y="-10%" width="120%" height="125%">
     <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0f172a" flood-opacity="0.08" />
   </filter>
 
+  <!-- Button Drop Shadow -->
   <filter id="buttonShadow" x="-10%" y="-10%" width="120%" height="130%">
     <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.04" />
   </filter>
 
+  <!-- Animated Shimmering Ribbon Gradients -->
   <linearGradient id="ribbonFrontGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" stop-color="#3b82f6" />
-    <stop offset="40%" stop-color="#2563eb" />
-    <stop offset="80%" stop-color="#1d4ed8" />
+    <stop offset="0%" stop-color="#2563eb">
+      <animate attributeName="stop-color" values="#2563eb;#60a5fa;#1d4ed8;#2563eb" dur="7s" repeatCount="indefinite" />
+    </stop>
+    <stop offset="45%" stop-color="#3b82f6">
+      <animate attributeName="stop-color" values="#3b82f6;#93c5fd;#2563eb;#3b82f6" dur="7s" repeatCount="indefinite" />
+    </stop>
+    <stop offset="80%" stop-color="#1d4ed8">
+      <animate attributeName="stop-color" values="#1d4ed8;#3b82f6;#1e40af;#1d4ed8" dur="7s" repeatCount="indefinite" />
+    </stop>
     <stop offset="100%" stop-color="#1e40af" />
   </linearGradient>
 
@@ -59,6 +69,31 @@
   .text-slate-700 { fill: #334155; }
   .text-slate-500 { fill: #64748b; }
 
+  /* 1. Subtle Lanyard Pendulum Sway */
+  @keyframes lanyardSway {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(1.3deg); }
+    50%  { transform: rotate(0deg); }
+    75%  { transform: rotate(-1.3deg); }
+    100% { transform: rotate(0deg); }
+  }
+  .swinging-assembly {
+    transform-origin: 135px -15px;
+    animation: lanyardSway 6.5s ease-in-out infinite;
+  }
+
+  /* 2. Floating Ambient Glow Animations */
+  @keyframes floatGlow1 {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.35; }
+    50%      { transform: translate(30px, 25px) scale(1.15); opacity: 0.55; }
+  }
+  @keyframes floatGlow2 {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.45; }
+    50%      { transform: translate(-30px, -20px) scale(1.1); opacity: 0.65; }
+  }
+  .glow-orb-1 { animation: floatGlow1 11s ease-in-out infinite; }
+  .glow-orb-2 { animation: floatGlow2 13s ease-in-out infinite; }
+
   .footer-btn {
     fill: #ffffff;
     stroke: #e2e8f0;
@@ -70,18 +105,18 @@
   .btn-link:hover .footer-btn { fill: #f8fafc; stroke: #cbd5e1; }
 </style>
 
-<!-- Canvas Base -->
+<!-- Base Background -->
 <rect width="100%" height="100%" fill="#f8fafc" />
 
 <!-- Soft Ambient Glow Orbs -->
 <g filter="url(#ambientBlur)">
-  <circle cx="720" cy="180" r="160" fill="#fecaca" opacity="0.35" />
-  <circle cx="160" cy="560" r="170" fill="#dbeafe" opacity="0.5" />
-  <circle cx="750" cy="740" r="150" fill="#e0e7ff" opacity="0.45" />
+  <circle cx="720" cy="180" r="160" fill="#fecaca" class="glow-orb-1" />
+  <circle cx="160" cy="560" r="170" fill="#dbeafe" class="glow-orb-2" />
+  <circle cx="750" cy="850" r="160" fill="#e0e7ff" class="glow-orb-1" />
 </g>
 
 <!-- ================================================================= -->
-<!-- TOP ROW: BEHIND THE CODE (LEFT) + ID BADGE & LANYARD (RIGHT)      -->
+<!-- 1. TOP ROW: BEHIND THE CODE (LEFT) + SWINGING ID BADGE (RIGHT)    -->
 <!-- ================================================================= -->
 <g transform="translate(45, 50)">
   <text x="0" y="24" class="heading-font text-slate-900" font-size="28" font-weight="900" letter-spacing="-0.5">Behind the Code</text>
@@ -92,62 +127,82 @@
   </text>
 </g>
 
-<!-- RIGHT: ID BADGE -->
+<!-- SWINGING ID BADGE (Wider 28px Ribbon) -->
 <g transform="translate(560, 15)">
-  <g id="backStrap">
-    <path d="M 125 141 C 146 95 170 40 185 -15 L 205 -15 C 190 40 166 95 145 141 Z" fill="url(#ribbonBackGrad)"/>
-    <path d="M 135 141 C 156 95 180 40 195 -15" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 3" opacity="0.25" fill="none"/>
-  </g>
-
-  <g filter="url(#neutralShadow)">
-    <rect x="15" y="125" width="240" height="315" rx="22" fill="url(#badgeGrad)" stroke="#f87171" stroke-width="1.5"/>
-    <rect x="110" y="137" width="50" height="9" rx="4.5" fill="#0f172a" opacity="0.8"/>
-    
-    <circle cx="38" cy="164" r="11" fill="#ffffff" fill-opacity="0.2"/>
-    <path d="M 34 164 L 37 161 M 34 164 L 37 167 M 42 164 L 39 161 M 42 164 L 39 167" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="232" y="167" fill="#fee2e2" font-size="9" font-weight="800" text-anchor="end" class="heading-font" letter-spacing="1">WEB DEV</text>
-
-    <g transform="translate(50, 185)">
-      <rect x="-3" y="-3" width="176" height="176" rx="16" fill="#ffffff"/>
-      <g clip-path="url(#avatarClip)">
-        <image x="0" y="0" width="170" height="170" preserveAspectRatio="xMidYMid slice" href="{{AVATAR_DATA_URI}}" />
-      </g>
+  <g class="swinging-assembly">
+    <!-- 1. BACK RIBBON STRAP -->
+    <g id="backStrap">
+      <path d="M 121 141 C 144 95 168 40 183 -15 L 209 -15 C 192 40 168 95 149 141 Z" fill="url(#ribbonBackGrad)"/>
+      <path d="M 135 141 C 156 95 180 40 196 -15" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 3" opacity="0.25" fill="none"/>
     </g>
 
-    <text x="35" y="394" fill="#ffffff" font-size="15" font-weight="900" class="heading-font" letter-spacing="-0.3">{{NAME}}</text>
-    <text x="35" y="410" fill="#fee2e2" font-size="9" font-weight="700" class="mono-font" letter-spacing="0.5">ID: DEV-{{USERNAME}}</text>
+    <!-- 2. ID BADGE CONTAINER -->
+    <g filter="url(#neutralShadow)">
+      <rect x="15" y="125" width="240" height="315" rx="22" fill="url(#badgeGrad)" stroke="#f87171" stroke-width="1.5"/>
+      <rect x="108" y="136" width="54" height="11" rx="5.5" fill="#0f172a" opacity="0.8"/>
+      
+      <circle cx="38" cy="164" r="11" fill="#ffffff" fill-opacity="0.2"/>
+      <path d="M 34 164 L 37 161 M 34 164 L 37 167 M 42 164 L 39 161 M 42 164 L 39 167" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="232" y="167" fill="#fee2e2" font-size="9" font-weight="800" text-anchor="end" class="heading-font" letter-spacing="1">WEB DEV</text>
 
-    <a href="https://github.com/{{USERNAME}}" target="_blank">
-      <g transform="translate(202, 380)">
-        <rect width="32" height="32" rx="8" fill="#ffffff" stroke="#fecaca" stroke-width="0.8"/>
-        <image href="{{ICON_GITHUB_RED}}" x="4" y="4" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+      <g transform="translate(50, 185)">
+        <rect x="-3" y="-3" width="176" height="176" rx="16" fill="#ffffff"/>
+        <g clip-path="url(#avatarClip)">
+          <image x="0" y="0" width="170" height="170" preserveAspectRatio="xMidYMid slice" href="{{AVATAR_DATA_URI}}" />
+        </g>
       </g>
-    </a>
-  </g>
 
-  <g id="frontStrap">
-    <path d="M 123 125 L 125 141 L 145 141 L 142 125 Z" fill="#000000" opacity="0.25"/>
-    <path d="M 65 -15 C 80 40 102 95 125 141 L 145 141 C 122 95 100 40 85 -15 Z" fill="url(#ribbonFrontGrad)"/>
-    <path d="M 75 -15 C 90 40 112 95 135 141" stroke="#ffffff" stroke-width="1.2" stroke-dasharray="3.5 3.5" opacity="0.45" fill="none"/>
-    <line x1="125" y1="141" x2="145" y2="141" stroke="#0f172a" stroke-width="1.8" opacity="0.6"/>
+      <text x="35" y="394" fill="#ffffff" font-size="15" font-weight="900" class="heading-font" letter-spacing="-0.3">{{NAME}}</text>
+      <text x="35" y="410" fill="#fee2e2" font-size="9" font-weight="700" class="mono-font" letter-spacing="0.5">ID: DEV-{{USERNAME}}</text>
+
+      <a href="https://github.com/{{USERNAME}}" target="_blank">
+        <g transform="translate(202, 380)">
+          <rect width="32" height="32" rx="8" fill="#ffffff" stroke="#fecaca" stroke-width="0.8"/>
+          <image href="{{ICON_GITHUB_RED}}" x="4" y="4" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
+        </g>
+      </a>
+    </g>
+
+    <!-- 3. FRONT RIBBON STRAP -->
+    <g id="frontStrap">
+      <path d="M 119 125 L 121 141 L 149 141 L 146 125 Z" fill="#000000" opacity="0.25"/>
+      <path d="M 61 -15 C 78 40 100 95 121 141 L 149 141 C 124 95 100 40 87 -15 Z" fill="url(#ribbonFrontGrad)"/>
+      <path d="M 74 -15 C 89 40 111 95 135 141" stroke="#ffffff" stroke-width="1.2" stroke-dasharray="3.5 3.5" opacity="0.45" fill="none"/>
+      <line x1="121" y1="141" x2="149" y2="141" stroke="#0f172a" stroke-width="1.8" opacity="0.6"/>
+    </g>
   </g>
 </g>
 
-<line x1="45" y1="475" x2="815" y2="475" stroke="#e2e8f0" stroke-width="1.2" stroke-dasharray="4 4"/>
+<!-- ================================================================= -->
+<!-- 2. FULL WIDTH CONTRIBUTION GRID WITH ANIMATED SNAKE (MIDDLE)      -->
+<!--    Occupies full width between Top Row and Middle Sections        -->
+<!-- ================================================================= -->
+<g transform="translate(45, 475)">
+  <rect width="770" height="152" rx="20" class="glass-card"/>
+  
+  <g transform="translate(15.5, 18)">
+    <text x="0" y="10" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.5">CONTRIBUTION GRAPH &amp; COMMIT ACTIVITY</text>
+    
+    <!-- Real 53-Week Grid (Exact 11px x 11px Git Grid) + Animated Snake -->
+    <g transform="translate(0, 22)">
+      {{CONTRIBUTION_SNAKE_SECTION}}
+    </g>
+  </g>
+</g>
 
 <!-- ================================================================= -->
-<!-- MIDDLE ROW: EDUCATION & STATS + SKILLS & TECH KEYCAPS             -->
+<!-- 3. EDUCATION & STATS + SKILLS & TECH KEYCAPS                      -->
 <!-- ================================================================= -->
-<g transform="translate(45, 498)">
+<g transform="translate(45, 650)">
   <rect width="365" height="292" rx="20" class="glass-card"/>
 
-  <!-- Education (Dynamically Built from config.json) -->
+  <!-- Education -->
   <g transform="translate(24, 20)">
     <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Education</text>
     {{EDUCATION_ITEMS}}
   </g>
 
-  <!-- GitHub Live Overview -->
+  <!-- GitHub Overview Stats -->
   <g transform="translate(24, 160)">
     <image href="{{ICON_GITHUB}}" x="0" y="0" width="16" height="16"/>
     <text x="24" y="13" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.4">GITHUB LIVE OVERVIEW (ALL-TIME)</text>
@@ -173,10 +228,9 @@
 </g>
 
 <!-- RIGHT GLASS CONTAINER: SKILLS & KEYCAPS -->
-<g transform="translate(430, 498)">
+<g transform="translate(430, 650)">
   <rect width="385" height="292" rx="20" class="glass-card"/>
 
-  <!-- Skills (Dynamically Built from config.json) -->
   <g transform="translate(24, 20)">
     <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Skills</text>
     <g transform="translate(0, 28)">
@@ -184,7 +238,6 @@
     </g>
   </g>
 
-  <!-- Tech Stack (Dynamically Built from config.json) -->
   <g transform="translate(24, 160)">
     <text x="0" y="14" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.4">TECH STACK</text>
     <g transform="translate(0, 24)">
@@ -194,12 +247,12 @@
 </g>
 
 <!-- ================================================================= -->
-<!-- BOTTOM: LET'S CONNECT (CONFIG-DRIVEN BUTTON PILLS)                -->
+<!-- 4. BOTTOM: LET'S CONNECT BUTTON PILLS                             -->
 <!-- ================================================================= -->
-<g transform="translate(45, 815)">
+<g transform="translate(45, 965)">
   <rect width="770" height="68" rx="20" class="glass-card"/>
 
-  <!-- 1. Instagram Button -->
+  <!-- Instagram -->
   <a href="https://instagram.com/{{INSTAGRAM_HANDLE}}" target="_blank" class="btn-link">
     <g transform="translate(18, 12)">
       <rect width="232" height="44" rx="14" class="footer-btn"/>
@@ -208,7 +261,7 @@
     </g>
   </a>
 
-  <!-- 2. Email Button -->
+  <!-- Email -->
   <a href="mailto:{{EMAIL}}" target="_blank" class="btn-link">
     <g transform="translate(268, 12)">
       <rect width="232" height="44" rx="14" class="footer-btn"/>
@@ -217,7 +270,7 @@
     </g>
   </a>
 
-  <!-- 3. GitHub Button -->
+  <!-- GitHub -->
   <a href="https://github.com/{{USERNAME}}" target="_blank" class="btn-link">
     <g transform="translate(518, 12)">
       <rect width="234" height="44" rx="14" class="footer-btn"/>
