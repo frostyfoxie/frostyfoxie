@@ -69,7 +69,7 @@
   .text-slate-700 { fill: #334155; }
   .text-slate-500 { fill: #64748b; }
 
-  /* Smooth Harmonic Pendulum Sway */
+  /* True Harmonic Pendulum Sway */
   @keyframes lanyardSway {
     0%   { transform: rotate(-2.2deg); }
     50%  { transform: rotate(2.2deg); }
@@ -125,7 +125,7 @@
   </text>
 </g>
 
-<!-- SWINGING ID BADGE (Physics Fixed) -->
+<!-- SWINGING ID BADGE -->
 <g transform="translate(560, 15)">
   <g class="swinging-assembly">
     <g id="backStrap">
@@ -175,7 +175,7 @@
   <rect width="770" height="152" rx="20" class="glass-card"/>
   
   <g transform="translate(15.5, 18)">
-    <text x="0" y="10" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.5">CONTRIBUTION GRAPH &amp; COMMIT ACTIVITY ({{CURRENT_YEAR}})</text>
+    <text x="0" y="10" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.5">CONTRIBUTION GRAPH &amp; COMMIT ACTIVITY (LAST 365 DAYS)</text>
     
     <g transform="translate(0, 22)">
       {{CONTRIBUTION_SNAKE_SECTION}}
