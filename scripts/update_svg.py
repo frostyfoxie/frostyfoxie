@@ -439,4 +439,107 @@ output_path = os.path.join(REPO_ROOT, "profile.svg")
 with open(output_path, "w", encoding="utf-8") as f:
     f.write(template)
 
-print(f"🎉 SUCCESS! Flawless Platane Engine Generated.")
+# =================================================================
+# AUTOMATICALLY GENERATE THE 3 CLICKABLE BUTTON SVGs USING YOUR ICONS
+# =================================================================
+
+def generate_button_svg(filename, icon_b64, label, glow_color, font_size="11.5px", text_x="54", icon_x="24"):
+    btn_svg = f'''<svg width="254" height="76" viewBox="0 0 254 76" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <filter id="ambientBlur" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="30" />
+  </filter>
+  <filter id="glassShadow" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.04" />
+  </filter>
+  <filter id="buttonShadow" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.04" />
+  </filter>
+</defs>
+<style>
+  .glass-card {{
+    fill: rgba(255, 255, 255, 0.75);
+    stroke: rgba(255, 255, 255, 0.9);
+    stroke-width: 1.2;
+    filter: url(#glassShadow);
+  }}
+  .footer-btn {{
+    fill: #ffffff;
+    stroke: #e2e8f0;
+    stroke-width: 1;
+    filter: url(#buttonShadow);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }}
+  svg:hover .footer-btn {{
+    fill: #f8fafc;
+    stroke: #cbd5e1;
+  }}
+  .btn-text {{
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-size: {font_size};
+    font-weight: 700;
+    fill: #1e293b;
+  }}
+</style>
+
+<!-- Seamless Base Canvas -->
+<rect width="100%" height="100%" fill="#f8fafc" />
+
+<!-- Soft Ambient Glow -->
+<g filter="url(#ambientBlur)">
+  <circle cx="127" cy="38" r="50" fill="{glow_color}" opacity="0.6" />
+</g>
+
+<!-- Frosted Glass Container -->
+<rect x="6" y="6" width="242" height="64" rx="18" class="glass-card" />
+
+<!-- Inner White Button Pill -->
+<rect x="14" y="16" width="226" height="44" rx="14" class="footer-btn" />
+
+<!-- Your Uploaded Icon from icons/ -->
+<image href="{icon_b64}" x="{icon_x}" y="27" width="22" height="22" preserveAspectRatio="xMidYMid meet"/>
+
+<!-- Label -->
+<text x="{text_x}" y="43" class="btn-text">{label}</text>
+</svg>'''
+    
+    file_path = os.path.join(REPO_ROOT, filename)
+    with open(file_path, "w", encoding="utf-8") as f:
+        f.write(btn_svg)
+    print(f"Generated {filename} using your uploaded icon!")
+
+# 1. Instagram Button
+generate_button_svg(
+    filename="btn_instagram.svg",
+    icon_b64=load_icon_as_base64("instagram"),
+    label=f"@{instagram_handle}",
+    glow_color="#e0e7ff",
+    font_size="11.5px",
+    text_x="54",
+    icon_x="24"
+)
+
+# 2. Email Button
+generate_button_svg(
+    filename="btn_email.svg",
+    icon_b64=load_icon_as_base64("email"),
+    label=email_address,
+    glow_color="#dbeafe",
+    font_size="10.5px",
+    text_x="48",
+    icon_x="20"
+)
+
+# 3. GitHub Button
+generate_button_svg(
+    filename="btn_github.svg",
+    icon_b64=load_icon_as_base64("github"),
+    label=f"github.com/{USERNAME}",
+    glow_color="#e0e7ff",
+    font_size="11.5px",
+    text_x="52",
+    icon_x="22"
+)
+
+print(f"🎉 SUCCESS! Flawless Engine Generated.")
