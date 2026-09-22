@@ -1,4 +1,4 @@
-  .font-title { font-family: 'Fredoka', 'Quicksand', sans-serif; font-weight: 700; }
+<svg>  .font-title { font-family: 'Fredoka', 'Quicksand', sans-serif; font-weight: 700; }
   .font-sub { font-family: 'Quicksand', 'Nunito', sans-serif; font-weight: 700; }
   .font-body { font-family: 'Nunito', sans-serif; font-weight: 600; }
   .font-mono { font-family: 'Courier New', monospace; font-weight: 700; }
@@ -360,3 +360,4 @@
   </g>
 
 </g>
+</svg>
