@@ -1,4 +1,4 @@
-<svg>
+<svg xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)">
 .bg-main { fill: #e8ecef; }
   .heading-font { font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif; }
   .body-font { font-family: 'Plus Jakarta Sans', sans-serif; }
