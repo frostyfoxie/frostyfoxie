@@ -2,7 +2,7 @@ name: Update Profile SVG
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Daily at midnight UTC
+    - cron: '0 */5 * * *' # Daily at midnight UTC
   push:
     branches:
       - main
