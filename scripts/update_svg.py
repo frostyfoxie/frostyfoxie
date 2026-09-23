@@ -392,7 +392,7 @@ def wrap_svg_text(text, width=34, max_lines=2):
 
 if edu_list:
     visible_items = edu_list[:MAX_EDU_ITEMS]
-    ITEM_GAP = 38  # Reduced from 52 to decrease spacing between items
+    ITEM_GAP = 52  # Reduced from 52 to decrease spacing between items
     
     line_y2 = 30 + (len(visible_items) - 1) * ITEM_GAP
     edu_svg.append(f'<line x1="6" y1="30" x2="6" y2="{line_y2}" stroke="#cbd5e1" stroke-width="1.5"/>')
