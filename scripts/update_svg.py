@@ -44,7 +44,7 @@ def load_icon_as_base64(name_or_filename):
                 with open(file_path, "rb") as f:
                     encoded = base64.b64encode(f.read()).decode("utf-8")
                 mime = "image/svg+xml" if ext == ".svg" else f"image/{ext.replace('.', '')}"
-                print(f"✅ Loaded your icon from icons/{found_file}")
+                print(f"Loaded your icon from icons/{found_file}")
                 return f"data:{mime};base64,{encoded}"
     try:
         cdn_url = f"https://cdn.simpleicons.org/{clean_name}"
@@ -86,31 +86,73 @@ req_avatar = urllib.request.Request(avatar_url, headers={"User-Agent": "Mozilla/
 with urllib.request.urlopen(req_avatar) as resp:
     avatar_data_uri = f"data:image/jpeg;base64,{base64.b64encode(resp.read()).decode('utf-8')}"
 
-# 2. Fetch All-Time Commits
+# =================================================================
+# 2. FETCH ALL-TIME COMMITS & ALL-TIME ACTIVE DAYS ACROSS ALL YEARS
+# =================================================================
 total_commits = 0
-active_days = 0
+active_dates = set()
 
-for year in range(created_year, current_year + 1):
+# Discover all active contribution years reported by GitHub GraphQL
+years_to_check = set(range(created_year, current_year + 1))
+try:
+    years_query = """
+    query($username: String!) {
+      user(login: $username) {
+        contributionsCollection {
+          contributionYears
+        }
+      }
+    }
+    """
+    years_data = graphql_request(years_query, {"username": USERNAME})
+    contrib_years = years_data.get("data", {}).get("user", {}).get("contributionsCollection", {}).get("contributionYears", [])
+    if contrib_years:
+        years_to_check.update(contrib_years)
+except Exception as e:
+    print(f"Notice: Could not fetch contributionYears directly ({e}), checking from account creation year.")
+
+for year in sorted(years_to_check):
     gql_query = """
     query($username: String!, $from: DateTime!, $to: DateTime!) {
       user(login: $username) {
         contributionsCollection(from: $from, to: $to) {
           totalCommitContributions
           restrictedContributionsCount
+          contributionCalendar {
+            weeks {
+              contributionDays {
+                date
+                contributionCount
+              }
+            }
+          }
         }
       }
     }
     """
     try:
-        data = graphql_request(gql_query, {"username": USERNAME, "from": f"{year}-01-01T00:00:00Z", "to": f"{year}-12-31T23:59:59Z"})
+        data = graphql_request(gql_query, {
+            "username": USERNAME,
+            "from": f"{year}-01-01T00:00:00Z",
+            "to": f"{year}-12-31T23:59:59Z"
+        })
         col = data["data"]["user"]["contributionsCollection"]
-        total_commits += col["totalCommitContributions"] + col.get("restrictedContributionsCount", 0)
-    except Exception:
-        pass
+        total_commits += col.get("totalCommitContributions", 0) + col.get("restrictedContributionsCount", 0)
+
+        # Collect every date with commits/contributions across this year
+        cal = col.get("contributionCalendar", {})
+        for week in cal.get("weeks", []):
+            for day in week.get("contributionDays", []):
+                if day.get("contributionCount", 0) > 0 and "date" in day:
+                    active_dates.add(day["date"])
+    except Exception as e:
+        print(f"Warning: Could not fetch contributions for year {year}: {e}")
 
 commits_str = f"{total_commits // 1000}.{(total_commits % 1000) // 100}k+" if total_commits >= 1000 else str(total_commits)
 
-# 3. Fetch EXACT Last 365 Days Grid (Matches GitHub Default Calendar)
+# =================================================================
+# 3. FETCH EXACT LAST 365 DAYS GRID FOR ANIMATED SNAKE
+# =================================================================
 gql_grid = """
 query($username: String!) {
   user(login: $username) {
@@ -118,6 +160,7 @@ query($username: String!) {
       contributionCalendar {
         weeks {
           contributionDays {
+            date
             contributionCount
             contributionLevel
             weekday
@@ -131,12 +174,14 @@ query($username: String!) {
 grid_data = graphql_request(gql_grid, {"username": USERNAME})
 recent_weeks = grid_data["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
 
+# Include any dates from the rolling 365-day calendar to ensure none are missed
 for week in recent_weeks:
-    for day in week["contributionDays"]:
-        if day["contributionCount"] > 0:
-            active_days += 1
+    for day in week.get("contributionDays", []):
+        if day.get("contributionCount", 0) > 0 and "date" in day:
+            active_dates.add(day["date"])
 
-active_days_str = f"{active_days} D"
+total_active_days = len(active_dates)
+active_days_str = f"{total_active_days} D"
 
 # 4. Fetch Repos & Stars
 page = 1
@@ -153,7 +198,8 @@ while True:
         req_repos = urllib.request.Request(repos_url, headers=headers)
         with urllib.request.urlopen(req_repos) as resp:
             repos = json.loads(resp.read().decode())
-    if not repos: break
+    if not repos:
+        break
     total_repos += len(repos)
     total_stars += sum(r.get("stargazers_count", 0) for r in repos)
     page += 1
@@ -172,7 +218,7 @@ def build_arcade_snake(weeks_data):
     BOX_SIZE = 11.0
     STEP = 14.0
     SNAKE_LEN = 4
-    SOLID_SNAKE_COLOR = "#8a2be2"  # Clean solid arcade purple (No gradient)
+    SOLID_SNAKE_COLOR = "#8a2be2"  # Clean solid arcade purple
     
     colors = {
         "NONE": "#ebedf0",
@@ -202,8 +248,9 @@ def build_arcade_snake(weeks_data):
             while queue:
                 path = queue.popleft()
                 curr = path[-1]
-                if curr == goal: return path
-                for dx, dy in [(1,0), (0,1), (-1,0), (0,-1)]:
+                if curr == goal:
+                    return path
+                for dx, dy in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
                     nx, ny = curr[0] + dx, curr[1] + dy
                     if 0 <= nx < COLS and 0 <= ny < ROWS:
                         if (nx, ny) not in visited and (nx, ny) not in obstacles:
@@ -248,7 +295,7 @@ def build_arcade_snake(weeks_data):
 
     # Roam around if idle to fill up ~300 ticks
     min_ticks = 300
-    corners = [(0,0), (COLS-1,0), (COLS-1,ROWS-1), (0,ROWS-1)]
+    corners = [(0, 0), (COLS - 1, 0), (COLS - 1, ROWS - 1), (0, ROWS - 1)]
     while tick < min_ticks:
         valid_corners = [c for c in corners if c != snake[0]]
         goal = random.choice(valid_corners)
@@ -258,10 +305,11 @@ def build_arcade_snake(weeks_data):
             simulation_moves.append(step)
             snake.insert(0, step)
             snake.pop()
-            if tick >= min_ticks: break
+            if tick >= min_ticks:
+                break
 
     TOTAL_TICKS = len(simulation_moves)
-    DURATION = max(24.0, TOTAL_TICKS * 0.11)  # Smooth, natural gliding tempo
+    DURATION = max(24.0, TOTAL_TICKS * 0.11)
 
     grid_svg = []
     for c in range(COLS):
@@ -286,7 +334,6 @@ def build_arcade_snake(weeks_data):
     snake_parts_svg = []
 
     for K in range(SNAKE_LEN):
-        # Smoothly tapers: K=0 -> 11px, K=3 -> exactly 7.0px!
         size = 11.0 - (K * (4.0 / (SNAKE_LEN - 1)))
         offset = (11.0 - size) / 2.0
         rx = round(size * 0.25, 1)
@@ -301,7 +348,6 @@ def build_arcade_snake(weeks_data):
         x_str = ";".join(x_vals)
         y_str = ";".join(y_vals)
 
-        # calcMode="linear" creates smooth gliding without choppy steps
         snake_parts_svg.append(f'''
         <rect width="{size:.1f}" height="{size:.1f}" rx="{rx}" fill="{SOLID_SNAKE_COLOR}">
           <animate attributeName="x" values="{x_str}" dur="{DURATION:.1f}s" repeatCount="indefinite" calcMode="linear"/>
@@ -309,7 +355,7 @@ def build_arcade_snake(weeks_data):
         </rect>
         ''')
 
-    snake_parts_svg.reverse()  # Head renders on top
+    snake_parts_svg.reverse()
 
     return f'''
     <g id="contribGrid">
@@ -339,17 +385,60 @@ if edu_list:
         ''')
 education_markup = "\n".join(edu_svg)
 
-# 7. Dynamic Skills
+# =================================================================
+# 7. DYNAMIC SKILLS (ADAPTIVE WIDTH & FLUID ROW WRAPPING)
+# =================================================================
+def estimate_text_width(text, font_size=11.5):
+    narrow = set("ijlItf'r!;:.,| /\\-()[]{}")
+    wide = set("mwMW@%&#+=")
+    w = 0.0
+    for ch in text:
+        if ch in narrow:
+            w += font_size * 0.38
+        elif ch in wide:
+            w += font_size * 0.90
+        elif ch.isupper() or ch.isdigit():
+            w += font_size * 0.68
+        else:
+            w += font_size * 0.56
+    return w
+
+def get_pill_width(text, font_size=11.5):
+    # 12px padding on each side gives 24px total padding
+    text_w = estimate_text_width(text, font_size=font_size)
+    return max(48, round(text_w + 24))
+
 skills_list = config.get("skills", [])
 skills_svg = []
-positions = [(0, 0, 154), (162, 0, 140), (0, 34, 124), (132, 34, 144), (0, 68, 146), (154, 68, 118)]
-for i, skill in enumerate(skills_list[:6]):
-    x, y, w = positions[i]
-    mid_x = x + (w // 2)
-    skills_svg.append(f'''
-    <rect x="{x}" y="{y}" width="{w}" height="26" rx="13" class="pill-bg"/>
-    <text x="{mid_x}" y="{y + 17}" text-anchor="middle" class="pill-text">{html.escape(skill)}</text>
-    ''')
+
+ROW_HEIGHT = 26
+ROW_STEP = 34       # 26px pill height + 8px gap between rows
+COL_GAP = 8         # 8px horizontal gap between pills
+MAX_ROW_WIDTH = 310 # Maximum content width allowed inside the card
+MAX_ROWS = 3        # Up to 3 rows (y=0, 34, 68) to fit perfectly within the glass card
+
+curr_x = 0
+curr_y = 0
+row_count = 1
+
+for skill in skills_list:
+    pill_w = get_pill_width(skill)
+    pill_w = min(pill_w, MAX_ROW_WIDTH)
+    
+    # Wrap to next row if this pill exceeds the available row width
+    if curr_x > 0 and (curr_x + pill_w > MAX_ROW_WIDTH):
+        if row_count >= MAX_ROWS:
+            break
+        curr_y += ROW_STEP
+        curr_x = 0
+        row_count += 1
+        
+    mid_x = curr_x + (pill_w / 2.0)
+    skills_svg.append(f'''    <rect x="{curr_x}" y="{curr_y}" width="{pill_w}" height="{ROW_HEIGHT}" rx="13" class="pill-bg"/>
+    <text x="{mid_x:.1f}" y="{curr_y + 17}" text-anchor="middle" class="pill-text">{html.escape(skill)}</text>''')
+    
+    curr_x += pill_w + COL_GAP
+
 skills_markup = "\n".join(skills_svg)
 
 # 8. Dynamic Tech Stack
@@ -370,7 +459,7 @@ for i, tech in enumerate(tech_list[:14]):
 tech_markup = "\n".join(tech_svg)
 
 # 9. Behind the Code Text
-subheading = html.escape(config.get("behind_the_code", {}).get("subheading", "FULL-STACK ENGINEER & SOFTWARE ARCHITECT"))
+subheading = html.escape(config.get("behind_the_code", {}).get("subheading", "STUDENT · WEB DEV · AI DEV · CURIOUS MIND"))
 desc_paragraphs = config.get("behind_the_code", {}).get("description", [])
 tspans = []
 first_line = True
@@ -423,9 +512,7 @@ print(f"Generated profile.svg (height: 948px)")
 
 # =================================================================
 # 12. GENERATE THE 3 BUTTON SVGs (SEAMLESS 286px WIDTH)
-# Uses YOUR uploaded icon files directly from icons/ folder!
 # =================================================================
-
 def generate_button_svg(filename, icon_b64, label, font_size="11.5px"):
     btn_svg = f'''<svg width="286" height="64" viewBox="0 0 286 64" xmlns="http://www.w3.org/2000/svg">
 <defs>
@@ -472,7 +559,7 @@ def generate_button_svg(filename, icon_b64, label, font_size="11.5px"):
 <!-- Inner White Button Pill -->
 <rect x="12" y="11" width="262" height="42" rx="13" class="footer-btn" />
 
-<!-- Your Uploaded Icon from icons/ -->
+<!-- Uploaded Icon -->
 <image href="{icon_b64}" x="22" y="21" width="22" height="22" preserveAspectRatio="xMidYMid meet" />
 
 <!-- Label -->
@@ -482,7 +569,7 @@ def generate_button_svg(filename, icon_b64, label, font_size="11.5px"):
     file_path = os.path.join(REPO_ROOT, filename)
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(btn_svg)
-    print(f"Generated {filename} using your uploaded icon from icons/")
+    print(f"Generated {filename}")
 
 # 1. Instagram
 generate_button_svg(
