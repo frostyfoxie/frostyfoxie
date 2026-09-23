@@ -369,7 +369,8 @@ contribution_snake_markup = build_arcade_snake(recent_weeks)
 # 6. Dynamic Education — wrapped and clipped so user text never escapes the card
 edu_list = config.get("education", [])
 edu_svg = []
-MAX_EDU_ITEMS = 5
+MAX_EDU_ITEMS = 3
+
 def wrap_svg_text(text, width=34, max_lines=2):
     words = str(text).split()
     lines = []
@@ -391,20 +392,28 @@ def wrap_svg_text(text, width=34, max_lines=2):
 
 if edu_list:
     visible_items = edu_list[:MAX_EDU_ITEMS]
-    line_y2 = 30 + (len(visible_items) - 1) * 52
+    ITEM_GAP = 38  # Reduced from 52 to decrease spacing between items
+    
+    line_y2 = 30 + (len(visible_items) - 1) * ITEM_GAP
     edu_svg.append(f'<line x1="6" y1="30" x2="6" y2="{line_y2}" stroke="#cbd5e1" stroke-width="1.5"/>')
+    
     for i, item in enumerate(visible_items):
-        cy = 30 + (i * 52)
+        cy = 30 + (i * ITEM_GAP)
         year = html.escape(str(item.get("year", "")))[:12]
         title_lines = wrap_svg_text(item.get("title", ""), width=28, max_lines=2)
         inst_lines = wrap_svg_text(item.get("institution", ""), width=32, max_lines=1)
+        
         edu_svg.append(f'<circle cx="6" cy="{cy}" r="3.5" fill="#3b82f6"/>')
         edu_svg.append(f'<text x="20" y="{cy + 4}" class="body-font text-slate-900" font-size="10.5" font-weight="900">{year}</text>')
+        
         for line_idx, line in enumerate(title_lines):
-            edu_svg.append(f'<text x="60" y="{cy + 4 + line_idx * 12}" class="body-font text-slate-900" font-size="10.5" font-weight="800">{line}</text>')
-        inst_y = cy + 17 + (len(title_lines) - 1) * 12
+            edu_svg.append(f'<text x="60" y="{cy + 4 + line_idx * 11}" class="body-font text-slate-900" font-size="10.5" font-weight="800">{line}</text>')
+        
+        inst_y = cy + 14 + (len(title_lines) - 1) * 11
         edu_svg.append(f'<text x="60" y="{inst_y}" class="body-font text-slate-500" font-size="9.2" font-weight="500">{inst_lines[0] if inst_lines else ""}</text>')
+
 education_markup = "\n".join(edu_svg)
+
 
 # =================================================================
 # 7. DYNAMIC SKILLS (ADAPTIVE WIDTH & FLUID ROW WRAPPING)
