@@ -155,7 +155,7 @@
 
 <!-- EDUCATION & STATS + SKILLS & TECH KEYCAPS -->
 <g transform="translate(45, 650)">
-  <rect width="365" height="292" rx="20" class="glass-card"/>
+  <rect width="365" height="285" rx="20" class="glass-card"/>
   <g transform="translate(24, 20)">
     <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Education</text>
     {{EDUCATION_ITEMS}}
@@ -185,7 +185,7 @@
 </g>
 
 <g transform="translate(430, 650)">
-  <rect width="385" height="292" rx="20" class="glass-card"/>
+  <rect width="385" height="285" rx="20" class="glass-card"/>
   <g transform="translate(24, 20)">
     <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Skills</text>
     <g transform="translate(0, 28)">
