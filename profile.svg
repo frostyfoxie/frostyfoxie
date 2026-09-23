@@ -476,7 +476,9 @@
 
 <!-- EDUCATION & STATS + SKILLS & TECH KEYCAPS -->
 <g transform="translate(45, 650)">
+  <defs><clipPath id="leftCardClip"><rect x="0" y="0" width="365" height="285" rx="20"/></clipPath></defs>
   <rect width="365" height="285" rx="20" class="glass-card"/>
+  <g clip-path="url(#leftCardClip)">
   <g transform="translate(24, 20)">
     <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Education</text>
     <line x1="6" y1="30" x2="6" y2="134" stroke="#cbd5e1" stroke-width="1.5"/>
@@ -628,5 +630,6 @@
     
     </g>
   </g>
+</g>
 </g>
 </svg>
