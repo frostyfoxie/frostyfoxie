@@ -517,7 +517,7 @@
       <text x="199" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">ACTIVE D</text>
 
       <rect x="243" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
-      <text x="280" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">4</text>
+      <text x="280" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">26</text>
       <text x="280" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">STARS</text>
     </g>
   </g>
