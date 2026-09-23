@@ -479,9 +479,9 @@
   <defs><clipPath id="leftCardClip"><rect x="0" y="0" width="365" height="285" rx="20"/></clipPath></defs>
   <rect width="365" height="285" rx="20" class="glass-card"/>
   <g clip-path="url(#leftCardClip)">
-  <g transform="translate(24, 20)">
-    <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Education</text>
-    <line x1="6" y1="30" x2="6" y2="134" stroke="#cbd5e1" stroke-width="1.5"/>
+    <g transform="translate(24, 20)">
+      <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Education</text>
+      <line x1="6" y1="30" x2="6" y2="134" stroke="#cbd5e1" stroke-width="1.5"/>
 <circle cx="6" cy="30" r="3.5" fill="#3b82f6"/>
 <text x="20" y="34" class="body-font text-slate-900" font-size="10.5" font-weight="900">2022</text>
 <text x="60" y="34" class="body-font text-slate-900" font-size="10.5" font-weight="800">Primary School</text>
@@ -494,37 +494,36 @@
 <text x="20" y="138" class="body-font text-slate-900" font-size="10.5" font-weight="900">2026</text>
 <text x="60" y="138" class="body-font text-slate-900" font-size="10.5" font-weight="800">High School</text>
 <text x="60" y="151" class="body-font text-slate-500" font-size="9.2" font-weight="500">Central Hindu Boys School, BHU</text>
-  </g>
-
-  <g transform="translate(24, 160)">
-    <image href="data:image/svg+xml;base64,PHN2ZyBmaWxsPSJjdXJyZW50Q29sb3IiIGZpbGwtcnVsZT0iZXZlbm9kZCIgaGVpZ2h0PSIxZW0iIHN0eWxlPSJmbGV4Om5vbmU7bGluZS1oZWlnaHQ6MSIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMWVtIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0aXRsZT5HaXRodWI8L3RpdGxlPjxwYXRoIGQ9Ik0xMiAwYzYuNjMgMCAxMiA1LjI3NiAxMiAxMS43OS0uMDAxIDUuMDY3LTMuMjkgOS41NjctOC4xNzUgMTEuMTg3LS42LjExOC0uODI1LS4yNS0uODI1LS41NiAwLS4zOTguMDE1LTEuNjY1LjAxNS0zLjI0MiAwLTEuMTA1LS4zNzUtMS44MTMtLjgxLTIuMTgxIDIuNjctLjI5NSA1LjQ3NS0xLjI5NyA1LjQ3NS01LjgyMiAwLTEuMjk3LS40NjUtMi4zNDQtMS4yMy0zLjE2OS4xMi0uMjk1LjU0LTEuNTAzLS4xMi0zLjEyNSAwIDAtMS4wMDUtLjMyNC0zLjMgMS4yMDlhMTEuMzIgMTEuMzIgMCAwMC0zLS4zOThjLTEuMDIgMC0yLjA0LjEzMy0zIC4zOTgtMi4yOTUtMS41MTgtMy4zLTEuMjA5LTMuMy0xLjIwOS0uNjYgMS42MjItLjI0IDIuODMtLjEyIDMuMTI1LS43NjUuODI1LTEuMjMgMS44ODctMS4yMyAzLjE2OSAwIDQuNTEgMi43OSA1LjUyNyA1LjQ2IDUuODIyLS4zNDUuMjk0LS42Ni44MS0uNzY1IDEuNTc3LS42OS4zMS0yLjQxNS44MS0zLjQ5NS0uOTczLS4yMjUtLjM1NC0uOS0xLjIyMy0xLjg0NS0xLjIwOS0xLjAwNS4wMTUtLjQwNS41Ni4wMTUuNzgxLjUxLjI4IDEuMDk1IDEuMzI3IDEuMjMgMS42NjYuMjQuNjYzIDEuMDIgMS45MyA0LjAzNSAxLjM4NSAwIC45ODguMDE1IDEuOTE2LjAxNSAyLjE5NiAwIC4zMS0uMjI1LjY2NC0uODI1LjU2QzMuMzAzIDIxLjM3NC0uMDAzIDE2Ljg2NyAwIDExLjc5MSAwIDUuMjc2IDUuMzcgMCAxMiAweiI+PC9wYXRoPjwvc3ZnPg==" x="0" y="0" width="16" height="16"/>
-    <text x="24" y="13" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.4">GITHUB LIVE OVERVIEW (ALL-TIME)</text>
-    <g transform="translate(0, 26)">
-      <rect x="0" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
-      <text x="37" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">2.2k+</text>
-      <text x="37" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">COMMITS</text>
-
-      <rect x="81" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
-      <text x="118" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">28</text>
-      <text x="118" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">REPOS</text>
-
-      <rect x="162" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
-      <text x="199" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="13" font-weight="900">74 D</text>
-      <text x="199" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">ACTIVE D</text>
-
-      <rect x="243" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
-      <text x="280" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">52</text>
-      <text x="280" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">STARS</text>
+    </g>
+    <g transform="translate(24, 160)">
+      <image href="data:image/svg+xml;base64,PHN2ZyBmaWxsPSJjdXJyZW50Q29sb3IiIGZpbGwtcnVsZT0iZXZlbm9kZCIgaGVpZ2h0PSIxZW0iIHN0eWxlPSJmbGV4Om5vbmU7bGluZS1oZWlnaHQ6MSIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMWVtIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0aXRsZT5HaXRodWI8L3RpdGxlPjxwYXRoIGQ9Ik0xMiAwYzYuNjMgMCAxMiA1LjI3NiAxMiAxMS43OS0uMDAxIDUuMDY3LTMuMjkgOS41NjctOC4xNzUgMTEuMTg3LS42LjExOC0uODI1LS4yNS0uODI1LS41NiAwLS4zOTguMDE1LTEuNjY1LjAxNS0zLjI0MiAwLTEuMTA1LS4zNzUtMS44MTMtLjgxLTIuMTgxIDIuNjctLjI5NSA1LjQ3NS0xLjI5NyA1LjQ3NS01LjgyMiAwLTEuMjk3LS40NjUtMi4zNDQtMS4yMy0zLjE2OS4xMi0uMjk1LjU0LTEuNTAzLS4xMi0zLjEyNSAwIDAtMS4wMDUtLjMyNC0zLjMgMS4yMDlhMTEuMzIgMTEuMzIgMCAwMC0zLS4zOThjLTEuMDIgMC0yLjA0LjEzMy0zIC4zOTgtMi4yOTUtMS41MTgtMy4zLTEuMjA5LTMuMy0xLjIwOS0uNjYgMS42MjItLjI0IDIuODMtLjEyIDMuMTI1LS43NjUuODI1LTEuMjMgMS44ODctMS4yMyAzLjE2OSAwIDQuNTEgMi43OSA1LjUyNyA1LjQ2IDUuODIyLS4zNDUuMjk0LS42Ni44MS0uNzY1IDEuNTc3LS42OS4zMS0yLjQxNS44MS0zLjQ5NS0uOTczLS4yMjUtLjM1NC0uOS0xLjIyMy0xLjg0NS0xLjIwOS0xLjAwNS4wMTUtLjQwNS41Ni4wMTUuNzgxLjUxLjI4IDEuMDk1IDEuMzI3IDEuMjMgMS42NjYuMjQuNjYzIDEuMDIgMS45MyA0LjAzNSAxLjM4NSAwIC45ODguMDE1IDEuOTE2LjAxNSAyLjE5NiAwIC4zMS0uMjI1LjY2NC0uODI1LjU2QzMuMzAzIDIxLjM3NC0uMDAzIDE2Ljg2NyAwIDExLjc5MSAwIDUuMjc2IDUuMzcgMCAxMiAweiI+PC9wYXRoPjwvc3ZnPg==" x="0" y="0" width="16" height="16"/>
+      <text x="24" y="13" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.4">GITHUB LIVE OVERVIEW (ALL-TIME)</text>
+      <g transform="translate(0, 26)">
+        <rect x="0" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+        <text x="37" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">2.2k+</text>
+        <text x="37" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">COMMITS</text>
+        <rect x="81" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+        <text x="118" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">28</text>
+        <text x="118" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">REPOS</text>
+        <rect x="162" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+        <text x="199" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="13" font-weight="900">74 D</text>
+        <text x="199" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">ACTIVE D</text>
+        <rect x="243" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+        <text x="280" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="14" font-weight="900">52</text>
+        <text x="280" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">STARS</text>
+      </g>
     </g>
   </g>
 </g>
 
 <g transform="translate(430, 650)">
+  <defs><clipPath id="rightCardClip"><rect x="0" y="0" width="385" height="285" rx="20"/></clipPath></defs>
   <rect width="385" height="285" rx="20" class="glass-card"/>
-  <g transform="translate(24, 20)">
-    <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Skills</text>
-    <g transform="translate(0, 28)">
-          <rect x="0" y="0" width="73" height="26" rx="13" class="pill-bg"/>
+  <g clip-path="url(#rightCardClip)">
+    <g transform="translate(24, 20)">
+      <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Skills</text>
+      <g transform="translate(0, 28)">
+            <rect x="0" y="0" width="73" height="26" rx="13" class="pill-bg"/>
     <text x="36.5" y="17" text-anchor="middle" class="pill-text">Frontend</text>
     <rect x="81" y="0" width="83" height="26" rx="13" class="pill-bg"/>
     <text x="122.5" y="17" text-anchor="middle" class="pill-text">Agentic AI</text>
@@ -538,13 +537,12 @@
     <text x="56.5" y="85" text-anchor="middle" class="pill-text">Creative Design</text>
     <rect x="121" y="68" width="132" height="26" rx="13" class="pill-bg"/>
     <text x="187.0" y="85" text-anchor="middle" class="pill-text">Graphics Designing</text>
+      </g>
     </g>
-  </g>
-
-  <g transform="translate(24, 160)">
-    <text x="0" y="14" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.4">TECH STACK</text>
-    <g transform="translate(0, 24)">
-      
+    <g transform="translate(24, 160)">
+      <text x="0" y="14" class="heading-font text-slate-900" font-size="12" font-weight="800" letter-spacing="0.4">TECH STACK</text>
+      <g transform="translate(0, 24)">
+        
     <g transform="translate(0, 0)">
       <rect width="40" height="40" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" class="keycap-bg"/>
       <image href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwcHgiIGhlaWdodD0iODAwcHgiIHZpZXdCb3g9IjAgLTE3IDI1NiAyNTYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiPgogICAgPGc+CiAgICAgICAgPHBvbHlnb24gZmlsbD0iIzAwMDAwMCIgcG9pbnRzPSIxMjggMCAyNTYgMjIxLjcwNTAwNyAwIDIyMS43MDUwMDciPgoKPC9wb2x5Z29uPgogICAgPC9nPgo8L3N2Zz4K" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
@@ -628,8 +626,8 @@
       <image href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IS0tIFVwbG9hZGVkIHRvOiBTVkcgUmVwbywgd3d3LnN2Z3JlcG8uY29tLCBHZW5lcmF0b3I6IFNWRyBSZXBvIE1peGVyIFRvb2xzIC0tPgo8c3ZnIHdpZHRoPSI4MDBweCIgaGVpZ2h0PSI4MDBweCIgdmlld0JveD0iMCAwIDMyIDMyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0aXRsZT5maWxlX3R5cGVfaHRtbDwvdGl0bGU+PHBvbHlnb24gcG9pbnRzPSI1LjkwMiAyNy4yMDEgMy42NTUgMiAyOC4zNDUgMiAyNi4wOTUgMjcuMTk3IDE1Ljk4NSAzMCA1LjkwMiAyNy4yMDEiIHN0eWxlPSJmaWxsOiNlNDRmMjYiLz48cG9seWdvbiBwb2ludHM9IjE2IDI3Ljg1OCAyNC4xNyAyNS41OTMgMjYuMDkyIDQuMDYxIDE2IDQuMDYxIDE2IDI3Ljg1OCIgc3R5bGU9ImZpbGw6I2YxNjYyYSIvPjxwb2x5Z29uIHBvaW50cz0iMTYgMTMuNDA3IDExLjkxIDEzLjQwNyAxMS42MjggMTAuMjQyIDE2IDEwLjI0MiAxNiA3LjE1MSAxNS45ODkgNy4xNTEgOC4yNSA3LjE1MSA4LjMyNCA3Ljk4MSA5LjA4MyAxNi40OTggMTYgMTYuNDk4IDE2IDEzLjQwNyIgc3R5bGU9ImZpbGw6I2ViZWJlYiIvPjxwb2x5Z29uIHBvaW50cz0iMTYgMjEuNDM0IDE1Ljk4NiAyMS40MzggMTIuNTQ0IDIwLjUwOSAxMi4zMjQgMTguMDQ0IDEwLjY1MSAxOC4wNDQgOS4yMjEgMTguMDQ0IDkuNjU0IDIyLjg5NiAxNS45ODYgMjQuNjU0IDE2IDI0LjY1IDE2IDIxLjQzNCIgc3R5bGU9ImZpbGw6I2ViZWJlYiIvPjxwb2x5Z29uIHBvaW50cz0iMTUuOTg5IDEzLjQwNyAxNS45ODkgMTYuNDk4IDE5Ljc5NSAxNi40OTggMTkuNDM3IDIwLjUwNyAxNS45ODkgMjEuNDM3IDE1Ljk4OSAyNC42NTMgMjIuMzI2IDIyLjg5NiAyMi4zNzIgMjIuMzc0IDIzLjA5OCAxNC4yMzcgMjMuMTc0IDEzLjQwNyAyMi4zNDEgMTMuNDA3IDE1Ljk4OSAxMy40MDciIHN0eWxlPSJmaWxsOiNmZmYiLz48cG9seWdvbiBwb2ludHM9IjE1Ljk4OSA3LjE1MSAxNS45ODkgOS4wNzEgMTUuOTg5IDEwLjIzNSAxNS45ODkgMTAuMjQyIDIzLjQ0NSAxMC4yNDIgMjMuNDQ1IDEwLjI0MiAyMy40NTUgMTAuMjQyIDIzLjUxNyA5LjU0OCAyMy42NTggNy45ODEgMjMuNzMyIDcuMTUxIDE1Ljk4OSA3LjE1MSIgc3R5bGU9ImZpbGw6I2ZmZiIvPjwvc3ZnPgo=" x="8" y="8" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
     </g>
     
+      </g>
     </g>
   </g>
-</g>
 </g>
 </svg>
