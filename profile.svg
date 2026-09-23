@@ -513,7 +513,7 @@
       <text x="118" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">REPOS</text>
 
       <rect x="162" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
-      <text x="199" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="13" font-weight="900">57 D</text>
+      <text x="199" y="24" text-anchor="middle" class="body-font text-slate-900" font-size="13" font-weight="900">74 D</text>
       <text x="199" y="40" text-anchor="middle" class="body-font text-slate-500" font-size="8.5" font-weight="700">ACTIVE D</text>
 
       <rect x="243" y="0" width="74" height="54" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
@@ -528,30 +528,20 @@
   <g transform="translate(24, 20)">
     <text x="0" y="16" class="heading-font text-slate-900" font-size="18" font-weight="900">Skills</text>
     <g transform="translate(0, 28)">
-      
-    <rect x="0" y="0" width="154" height="26" rx="13" class="pill-bg"/>
-    <text x="77" y="17" text-anchor="middle" class="pill-text">Frontend</text>
-    
-
-    <rect x="162" y="0" width="140" height="26" rx="13" class="pill-bg"/>
-    <text x="232" y="17" text-anchor="middle" class="pill-text">Agentic AI</text>
-    
-
-    <rect x="0" y="34" width="124" height="26" rx="13" class="pill-bg"/>
-    <text x="62" y="51" text-anchor="middle" class="pill-text">RAG Based AI</text>
-    
-
-    <rect x="132" y="34" width="144" height="26" rx="13" class="pill-bg"/>
-    <text x="204" y="51" text-anchor="middle" class="pill-text">UI/UX Design</text>
-    
-
-    <rect x="0" y="68" width="146" height="26" rx="13" class="pill-bg"/>
-    <text x="73" y="85" text-anchor="middle" class="pill-text">Web Development</text>
-    
-
-    <rect x="154" y="68" width="118" height="26" rx="13" class="pill-bg"/>
-    <text x="213" y="85" text-anchor="middle" class="pill-text">Creative Design</text>
-    
+          <rect x="0" y="0" width="73" height="26" rx="13" class="pill-bg"/>
+    <text x="36.5" y="17" text-anchor="middle" class="pill-text">Frontend</text>
+    <rect x="81" y="0" width="83" height="26" rx="13" class="pill-bg"/>
+    <text x="122.5" y="17" text-anchor="middle" class="pill-text">Agentic AI</text>
+    <rect x="172" y="0" width="102" height="26" rx="13" class="pill-bg"/>
+    <text x="223.0" y="17" text-anchor="middle" class="pill-text">RAG Based AI</text>
+    <rect x="0" y="34" width="99" height="26" rx="13" class="pill-bg"/>
+    <text x="49.5" y="51" text-anchor="middle" class="pill-text">UI/UX Design</text>
+    <rect x="107" y="34" width="124" height="26" rx="13" class="pill-bg"/>
+    <text x="169.0" y="51" text-anchor="middle" class="pill-text">Web Development</text>
+    <rect x="0" y="68" width="113" height="26" rx="13" class="pill-bg"/>
+    <text x="56.5" y="85" text-anchor="middle" class="pill-text">Creative Design</text>
+    <rect x="121" y="68" width="132" height="26" rx="13" class="pill-bg"/>
+    <text x="187.0" y="85" text-anchor="middle" class="pill-text">Graphics Designing</text>
     </g>
   </g>
 
