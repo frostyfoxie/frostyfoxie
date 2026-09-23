@@ -366,23 +366,44 @@ def build_arcade_snake(weeks_data):
 
 contribution_snake_markup = build_arcade_snake(recent_weeks)
 
-# 6. Dynamic Education
+# 6. Dynamic Education — wrapped and clipped so user text never escapes the card
 edu_list = config.get("education", [])
 edu_svg = []
+MAX_EDU_ITEMS = 5
+def wrap_svg_text(text, width=34, max_lines=2):
+    words = str(text).split()
+    lines = []
+    current = ""
+    for word in words:
+        candidate = f"{current} {word}".strip()
+        if len(candidate) <= width:
+            current = candidate
+        else:
+            if current:
+                lines.append(current)
+            current = word
+    if current:
+        lines.append(current)
+    lines = lines[:max_lines]
+    if len(words) > 0 and len(lines) == max_lines and " ".join(lines) != str(text):
+        lines[-1] = lines[-1][:max(1, width - 1)].rstrip() + "…"
+    return [html.escape(line) for line in lines]
+
 if edu_list:
-    line_y2 = 30 + (len(edu_list) - 1) * 36
+    visible_items = edu_list[:MAX_EDU_ITEMS]
+    line_y2 = 30 + (len(visible_items) - 1) * 52
     edu_svg.append(f'<line x1="6" y1="30" x2="6" y2="{line_y2}" stroke="#cbd5e1" stroke-width="1.5"/>')
-    for i, item in enumerate(edu_list):
-        cy = 30 + (i * 36)
-        year = html.escape(str(item.get("year", "")))
-        title = html.escape(str(item.get("title", "")))
-        inst = html.escape(str(item.get("institution", "")))
-        edu_svg.append(f'''
-        <circle cx="6" cy="{cy}" r="3.5" fill="#3b82f6"/>
-        <text x="20" y="{cy + 4}" class="body-font text-slate-900" font-size="11" font-weight="900">{year}</text>
-        <text x="60" y="{cy + 4}" class="body-font text-slate-900" font-size="11" font-weight="800">{title}</text>
-        <text x="60" y="{cy + 16}" class="body-font text-slate-500" font-size="10" font-weight="500">{inst}</text>
-        ''')
+    for i, item in enumerate(visible_items):
+        cy = 30 + (i * 52)
+        year = html.escape(str(item.get("year", "")))[:12]
+        title_lines = wrap_svg_text(item.get("title", ""), width=28, max_lines=2)
+        inst_lines = wrap_svg_text(item.get("institution", ""), width=32, max_lines=1)
+        edu_svg.append(f'<circle cx="6" cy="{cy}" r="3.5" fill="#3b82f6"/>')
+        edu_svg.append(f'<text x="20" y="{cy + 4}" class="body-font text-slate-900" font-size="10.5" font-weight="900">{year}</text>')
+        for line_idx, line in enumerate(title_lines):
+            edu_svg.append(f'<text x="60" y="{cy + 4 + line_idx * 12}" class="body-font text-slate-900" font-size="10.5" font-weight="800">{line}</text>')
+        inst_y = cy + 17 + (len(title_lines) - 1) * 12
+        edu_svg.append(f'<text x="60" y="{inst_y}" class="body-font text-slate-500" font-size="9.2" font-weight="500">{inst_lines[0] if inst_lines else ""}</text>')
 education_markup = "\n".join(edu_svg)
 
 # =================================================================
