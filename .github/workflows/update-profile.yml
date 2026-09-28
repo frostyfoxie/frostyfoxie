@@ -37,7 +37,7 @@ jobs:
 
       - name: Commit and Push Changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions-certified-workflow"
+          git config --global user.email "github-actions-certified-workflow@users.noreply.github.com"
           git add profile.svg btn_instagram.svg btn_email.svg btn_github.svg
           git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update all-time profile stats" && git push)
